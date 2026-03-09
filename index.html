@@ -435,6 +435,108 @@
       padding-left: 2rem;
       padding-right: 2rem;
     }
+
+    /* ════════════════════════════════
+       MOBILE — 768px and below
+    ════════════════════════════════ */
+    @media (max-width: 768px) {
+
+      /* Page padding tighter on mobile */
+      .page-pad { padding-left: 1rem !important; padding-right: 1rem !important; }
+
+      /* ── Header ── */
+      .site-header { padding: 1rem 1.25rem !important; min-height: unset !important; }
+      .header-logo { height: 150px !important; }
+
+      /* ── Barrel border-radius smaller on mobile ── */
+      .barrel { border-radius: 24px !important; margin: 1.25rem auto !important; }
+      .white-card { border-radius: 16px !important; margin: 1.25rem auto !important; }
+
+      /* ── Countdown ── */
+      .cd-inner { padding: 2rem 1.25rem !important; }
+      .cd-star { width: 140px !important; }
+      .cd-star svg { width: 140px !important; }
+      .cd-num { font-size: clamp(2.2rem, 9vw, 3.5rem) !important; }
+      .cd-sep { font-size: clamp(1.8rem, 7vw, 3rem) !important; }
+
+      /* ── About ── */
+      .about-inner { padding: 2rem 1.5rem !important; }
+
+      /* ── Tickets ── */
+      .ticket-row { padding: 1rem 1.25rem !important; flex-wrap: wrap; gap: 0.2rem; }
+      .ticket-name { font-size: 1.05rem !important; }
+
+      /* ── Lineup ── */
+      .lineup-inner { padding: 2rem 1.5rem !important; }
+      .lineup-grid { grid-template-columns: 1fr !important; gap: 0.2rem !important; }
+      .lineup-name { font-size: clamp(2rem, 9vw, 3rem) !important; }
+      /* MALIK MONTANA: reset span override on mobile */
+      .lineup-grid .lineup-name[style*="span 2"] { grid-column: span 1 !important; text-align: left !important; }
+
+      /* ── Artists ── */
+      .artist-card { width: 170px !important; height: 220px !important; }
+
+      /* ── News ── */
+      .news-grid { grid-template-columns: 1fr !important; }
+      section#news { padding: 0 1rem 2rem !important; }
+      .white-card > div { padding: 1.5rem 1.25rem 2rem !important; }
+
+      /* ── Partners ── */
+      .partners-row { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 0.5rem !important; }
+      .partner-box { max-height: 80px !important; }
+
+      /* ── Strefy ── */
+      .strefy-row { flex-direction: column !important; }
+      .strefa-card { height: 220px !important; }
+      section#strefy { padding: 2rem 1rem !important; }
+
+      /* ── Instagram ── */
+      .insta-row { overflow-x: auto !important; flex-wrap: nowrap !important; scrollbar-width: none !important; }
+      .insta-row::-webkit-scrollbar { display: none !important; }
+      .insta-photo { flex: 0 0 160px !important; min-width: 160px !important; height: 160px !important; }
+      section#instagram { padding: 0 1rem 2rem !important; }
+
+      /* ── Kontakt ── */
+      .kontakt-inner { padding: 2rem 1.25rem !important; }
+      .contact-grid { grid-template-columns: 1fr !important; }
+      /* Remove right border on stacked contact items */
+      .contact-grid > div { border-right: none !important; padding-right: 0 !important; padding-left: 0 !important; }
+
+      /* ── FAQ ── */
+      section#faq { padding: 1rem 1rem 2rem !important; }
+
+      /* ── Footer ── */
+      .site-footer { padding: 2.5rem 1.5rem !important; }
+      .footer-inner { flex-direction: column !important; gap: 2rem !important; align-items: flex-start !important; }
+      .footer-inner img { height: 120px !important; }
+      .footer-nav { gap: 2rem !important; }
+
+      /* ── Artists section ── */
+      section#artists { padding: 2rem 1rem !important; }
+    }
+
+    /* ════════════════════════════════
+       SMALL PHONES — 480px and below
+    ════════════════════════════════ */
+    @media (max-width: 480px) {
+      .site-header { padding: 0.75rem 1rem !important; }
+      .header-logo { height: 120px !important; }
+      .btn-white-outline { padding: 0.5rem 1rem !important; font-size: 0.7rem !important; }
+      .social-icon-yellow { width: 2rem !important; height: 2rem !important; }
+      .social-icon-yellow svg { width: 0.85rem !important; height: 0.85rem !important; }
+
+      /* Hide countdown stars on very small screens */
+      .cd-star { display: none !important; }
+
+      /* Lineup single-column tighter */
+      .lineup-inner { padding: 1.5rem 1.25rem !important; }
+
+      /* Partners 2-col on small phones */
+      .partners-row { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* Footer nav single col on small phones */
+      .footer-nav { flex-direction: column !important; gap: 1rem !important; }
+    }
   </style>
 </head>
 <body>
@@ -442,13 +544,13 @@
 <!-- ═══════════════════════════════════════════
      1. HEADER
 ═══════════════════════════════════════════ -->
-<header style="background: var(--black); padding: 1.5rem 4rem; min-height: 280px; display: flex; align-items: center; justify-content: space-between; position: relative;">
+<header class="site-header" style="background: var(--black); padding: 1.5rem 4rem; min-height: 280px; display: flex; align-items: center; justify-content: space-between; position: relative;">
   <!-- KUP BILET left -->
   <a href="#tickets" class="btn-white-outline">KUP BILET</a>
 
   <!-- Logo center -->
   <div style="position: absolute; left: 50%; transform: translateX(-50%);">
-    <img src="brand_assets/logo1.png" alt="OSHEE ALL STAR FESTIVAL" style="height: 270px; width: auto; display: block;">
+    <img src="brand_assets/newlogo.png" alt="OSHEE ALL STAR FESTIVAL" class="header-logo" style="height: 270px; width: auto; display: block;">
   </div>
 
   <!-- Social icons right -->
@@ -481,14 +583,14 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad">
   <div class="barrel">
-    <div style="padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden;">
+    <div class="cd-inner" style="padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden;">
       <!-- Star decorations -->
-      <div style="position: absolute; left: -60px; top: 50%; transform: translateY(-50%); opacity: 0.9; pointer-events: none;">
+      <div class="cd-star cd-star-left" style="position: absolute; left: -60px; top: 50%; transform: translateY(-50%); opacity: 0.9; pointer-events: none;">
         <svg width="260" height="320" viewBox="0 0 260 320" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M130 10 L148 95 L220 55 L168 125 L258 112 L178 158 L240 228 L150 190 L145 305 L120 195 L32 238 L95 165 L10 125 L95 112 L42 42 L112 85 Z" fill="#0A0C0F" opacity="0.85"/>
         </svg>
       </div>
-      <div style="position: absolute; right: -60px; top: 50%; transform: translateY(-50%) scaleX(-1); opacity: 0.9; pointer-events: none;">
+      <div class="cd-star cd-star-right" style="position: absolute; right: -60px; top: 50%; transform: translateY(-50%) scaleX(-1); opacity: 0.9; pointer-events: none;">
         <svg width="260" height="320" viewBox="0 0 260 320" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M130 10 L148 95 L220 55 L168 125 L258 112 L178 158 L240 228 L150 190 L145 305 L120 195 L32 238 L95 165 L10 125 L95 112 L42 42 L112 85 Z" fill="#0A0C0F" opacity="0.85"/>
         </svg>
@@ -531,7 +633,7 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad">
   <div class="barrel" id="about">
-    <div style="padding: 3.5rem 4rem;">
+    <div class="about-inner" style="padding: 3.5rem 4rem;">
       <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 6vw, 5rem); text-transform: uppercase; color: var(--black); text-align: center; letter-spacing: -0.02em; margin-bottom: 1.5rem; line-height: 1;">POZNAJ ALLSTAR FESTIVAL</h2>
       <p style="font-family: 'Forum', serif; font-size: 1.05rem; line-height: 1.8; color: var(--black); max-width: 780px; margin: 0 auto; text-align: center; opacity: 0.85;">
         OSHEE All Star Festival to największe polskie wydarzenie muzyczne, które łączy czołowych artystów polskiej sceny hip-hopowej na jednej scenie. Wyjątkowe show, niezapomniane chwile i muzyka, która przetrwa lata. Dołącz do nas i bądź częścią historii polskiej muzyki.
@@ -569,8 +671,8 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad" id="lineup">
   <div class="barrel">
-    <div style="padding: 3rem 4rem 2rem;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 3rem;">
+    <div class="lineup-inner" style="padding: 3rem 4rem 2rem;">
+      <div class="lineup-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 3rem;">
         <div class="lineup-name"><span class="lineup-num">01</span>BEDOES</div>
         <div class="lineup-name"><span class="lineup-num">02</span>BAMBI</div>
         <div class="lineup-name"><span class="lineup-num">03</span>ŻABSON</div>
@@ -677,7 +779,7 @@
     <div style="padding: 2rem 2rem 2.5rem;">
       <span class="section-label" style="margin-bottom: 1.5rem;">AKTUALNOŚCI</span>
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;">
+      <div class="news-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;">
         <!-- Card 1 -->
         <div class="news-card" style="border-radius: 8px; overflow: hidden;">
           <div class="news-mosaic">
@@ -729,7 +831,7 @@
   <div class="barrel">
     <div style="padding: 2.5rem 2.5rem;">
       <span class="section-label" style="margin-bottom: 1.5rem;">PATRNERZY WYDARZENIA</span>
-      <div style="display: flex; gap: 0.75rem;">
+      <div class="partners-row" style="display: flex; gap: 0.75rem;">
         <div class="partner-box" style="max-height: 110px;">
           <img src="brand_assets/logo1.png" alt="OSHEE ALL STAR FESTIVAL">
         </div>
@@ -759,7 +861,7 @@
 <section id="strefy" style="padding: 3rem 2rem;">
   <div style="max-width: 1120px; margin: 0 auto;">
     <span class="section-label-white" style="margin-bottom: 1.5rem; display: flex;">STREFY</span>
-    <div style="display: flex; gap: 1.25rem;">
+    <div class="strefy-row" style="display: flex; gap: 1.25rem;">
       <div class="strefa-card">
         <img src="https://placehold.co/400x380/1a1a1a/444" alt="Strefa Główna">
         <div class="strefa-overlay"></div>
@@ -798,7 +900,7 @@
         <span class="section-label">INSTAGRAM</span>
         <a href="#" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--black); text-decoration: none; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">@allstarfestival</a>
       </div>
-      <div style="display: flex; gap: 0.75rem;">
+      <div class="insta-row" style="display: flex; gap: 0.75rem;">
         <div class="insta-photo"><img src="https://placehold.co/220x220/222/555" alt=""></div>
         <div class="insta-photo"><img src="https://placehold.co/220x220/1a1a1a/444" alt=""></div>
         <div class="insta-photo"><img src="https://placehold.co/220x220/282828/555" alt=""></div>
@@ -814,7 +916,7 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad" id="contact">
   <div class="barrel">
-    <div style="padding: 2.5rem 2.5rem; position: relative; overflow: hidden;">
+    <div class="kontakt-inner" style="padding: 2.5rem 2.5rem; position: relative; overflow: hidden;">
       <!-- Star decoration right -->
       <div style="position: absolute; right: -80px; bottom: -60px; pointer-events: none; opacity: 0.8;">
         <svg width="300" height="340" viewBox="0 0 260 320" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -825,7 +927,7 @@
       <span class="section-label" style="margin-bottom: 2rem;">KONTAKT</span>
 
       <div style="position: relative; z-index: 2;">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(10,12,15,0.2);">
+        <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(10,12,15,0.2);">
           <div style="padding: 1.5rem 0; border-bottom: 1px solid rgba(10,12,15,0.2); padding-right: 2rem; border-right: 1px solid rgba(10,12,15,0.2);">
             <p style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Obsługa uczestników/Pomoc</p>
             <a href="mailto:bok@allstarfestival.pl" style="font-family: 'Forum', serif; font-size: 0.95rem; color: var(--black); text-decoration: none; opacity: 0.75;">bok@allstarfestival.pl</a>
@@ -888,8 +990,8 @@
 <!-- ═══════════════════════════════════════════
      13. FOOTER (full-bleed Citrine)
 ═══════════════════════════════════════════ -->
-<footer style="background: var(--citrine); padding: 3.5rem 4rem;">
-  <div style="max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 3rem;">
+<footer class="site-footer" style="background: var(--citrine); padding: 3.5rem 4rem;">
+  <div class="footer-inner" style="max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 3rem;">
     <!-- Left: logo + socials + button -->
     <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex-shrink: 0;">
       <img src="brand_assets/logo2.png" alt="OSHEE ALL STAR FESTIVAL" style="height: 160px; width: auto;">
@@ -914,7 +1016,7 @@
     </div>
 
     <!-- Right: nav links -->
-    <div style="display: flex; gap: 5rem; flex: 1; justify-content: flex-end;">
+    <div class="footer-nav" style="display: flex; gap: 5rem; flex: 1; justify-content: flex-end;">
       <div style="display: flex; flex-direction: column; gap: 0.1rem;">
         <a href="#about" class="footer-nav-link">POZNAJ ALLSTAR FESTIVAL</a>
         <a href="#lineup" class="footer-nav-link">LINEUP</a>
