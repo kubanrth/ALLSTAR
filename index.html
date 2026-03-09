@@ -582,46 +582,36 @@
      2. COUNTDOWN (Citrine barrel)
 ═══════════════════════════════════════════ -->
 <div class="page-pad">
-  <div class="barrel">
-    <div class="cd-inner" style="padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden;">
-      <!-- Star decorations -->
-      <div class="cd-star cd-star-left" style="position: absolute; left: -80px; top: 50%; transform: translateY(-50%); opacity: 0.92; pointer-events: none;">
-        <svg width="360" height="445" viewBox="0 0 260 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M130 10 L148 95 L220 55 L168 125 L258 112 L178 158 L240 228 L150 190 L145 305 L120 195 L32 238 L95 165 L10 125 L95 112 L42 42 L112 85 Z" fill="#0A0C0F"/>
-        </svg>
-      </div>
-      <div class="cd-star cd-star-right" style="position: absolute; right: -80px; top: 50%; transform: translateY(-50%) scaleX(-1); opacity: 0.92; pointer-events: none;">
-        <svg width="360" height="445" viewBox="0 0 260 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M130 10 L148 95 L220 55 L168 125 L258 112 L178 158 L240 228 L150 190 L145 305 L120 195 L32 238 L95 165 L10 125 L95 112 L42 42 L112 85 Z" fill="#0A0C0F"/>
-        </svg>
-      </div>
-
-      <!-- Content -->
-      <p style="font-family: 'Forum', serif; font-size: 1rem; color: var(--black); opacity: 0.8; margin-bottom: 1.5rem; position: relative; z-index: 2;">Do wydarzenia pozostało:</p>
-
-      <div style="display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.75rem, 2vw, 2rem); margin-bottom: 2.5rem; position: relative; z-index: 2;">
-        <div style="text-align: center;">
-          <div class="cd-num" id="cd-days">000</div>
-          <div class="cd-label">DNI</div>
-        </div>
-        <div class="cd-sep">:</div>
-        <div style="text-align: center;">
-          <div class="cd-num" id="cd-hours">00</div>
-          <div class="cd-label">GODZIN</div>
-        </div>
-        <div class="cd-sep">:</div>
-        <div style="text-align: center;">
-          <div class="cd-num" id="cd-minutes">00</div>
-          <div class="cd-label">MINUT</div>
-        </div>
-        <div class="cd-sep">:</div>
-        <div style="text-align: center;">
-          <div class="cd-num" id="cd-seconds">00</div>
-          <div class="cd-label">SEKUND</div>
+  <div class="barrel" style="background: none;">
+    <!-- graf1.png defines full visual — stars, texture, layout -->
+    <img src="brand_assets/graf1.png" alt="" style="width: 100%; display: block;">
+    <!-- Overlay: live countdown numbers (yellow bg covers the static numbers in the image) -->
+    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; pointer-events: none;">
+      <div style="background: var(--citrine); padding: 0.75rem 3rem 0.5rem; text-align: center;">
+        <p style="font-family: 'Forum', serif; font-size: 1rem; color: var(--black); opacity: 0.8; margin-bottom: 1rem;">Do wydarzenia pozostało:</p>
+        <div style="display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.75rem, 2vw, 2rem); margin-bottom: 0.5rem;">
+          <div style="text-align: center;">
+            <div class="cd-num" id="cd-days">000</div>
+            <div class="cd-label">DNI</div>
+          </div>
+          <div class="cd-sep">:</div>
+          <div style="text-align: center;">
+            <div class="cd-num" id="cd-hours">00</div>
+            <div class="cd-label">GODZIN</div>
+          </div>
+          <div class="cd-sep">:</div>
+          <div style="text-align: center;">
+            <div class="cd-num" id="cd-minutes">00</div>
+            <div class="cd-label">MINUT</div>
+          </div>
+          <div class="cd-sep">:</div>
+          <div style="text-align: center;">
+            <div class="cd-num" id="cd-seconds">00</div>
+            <div class="cd-label">SEKUND</div>
+          </div>
         </div>
       </div>
-
-      <div style="position: relative; z-index: 2;">
+      <div style="pointer-events: all;">
         <a href="#tickets" class="btn-black">KUP BILET</a>
       </div>
     </div>
@@ -632,13 +622,9 @@
      3. POZNAJ ALLSTAR FESTIVAL (Citrine barrel)
 ═══════════════════════════════════════════ -->
 <div class="page-pad">
-  <div class="barrel" id="about">
-    <div class="about-inner" style="padding: 3.5rem 4rem;">
-      <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 6vw, 5rem); text-transform: uppercase; color: var(--black); text-align: center; letter-spacing: -0.02em; margin-bottom: 1.5rem; line-height: 1;">POZNAJ ALLSTAR FESTIVAL</h2>
-      <p style="font-family: 'Forum', serif; font-size: 1.05rem; line-height: 1.8; color: var(--black); max-width: 780px; margin: 0 auto; text-align: center; opacity: 0.85;">
-        OSHEE All Star Festival to największe polskie wydarzenie muzyczne, które łączy czołowych artystów polskiej sceny hip-hopowej na jednej scenie. Wyjątkowe show, niezapomniane chwile i muzyka, która przetrwa lata. Dołącz do nas i bądź częścią historii polskiej muzyki.
-      </p>
-    </div>
+  <div class="barrel" id="about" style="background: none;">
+    <!-- graf2.png is the complete visual for this section -->
+    <img src="brand_assets/graf2.png" alt="Poznaj AllStar Festival" style="width: 100%; display: block;">
   </div>
 </div>
 
@@ -646,24 +632,13 @@
      4. TICKETS (Citrine barrel)
 ═══════════════════════════════════════════ -->
 <div class="page-pad" id="tickets">
-  <div class="barrel">
-    <div>
-      <div class="ticket-row">
-        <span class="ticket-name">BILET GA – I PULA – 199PLN</span>
-        <span class="ticket-countdown" id="pula1-countdown">22:17:36</span>
-      </div>
-      <div class="ticket-row">
-        <span class="ticket-name">BILET GA – II PULA – 299PLN</span>
-        <span class="ticket-status">niedostępna</span>
-      </div>
-      <div class="ticket-row">
-        <span class="ticket-name">BILET GA – III PULA 399PLN</span>
-        <span class="ticket-status">niedostępna</span>
-      </div>
-      <div class="ticket-row">
-        <span class="ticket-name">BILET VIP – 799PLN</span>
-        <span class="ticket-status" style="opacity: 1; font-weight: 600;">dostępny</span>
-      </div>
+  <div class="barrel" style="background: none;">
+    <!-- graf3.png is the complete visual — ticket names/prices baked in -->
+    <img src="brand_assets/graf3.png" alt="Bilety" style="width: 100%; display: block;">
+    <!-- Overlay: only the live pula1 countdown (everything else is in the image) -->
+    <!-- Row height ≈ 25% of image. Pula1 countdown at ~17% from top, centered -->
+    <div style="position: absolute; top: 17%; left: 50%; transform: translateX(-50%); z-index: 1; white-space: nowrap;">
+      <span class="ticket-countdown" id="pula1-countdown">22:17:36</span>
     </div>
   </div>
 </div>
@@ -672,38 +647,21 @@
      5. LINEUP (Citrine barrel)
 ═══════════════════════════════════════════ -->
 <div class="page-pad" id="lineup">
-  <div class="barrel">
-    <div class="lineup-inner" style="padding: 3rem 4rem 0; min-height: 600px; position: relative;">
-      <!-- Artist names grid (above decorations) -->
-      <div class="lineup-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 3rem; position: relative; z-index: 2;">
+  <div class="barrel" style="background: none;">
+    <!-- graf4.png defines full visual: sweeping curves, stars, LINEUP text, texture -->
+    <img src="brand_assets/graf4.png" alt="Lineup" style="width: 100%; display: block;">
+    <!-- Overlay: artist names with yellow bg to cover blurred placeholder in image -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 44%; padding: 5% 8% 2%; z-index: 1; display: flex; align-items: flex-start; background: var(--citrine);">
+      <div class="lineup-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 2rem; width: 100%;">
         <div class="lineup-name"><span class="lineup-num">01</span>BEDOES</div>
         <div class="lineup-name"><span class="lineup-num">02</span>BAMBI</div>
         <div class="lineup-name"><span class="lineup-num">03</span>ŻABSON</div>
         <div class="lineup-name"><span class="lineup-num">04</span>KUBAN</div>
-        <div class="lineup-name" style="grid-column: span 2; text-align: center;"><span class="lineup-num">05</span>MALIK MONTANA</div>
+        <div class="lineup-name" style="grid-column: span 2; text-align: left;"><span class="lineup-num">05</span>MALIK MONTANA</div>
         <div class="lineup-name"><span class="lineup-num">06</span>KUQE</div>
         <div class="lineup-name"><span class="lineup-num">07</span>VKIE</div>
         <div class="lineup-name"><span class="lineup-num">08</span>YOUNG IGI</div>
         <div class="lineup-name"><span class="lineup-num">09</span>BSK</div>
-      </div>
-
-      <!-- Left large star at bottom -->
-      <div style="position: absolute; bottom: 68px; left: 14%; z-index: 2; pointer-events: none;">
-        <svg width="175" height="217" viewBox="0 0 260 320" fill="none">
-          <path d="M130 10 L148 95 L220 55 L168 125 L258 112 L178 158 L240 228 L150 190 L145 305 L120 195 L32 238 L95 165 L10 125 L95 112 L42 42 L112 85 Z" fill="#0A0C0F"/>
-        </svg>
-      </div>
-
-      <!-- Right large star at bottom (mirrored) -->
-      <div style="position: absolute; bottom: 68px; right: 14%; z-index: 2; pointer-events: none; transform: scaleX(-1);">
-        <svg width="175" height="217" viewBox="0 0 260 320" fill="none">
-          <path d="M130 10 L148 95 L220 55 L168 125 L258 112 L178 158 L240 228 L150 190 L145 305 L120 195 L32 238 L95 165 L10 125 L95 112 L42 42 L112 85 Z" fill="#0A0C0F"/>
-        </svg>
-      </div>
-
-      <!-- LINEUP label at very bottom center -->
-      <div style="position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 3; white-space: nowrap;">
-        <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black);">LINEUP</span>
       </div>
     </div>
   </div>
