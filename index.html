@@ -583,32 +583,30 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad">
   <div class="barrel" style="background: none;">
-    <!-- graf1.png defines full visual — stars, texture, layout -->
-    <img src="brand_assets/graf1.png" alt="" style="width: 100%; display: block;">
-    <!-- Overlay: live countdown numbers (yellow bg covers the static numbers in the image) -->
-    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; pointer-events: none;">
-      <div style="background: var(--citrine); padding: 0.75rem 3rem 0.5rem; text-align: center;">
-        <p style="font-family: 'Forum', serif; font-size: 1rem; color: var(--black); opacity: 0.8; margin-bottom: 1rem;">Do wydarzenia pozostało:</p>
-        <div style="display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.75rem, 2vw, 2rem); margin-bottom: 0.5rem;">
-          <div style="text-align: center;">
-            <div class="cd-num" id="cd-days">000</div>
-            <div class="cd-label">DNI</div>
-          </div>
-          <div class="cd-sep">:</div>
-          <div style="text-align: center;">
-            <div class="cd-num" id="cd-hours">00</div>
-            <div class="cd-label">GODZIN</div>
-          </div>
-          <div class="cd-sep">:</div>
-          <div style="text-align: center;">
-            <div class="cd-num" id="cd-minutes">00</div>
-            <div class="cd-label">MINUT</div>
-          </div>
-          <div class="cd-sep">:</div>
-          <div style="text-align: center;">
-            <div class="cd-num" id="cd-seconds">00</div>
-            <div class="cd-label">SEKUND</div>
-          </div>
+    <!-- STRONA1.png: decoration only (stars + texture, no baked-in text) -->
+    <img src="brand_assets/STRONA1.png" alt="" style="width: 100%; display: block;">
+    <!-- Overlay: full live countdown centered on the empty yellow center of the image -->
+    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; pointer-events: none; text-align: center;">
+      <p style="font-family: 'Forum', serif; font-size: 1rem; color: var(--black); opacity: 0.8; margin: 0;">Do wydarzenia pozostało:</p>
+      <div style="display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.75rem, 2vw, 2rem);">
+        <div style="text-align: center;">
+          <div class="cd-num" id="cd-days">000</div>
+          <div class="cd-label">DNI</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div style="text-align: center;">
+          <div class="cd-num" id="cd-hours">00</div>
+          <div class="cd-label">GODZIN</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div style="text-align: center;">
+          <div class="cd-num" id="cd-minutes">00</div>
+          <div class="cd-label">MINUT</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div style="text-align: center;">
+          <div class="cd-num" id="cd-seconds">00</div>
+          <div class="cd-label">SEKUND</div>
         </div>
       </div>
       <div style="pointer-events: all;">
@@ -624,7 +622,7 @@
 <div class="page-pad">
   <div class="barrel" id="about" style="background: none;">
     <!-- graf2.png is the complete visual for this section -->
-    <img src="brand_assets/graf2.png" alt="Poznaj AllStar Festival" style="width: 100%; display: block;">
+    <img src="brand_assets/strona2.png" alt="Poznaj AllStar Festival" style="width: 100%; display: block;">
   </div>
 </div>
 
@@ -633,8 +631,8 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad" id="tickets">
   <div class="barrel" style="background: none;">
-    <!-- graf3.png is the complete visual — ticket names/prices baked in -->
-    <img src="brand_assets/graf3.png" alt="Bilety" style="width: 100%; display: block;">
+    <!-- strona3.png: ticket names/prices baked in, pula1 countdown slot is empty -->
+    <img src="brand_assets/strona3.png" alt="Bilety" style="width: 100%; display: block;">
     <!-- Overlay: only the live pula1 countdown (everything else is in the image) -->
     <!-- Row height ≈ 25% of image. Pula1 countdown at ~17% from top, centered -->
     <div style="position: absolute; top: 17%; left: 50%; transform: translateX(-50%); z-index: 1; white-space: nowrap;">
@@ -648,22 +646,8 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad" id="lineup">
   <div class="barrel" style="background: none;">
-    <!-- graf4.png defines full visual: sweeping curves, stars, LINEUP text, texture -->
-    <img src="brand_assets/graf4.png" alt="Lineup" style="width: 100%; display: block;">
-    <!-- Overlay: artist names with yellow bg to cover blurred placeholder in image -->
-    <div style="position: absolute; top: 0; left: 0; right: 0; height: 44%; padding: 5% 8% 2%; z-index: 1; display: flex; align-items: flex-start; background: var(--citrine);">
-      <div class="lineup-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 2rem; width: 100%;">
-        <div class="lineup-name"><span class="lineup-num">01</span>BEDOES</div>
-        <div class="lineup-name"><span class="lineup-num">02</span>BAMBI</div>
-        <div class="lineup-name"><span class="lineup-num">03</span>ŻABSON</div>
-        <div class="lineup-name"><span class="lineup-num">04</span>KUBAN</div>
-        <div class="lineup-name" style="grid-column: span 2; text-align: left;"><span class="lineup-num">05</span>MALIK MONTANA</div>
-        <div class="lineup-name"><span class="lineup-num">06</span>KUQE</div>
-        <div class="lineup-name"><span class="lineup-num">07</span>VKIE</div>
-        <div class="lineup-name"><span class="lineup-num">08</span>YOUNG IGI</div>
-        <div class="lineup-name"><span class="lineup-num">09</span>BSK</div>
-      </div>
-    </div>
+    <!-- strona4.png: complete visual with artist names, stars, LINEUP — no overlay needed -->
+    <img src="brand_assets/strona4.png" alt="Lineup" style="width: 100%; display: block;">
   </div>
 </div>
 
