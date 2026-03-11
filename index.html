@@ -446,8 +446,23 @@
       .page-pad { padding-left: 1rem !important; padding-right: 1rem !important; }
 
       /* ── Header ── */
-      .site-header { padding: 1rem 1.25rem !important; min-height: unset !important; }
-      .header-logo { height: 150px !important; }
+      .site-header {
+        padding: 1rem 1.25rem !important;
+        min-height: unset !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+      }
+      /* Logo: pull out of absolute flow, center on top */
+      .header-logo-wrap {
+        position: static !important;
+        transform: none !important;
+        order: -1 !important;
+      }
+      .header-logo { height: 120px !important; }
+      /* Bottom row: KUP BILET + socials side by side */
+      .site-header > a.btn-white-outline { order: 0 !important; }
+      .site-header > div:last-child { order: 1 !important; }
 
       /* ── Barrel border-radius smaller on mobile ── */
       .barrel { border-radius: 0 !important; margin: 1.25rem auto !important; }
@@ -568,7 +583,7 @@
   <a href="#tickets" class="btn-white-outline">KUP BILET</a>
 
   <!-- Logo center -->
-  <div style="position: absolute; left: 50%; transform: translateX(-50%);">
+  <div class="header-logo-wrap" style="position: absolute; left: 50%; transform: translateX(-50%);">
     <img src="brand_assets/newlogo.png" alt="OSHEE ALL STAR FESTIVAL" class="header-logo" style="height: 270px; width: auto; display: block;">
   </div>
 
