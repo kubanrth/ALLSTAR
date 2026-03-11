@@ -459,7 +459,7 @@
         transform: none !important;
         order: -1 !important;
       }
-      .header-logo { height: 120px !important; }
+      .header-logo { height: 180px !important; }
       /* Bottom row: KUP BILET + socials side by side */
       .site-header > a.btn-white-outline { order: 0 !important; }
       .site-header > div:last-child { order: 1 !important; }
@@ -471,6 +471,9 @@
       /* ── Barrel images: enforce min-height on mobile so wide images aren't squished ── */
       .barrel-img { height: 280px !important; object-fit: cover !important; object-position: center !important; }
       .barrel-img-tall { height: 360px !important; }
+      /* About image: contain (no crop) so full layout is visible */
+      .barrel-img-about { object-fit: contain !important; object-position: center !important; height: auto !important; width: 100% !important; }
+      #about.barrel { background: var(--citrine) !important; }
 
       /* ── Countdown ── */
       .cd-inner { padding: 2rem 1.25rem !important; }
@@ -656,7 +659,7 @@
 <div class="page-pad">
   <div class="barrel" id="about" style="background: none;">
     <!-- graf2.png is the complete visual for this section -->
-    <img src="brand_assets/strona2.png" alt="Poznaj AllStar Festival" class="barrel-img" style="width: 100%; display: block;">
+    <img src="brand_assets/strona2.png" alt="Poznaj AllStar Festival" class="barrel-img barrel-img-about" style="width: 100%; display: block;">
   </div>
 </div>
 
