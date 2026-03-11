@@ -383,6 +383,7 @@
     }
 
     /* ── Partner logo boxes ── */
+    .partner-box:empty { display: none; }
     .partner-box {
       flex: 1;
       border: 2px solid var(--black);
@@ -452,12 +453,17 @@
       .barrel { border-radius: 0 !important; margin: 1.25rem auto !important; }
       .white-card { border-radius: 16px !important; margin: 1.25rem auto !important; }
 
+      /* ── Barrel images: enforce min-height on mobile so wide images aren't squished ── */
+      .barrel-img { height: 280px !important; object-fit: cover !important; object-position: center !important; }
+      .barrel-img-tall { height: 360px !important; }
+
       /* ── Countdown ── */
       .cd-inner { padding: 2rem 1.25rem !important; }
       .cd-star { width: 140px !important; }
       .cd-star svg { width: 140px !important; }
-      .cd-num { font-size: clamp(2.2rem, 9vw, 3.5rem) !important; }
-      .cd-sep { font-size: clamp(1.8rem, 7vw, 3rem) !important; }
+      .cd-num { font-size: clamp(1.6rem, 7vw, 2.8rem) !important; }
+      .cd-sep { font-size: clamp(1.3rem, 5.5vw, 2.2rem) !important; }
+      .cd-label { font-size: 0.55rem !important; letter-spacing: 0.05em !important; }
 
       /* ── About ── */
       .about-inner { padding: 2rem 1.5rem !important; }
@@ -480,15 +486,23 @@
       .news-grid { grid-template-columns: 1fr !important; }
       section#news { padding: 0 1rem 2rem !important; }
       .white-card > div { padding: 1.5rem 1.25rem 2rem !important; }
+      /* Show only 2 images in news mosaic on mobile (1 row × 2 cols) */
+      .news-mosaic { grid-template-rows: auto !important; aspect-ratio: unset !important; height: 180px !important; }
+      .news-mosaic img:nth-child(3),
+      .news-mosaic img:nth-child(4) { display: none !important; }
 
       /* ── Partners ── */
-      .partners-row { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 0.5rem !important; }
-      .partner-box { max-height: 80px !important; }
+      .partners-row { display: flex !important; flex-wrap: wrap !important; gap: 0.5rem !important; }
+      .partner-box { flex: 0 0 calc(50% - 0.25rem) !important; max-height: 80px !important; aspect-ratio: unset !important; height: 70px !important; }
+      #partners .barrel > div { padding: 1.5rem 1.25rem !important; }
 
       /* ── Strefy ── */
       .strefy-row { flex-direction: column !important; }
-      .strefa-card { height: 220px !important; }
-      section#strefy { padding: 2rem 1rem !important; }
+      .strefa-card { flex: 0 0 180px !important; height: 180px !important; max-height: 180px !important; border-radius: 8px !important; }
+      section#strefy { padding: 1.5rem 1rem !important; }
+
+      /* ── Hide contact star decoration on mobile ── */
+      .kontakt-inner > div:first-child { display: none !important; }
 
       /* ── Instagram ── */
       .insta-row { overflow-x: auto !important; flex-wrap: nowrap !important; scrollbar-width: none !important; }
@@ -497,10 +511,11 @@
       section#instagram { padding: 0 1rem 2rem !important; }
 
       /* ── Kontakt ── */
-      .kontakt-inner { padding: 2rem 1.25rem !important; }
+      .kontakt-inner { padding: 1.5rem 1.25rem !important; overflow: visible !important; }
       .contact-grid { grid-template-columns: 1fr !important; }
       /* Remove right border on stacked contact items */
-      .contact-grid > div { border-right: none !important; padding-right: 0 !important; padding-left: 0 !important; }
+      .contact-grid > div { border-right: none !important; padding-right: 0 !important; padding-left: 0 !important; border-bottom: 1px solid rgba(10,12,15,0.15) !important; }
+      .contact-grid > div:last-child { border-bottom: none !important; }
 
       /* ── FAQ ── */
       section#faq { padding: 1rem 1rem 2rem !important; }
@@ -512,7 +527,11 @@
       .footer-nav { gap: 2rem !important; }
 
       /* ── Artists section ── */
-      section#artists { padding: 2rem 1rem !important; }
+      section#artists { padding: 1.5rem 1rem !important; }
+      .artist-card { width: 150px !important; height: 200px !important; flex: 0 0 150px !important; }
+
+      /* ── Instagram ── */
+      section#instagram { padding: 0 1rem 1.5rem !important; }
     }
 
     /* ════════════════════════════════
@@ -584,7 +603,7 @@
 <div class="page-pad">
   <div class="barrel" style="background: none;">
     <!-- STRONA1.png: decoration only (stars + texture, no baked-in text) -->
-    <img src="brand_assets/STRONA1.png" alt="" style="width: 100%; display: block;">
+    <img src="brand_assets/STRONA1.png" alt="" class="barrel-img" style="width: 100%; display: block;">
     <!-- Overlay: full live countdown centered on the empty yellow center of the image -->
     <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; pointer-events: none; text-align: center;">
       <p style="font-family: 'Forum', serif; font-size: 1rem; color: var(--black); opacity: 0.8; margin: 0;">Do wydarzenia pozostało:</p>
@@ -622,7 +641,7 @@
 <div class="page-pad">
   <div class="barrel" id="about" style="background: none;">
     <!-- graf2.png is the complete visual for this section -->
-    <img src="brand_assets/strona2.png" alt="Poznaj AllStar Festival" style="width: 100%; display: block;">
+    <img src="brand_assets/strona2.png" alt="Poznaj AllStar Festival" class="barrel-img" style="width: 100%; display: block;">
   </div>
 </div>
 
@@ -632,7 +651,7 @@
 <div class="page-pad" id="tickets">
   <div class="barrel" style="background: none;">
     <!-- strona3.png: ticket names/prices baked in, pula1 countdown slot is empty -->
-    <img src="brand_assets/strona3.png" alt="Bilety" style="width: 100%; display: block;">
+    <img src="brand_assets/strona3.png" alt="Bilety" class="barrel-img" style="width: 100%; display: block;">
     <!-- Overlay: only the live pula1 countdown (everything else is in the image) -->
     <!-- Row height ≈ 25% of image. Pula1 countdown at ~17% from top, centered -->
     <div style="position: absolute; top: 17%; left: 50%; transform: translateX(-50%); z-index: 1; white-space: nowrap;">
@@ -647,7 +666,7 @@
 <div class="page-pad" id="lineup">
   <div class="barrel" style="background: none;">
     <!-- strona4.png: complete visual with artist names, stars, LINEUP — no overlay needed -->
-    <img src="brand_assets/strona4.png" alt="Lineup" style="width: 100%; display: block;">
+    <img src="brand_assets/strona4.png" alt="Lineup" class="barrel-img barrel-img-tall" style="width: 100%; display: block;">
   </div>
 </div>
 
