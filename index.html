@@ -47,8 +47,8 @@
     /* ── Section label style ── */
     .section-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 0.75rem;
+      font-weight: 900;
+      font-size: 1.5rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--black);
@@ -59,15 +59,15 @@
     .section-label::before {
       content: '';
       display: block;
-      width: 32px;
-      height: 3px;
+      width: 40px;
+      height: 4px;
       background: var(--citrine);
       flex-shrink: 0;
     }
     .section-label-white {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 0.75rem;
+      font-weight: 900;
+      font-size: 1.5rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #fff;
@@ -78,8 +78,8 @@
     .section-label-white::before {
       content: '';
       display: block;
-      width: 32px;
-      height: 3px;
+      width: 40px;
+      height: 4px;
       background: var(--citrine);
       flex-shrink: 0;
     }
@@ -301,8 +301,9 @@
       margin-bottom: 0.5rem;
     }
     .faq-question {
-      font-family: 'Forum', serif;
-      font-size: 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
       color: var(--black);
       padding: 1.2rem 1.5rem;
       cursor: pointer;
@@ -312,8 +313,8 @@
       user-select: none;
     }
     .faq-answer {
-      font-family: 'Forum', serif;
-      font-size: 0.95rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
       color: #444;
       padding: 0 1.5rem;
       max-height: 0;
@@ -608,10 +609,6 @@
     <a href="#" class="social-icon-yellow" aria-label="Facebook">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
     </a>
-    <!-- YouTube -->
-    <a href="#" class="social-icon-yellow" aria-label="YouTube">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-    </a>
   </div>
 </header>
 
@@ -624,7 +621,7 @@
     <img src="brand_assets/STRONA1.png" alt="" class="barrel-img" style="width: 100%; display: block;">
     <!-- Overlay: full live countdown centered on the empty yellow center of the image -->
     <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; pointer-events: none; text-align: center;">
-      <p style="font-family: 'Forum', serif; font-size: 1rem; color: var(--black); opacity: 0.8; margin: 0;">Do wydarzenia pozostało:</p>
+      <p style="font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.9rem, 1.6vw, 1.2rem); font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; color: var(--black); margin: 0;">Do wydarzenia pozostało:</p>
       <div style="display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.75rem, 2vw, 2rem);">
         <div style="text-align: center;">
           <div class="cd-num" id="cd-days">000</div>
@@ -658,8 +655,7 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad">
   <div class="barrel" id="about" style="background: none;">
-    <!-- graf2.png is the complete visual for this section -->
-    <img src="brand_assets/strona2.png" alt="Poznaj AllStar Festival" class="barrel-img barrel-img-about" style="width: 100%; display: block;">
+    <img src="brand_assets/Obszar%20roboczy%201_1.png" alt="Poznaj AllStar Festival" class="barrel-img barrel-img-about" style="width: 100%; display: block;">
   </div>
 </div>
 
@@ -684,7 +680,7 @@
 <div class="page-pad" id="lineup">
   <div class="barrel" style="background: none;">
     <!-- strona4.png: complete visual with artist names, stars, LINEUP — no overlay needed -->
-    <img src="brand_assets/strona4.png" alt="Lineup" class="barrel-img barrel-img-tall" style="width: 100%; display: block;">
+    <img src="brand_assets/Obszar%20roboczy%201_3.png" alt="Lineup" class="barrel-img barrel-img-tall" style="width: 100%; display: block;">
   </div>
 </div>
 
@@ -702,7 +698,7 @@
     <!-- Horizontal scroll -->
     <div class="h-scroll">
       <div class="artist-card">
-        <img src="https://placehold.co/220x290/333/999" alt="BEDOES">
+        <img src="brand_assets/bedoes%20blur.png" alt="BEDOES">
         <div class="artist-card-overlay"></div>
         <div class="artist-card-info">
           <div class="artist-card-num">01</div>
@@ -710,7 +706,7 @@
         </div>
       </div>
       <div class="artist-card">
-        <img src="https://placehold.co/220x290/2a2a2a/888" alt="BAMBI">
+        <img src="brand_assets/bambi%20blur.png" alt="BAMBI">
         <div class="artist-card-overlay"></div>
         <div class="artist-card-info">
           <div class="artist-card-num">02</div>
@@ -718,7 +714,7 @@
         </div>
       </div>
       <div class="artist-card">
-        <img src="https://placehold.co/220x290/222/777" alt="ŻABSON">
+        <img src="brand_assets/zabson%20blur.png" alt="ŻABSON">
         <div class="artist-card-overlay"></div>
         <div class="artist-card-info">
           <div class="artist-card-num">03</div>
@@ -726,7 +722,7 @@
         </div>
       </div>
       <div class="artist-card">
-        <img src="https://placehold.co/220x290/2e2e2e/888" alt="KUBAN">
+        <img src="brand_assets/kuban%20blur.png" alt="KUBAN">
         <div class="artist-card-overlay"></div>
         <div class="artist-card-info">
           <div class="artist-card-num">04</div>
@@ -734,7 +730,7 @@
         </div>
       </div>
       <div class="artist-card">
-        <img src="https://placehold.co/220x290/282828/777" alt="MALIK MONTANA">
+        <img src="brand_assets/malik%20montana%20blur.png" alt="MALIK MONTANA">
         <div class="artist-card-overlay"></div>
         <div class="artist-card-info">
           <div class="artist-card-num">05</div>
@@ -742,7 +738,7 @@
         </div>
       </div>
       <div class="artist-card">
-        <img src="https://placehold.co/220x290/252525/666" alt="KUQE">
+        <img src="brand_assets/kuqe%20blur.png" alt="KUQE">
         <div class="artist-card-overlay"></div>
         <div class="artist-card-info">
           <div class="artist-card-num">06</div>
@@ -750,11 +746,27 @@
         </div>
       </div>
       <div class="artist-card">
-        <img src="https://placehold.co/220x290/1e1e1e/666" alt="VKIE">
+        <img src="brand_assets/vkie%20blur.png" alt="VKIE">
         <div class="artist-card-overlay"></div>
         <div class="artist-card-info">
           <div class="artist-card-num">07</div>
           <div class="artist-card-name">VKIE</div>
+        </div>
+      </div>
+      <div class="artist-card">
+        <img src="brand_assets/bsk%20blur.png" alt="BSK">
+        <div class="artist-card-overlay"></div>
+        <div class="artist-card-info">
+          <div class="artist-card-num">08</div>
+          <div class="artist-card-name">BSK</div>
+        </div>
+      </div>
+      <div class="artist-card">
+        <img src="brand_assets/yooung%20igi%20blur.png" alt="YOUNG IGI">
+        <div class="artist-card-overlay"></div>
+        <div class="artist-card-info">
+          <div class="artist-card-num">09</div>
+          <div class="artist-card-name">YOUNG IGI</div>
         </div>
       </div>
     </div>
@@ -820,18 +832,11 @@
 <div class="page-pad" id="partners">
   <div class="barrel">
     <div style="padding: 2.5rem 2.5rem;">
-      <span class="section-label" style="margin-bottom: 1.5rem;">PATRNERZY WYDARZENIA</span>
-      <div class="partners-row" style="display: flex; gap: 0.75rem;">
-        <div class="partner-box" style="max-height: 110px;">
-          <img src="brand_assets/logo1.png" alt="OSHEE ALL STAR FESTIVAL">
-        </div>
-        <div class="partner-box" style="max-height: 110px;">
-          <img src="brand_assets/logo2.png" alt="OSHEE ALL STAR FESTIVAL">
-        </div>
-        <div class="partner-box" style="max-height: 110px;"></div>
-        <div class="partner-box" style="max-height: 110px;"></div>
-        <div class="partner-box" style="max-height: 110px;"></div>
-        <div class="partner-box" style="max-height: 110px;"></div>
+      <span class="section-label" style="margin-bottom: 1.5rem;">PARTNERZY WYDARZENIA</span>
+      <div class="partners-row" style="display: flex; gap: 1.25rem;">
+        <div class="partner-box" style="height: 110px; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); border: 2px dashed rgba(10,12,15,0.2); flex: 1;">GRAIL POINT</div>
+        <div class="partner-box" style="height: 110px; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); border: 2px dashed rgba(10,12,15,0.2); flex: 1;">SO HARD</div>
+        <div class="partner-box" style="height: 110px; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); border: 2px dashed rgba(10,12,15,0.2); flex: 1;">OSHEE</div>
       </div>
     </div>
   </div>
@@ -840,7 +845,7 @@
 <!-- ═══════════════════════════════════════════
      9. STREFY (full-bleed black)
 ═══════════════════════════════════════════ -->
-<section id="strefy" style="padding: 3rem 2rem;">
+<section id="strefy" style="padding: 3rem 2rem; display: none;">
   <div style="max-width: 1120px; margin: 0 auto;">
     <span class="section-label-white" style="margin-bottom: 1.5rem; display: flex;">STREFY</span>
     <div class="strefy-row" style="display: flex; gap: 1.25rem;">
@@ -937,6 +942,7 @@
 ═══════════════════════════════════════════ -->
 <section id="faq" style="padding: 1rem 2rem 3rem;">
   <div style="max-width: 1120px; margin: 0 auto;">
+    <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; letter-spacing: 0.04em; color: #fff; margin: 0 0 2rem 0;">FAQ</h2>
     <div class="faq-item">
       <div class="faq-question" onclick="toggleFaq(this)">
         <span>Czy można wnosić broń?</span>
@@ -990,9 +996,6 @@
         <a href="#" class="social-icon-dark" aria-label="Facebook">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-        <a href="#" class="social-icon-dark" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-        </a>
       </div>
       <a href="#tickets" class="btn-black-outline">KUP BILET</a>
     </div>
@@ -1004,7 +1007,7 @@
         <a href="#lineup" class="footer-nav-link">LINEUP</a>
         <a href="#artists" class="footer-nav-link">POZNAJ ARTYSTÓW</a>
         <a href="#news" class="footer-nav-link">AKTUALNOŚCI</a>
-        <a href="#partners" class="footer-nav-link">PATRNERZY WYDARZENIA</a>
+        <a href="#partners" class="footer-nav-link">PARTNERZY WYDARZENIA</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 0.1rem;">
         <a href="#strefy" class="footer-nav-link">STREFY</a>
