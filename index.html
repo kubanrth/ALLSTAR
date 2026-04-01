@@ -459,6 +459,10 @@
     }
     .footer-nav-link:hover { opacity: 0.5; }
 
+    /* ── Desktop/Mobile toggles ── */
+    .mobile-only { display: none; }
+    .desktop-only { display: block; }
+
     /* ── Page padding for sections ── */
     .page-pad {
       padding-left: 2rem;
@@ -580,8 +584,9 @@
       /* ── Section labels ── */
       .section-label, .section-label-white { font-size: 1.1rem !important; }
 
-      /* ── About section on mobile ── */
-      #about { min-height: unset !important; }
+      /* ── Desktop/Mobile toggle ── */
+      .mobile-only { display: block !important; }
+      .desktop-only { display: none !important; }
 
       /* ── All sections padding consistency ── */
       section#artists, section#news, section#faq { padding-left: 1rem !important; padding-right: 1rem !important; }
@@ -742,33 +747,31 @@
 </header>
 
 <!-- ═══════════════════════════════════════════
-     2. COUNTDOWN (Citrine barrel)
+     2. COUNTDOWN — Desktop (image-based)
 ═══════════════════════════════════════════ -->
-<div class="page-pad">
+<div class="page-pad desktop-only">
   <div class="barrel" style="background: none;">
-    <!-- STRONA1.png: decoration only (stars + texture, no baked-in text) -->
     <img src="brand_assets/STRONA1.png" alt="" class="barrel-img" style="width: 100%; display: block;">
-    <!-- Overlay: full live countdown centered on the empty yellow center of the image -->
     <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; pointer-events: none; text-align: center;">
       <p style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-size: clamp(0.9rem, 1.6vw, 1.2rem); font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; color: var(--black); margin: 0;">Do wydarzenia pozostało:</p>
-      <div style="display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.75rem, 2vw, 2rem);">
+      <div class="cd-row" style="display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.75rem, 2vw, 2rem);">
         <div style="text-align: center;">
-          <div class="cd-num" id="cd-days">000</div>
+          <div class="cd-num cd-days-val">000</div>
           <div class="cd-label">DNI</div>
         </div>
         <div class="cd-sep">:</div>
         <div style="text-align: center;">
-          <div class="cd-num" id="cd-hours">00</div>
+          <div class="cd-num cd-hours-val">00</div>
           <div class="cd-label">GODZIN</div>
         </div>
         <div class="cd-sep">:</div>
         <div style="text-align: center;">
-          <div class="cd-num" id="cd-minutes">00</div>
+          <div class="cd-num cd-minutes-val">00</div>
           <div class="cd-label">MINUT</div>
         </div>
         <div class="cd-sep">:</div>
         <div style="text-align: center;">
-          <div class="cd-num" id="cd-seconds">00</div>
+          <div class="cd-num cd-seconds-val">00</div>
           <div class="cd-label">SEKUND</div>
         </div>
       </div>
@@ -780,12 +783,50 @@
 </div>
 
 <!-- ═══════════════════════════════════════════
-     3. POZNAJ ALLSTAR FESTIVAL (Citrine barrel)
+     2b. COUNTDOWN — Mobile (HTML-based)
 ═══════════════════════════════════════════ -->
-<div class="page-pad">
+<div class="mobile-only" style="background: url('brand_assets/bilety-tlo.webp') center/cover no-repeat; padding: 3rem 1.5rem; text-align: center;">
+  <p style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; color: var(--black); margin: 0 0 1.25rem 0;">Do wydarzenia pozostało:</p>
+  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 1rem; margin-bottom: 1.5rem;">
+    <div style="text-align: center;">
+      <div class="cd-num cd-days-val">000</div>
+      <div class="cd-label">DNI</div>
+    </div>
+    <div class="cd-sep">:</div>
+    <div style="text-align: center;">
+      <div class="cd-num cd-hours-val">00</div>
+      <div class="cd-label">GODZIN</div>
+    </div>
+    <div class="cd-sep">:</div>
+    <div style="text-align: center;">
+      <div class="cd-num cd-minutes-val">00</div>
+      <div class="cd-label">MINUT</div>
+    </div>
+    <div class="cd-sep">:</div>
+    <div style="text-align: center;">
+      <div class="cd-num cd-seconds-val">00</div>
+      <div class="cd-label">SEKUND</div>
+    </div>
+  </div>
+  <a href="#tickets" class="btn-black">KUP BILET</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     3. POZNAJ ALLSTAR FESTIVAL — Desktop (gif)
+═══════════════════════════════════════════ -->
+<div class="page-pad desktop-only">
   <div class="barrel" id="about" style="background: none;">
     <img src="brand_assets/allstar-poznaj-nas.gif" alt="Poznaj AllStar Festival" class="barrel-img barrel-img-about" style="width: 100%; display: block;">
   </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     3b. POZNAJ ALLSTAR FESTIVAL — Mobile (HTML)
+═══════════════════════════════════════════ -->
+<div class="mobile-only" id="about-mobile" style="background: url('brand_assets/bilety-tlo.webp') center/cover no-repeat; padding: 2.5rem 1.5rem;">
+  <span class="section-label section-label-dark" style="margin-bottom: 1.25rem;">POZNAJ ALL STAR FESTIVAL</span>
+  <p style="font-family: 'Forum', serif; font-size: 0.95rem; line-height: 1.75; color: var(--black); margin-top: 1rem;">Oshee All Star Festiwal to jedyny festiwal rapowy w Polsce organizowany na stadionie – wyjątkowe wydarzenie, które łączy energię koncertów na żywo z atmosferą wielkiego widowiska. To idealny sposób na rozpoczęcie wakacji w rytmie największych hitów polskiego hip-hopu.</p>
+  <p style="font-family: 'Forum', serif; font-size: 0.95rem; line-height: 1.75; color: var(--black); margin-top: 0.75rem;">Dwudniowa impreza gromadzi czołowych artystów sceny rapowej, oferując niezapomniane występy, spektakularną oprawę i unikalny klimat. Jeśli szukasz festiwalu rapowego w Polsce, który wyróżnia się skalą i lineupem, Oshee All Star Festiwal to wydarzenie, którego nie możesz przegapić.</p>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -861,9 +902,8 @@
 <section id="artists" style="padding: 3rem 2rem;">
   <div style="max-width: 1120px; margin: 0 auto;">
     <!-- Header row -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <div style="margin-bottom: 1.5rem;">
       <span class="section-label-white">POZNAJ ARTYSTÓW</span>
-      <a href="#" style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--citrine); text-decoration: none;">WSZYSCY ARTYŚCI</a>
     </div>
 
     <!-- Horizontal scroll -->
@@ -905,6 +945,10 @@
         <div class="artist-announce">OGŁOSZENIE<br>WKRÓTCE</div>
         </div>
       </div>
+    <!-- Button below cards -->
+    <div style="margin-top: 1.5rem;">
+      <a href="#" style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--citrine); text-decoration: none; border: 2px solid var(--citrine); padding: 0.6rem 1.5rem; display: inline-block;">WSZYSCY ARTYŚCI</a>
+    </div>
     </div>
   </div>
 </section>
@@ -1146,24 +1190,19 @@
 <script>
   // ── Event countdown (to festival) ──
   const eventDate = new Date('2026-06-27T18:00:00');
+  function setAll(cls, val) { document.querySelectorAll('.' + cls).forEach(el => el.textContent = val); }
   function updateCountdown() {
     const now = new Date();
     const diff = eventDate - now;
-    if (diff <= 0) {
-      document.getElementById('cd-days').textContent = '000';
-      document.getElementById('cd-hours').textContent = '00';
-      document.getElementById('cd-minutes').textContent = '00';
-      document.getElementById('cd-seconds').textContent = '00';
-      return;
-    }
+    if (diff <= 0) { setAll('cd-days-val','0'); setAll('cd-hours-val','00'); setAll('cd-minutes-val','00'); setAll('cd-seconds-val','00'); return; }
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    document.getElementById('cd-days').textContent = String(days);
-    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+    setAll('cd-days-val', String(days));
+    setAll('cd-hours-val', String(hours).padStart(2, '0'));
+    setAll('cd-minutes-val', String(minutes).padStart(2, '0'));
+    setAll('cd-seconds-val', String(seconds).padStart(2, '0'));
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
