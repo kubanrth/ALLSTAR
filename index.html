@@ -500,30 +500,10 @@
       .barrel { border-radius: 0 !important; margin: 0.5rem 0 !important; }
       .white-card { margin: 0.5rem 0 !important; }
 
-      /* ── Barrel images: hide on mobile, use background instead ── */
-      .barrel-img { display: none !important; }
-      .barrel-img-tall { display: none !important; }
-      .barrel-img-about { display: none !important; }
-
-      /* Use star bg on sections that had images */
-      #about.barrel,
-      #lineup .barrel,
-      .page-pad:first-of-type .barrel {
-        background: url('brand_assets/bilety-tlo.webp') center/cover no-repeat !important;
-        min-height: 200px;
-      }
-
-      /* Countdown overlay needs to be relative since image is hidden */
-      .page-pad:first-of-type .barrel {
-        min-height: 300px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-      .page-pad:first-of-type .barrel > div[style*="position: absolute"] {
-        position: relative !important;
-        inset: unset !important;
-      }
+      /* ── Barrel images on mobile: full width, auto height ── */
+      .barrel-img { height: auto !important; width: 100% !important; object-fit: contain !important; }
+      .barrel-img-tall { height: auto !important; width: 100% !important; object-fit: contain !important; }
+      .barrel-img-about { height: auto !important; width: 100% !important; object-fit: contain !important; }
 
       /* ── Countdown ── */
       .cd-inner { padding: 2rem 1.25rem !important; }
@@ -600,12 +580,8 @@
       /* ── Section labels ── */
       .section-label, .section-label-white { font-size: 1.1rem !important; }
 
-      /* ── Lineup section on mobile ── */
-      #lineup .barrel { min-height: 120px !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 2rem 1.5rem !important; }
-      #lineup .barrel::after { content: 'LINEUP'; font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--black); }
-
       /* ── About section on mobile ── */
-      #about { padding: 2rem 1.5rem !important; min-height: unset !important; }
+      #about { min-height: unset !important; }
 
       /* ── All sections padding consistency ── */
       section#artists, section#news, section#faq { padding-left: 1rem !important; padding-right: 1rem !important; }
