@@ -517,6 +517,17 @@
       /* ── Tickets ── */
       .ticket-row { padding: 1rem 1.25rem !important; flex-wrap: wrap; gap: 0.2rem; }
       .ticket-name { font-size: 1.05rem !important; }
+      #tickets .barrel > div { padding: 1.5rem 1.25rem 2rem !important; }
+      #tickets .barrel div[style*="justify-content: space-between"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.2rem !important;
+      }
+      #tickets .barrel div[style*="justify-content: space-between"] > div[style*="gap: 1rem"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.4rem !important;
+      }
 
       /* ── Lineup ── */
       .lineup-inner { padding: 2rem 1.5rem !important; }
@@ -538,8 +549,9 @@
       .news-mosaic img:nth-child(4) { display: none !important; }
 
       /* ── Partners ── */
-      .partners-row { display: flex !important; flex-wrap: wrap !important; gap: 0.5rem !important; }
-      .partner-box { flex: 0 0 calc(50% - 0.25rem) !important; max-height: 80px !important; aspect-ratio: unset !important; height: 70px !important; }
+      .partners-row { display: flex !important; flex-wrap: nowrap !important; gap: 0.75rem !important; }
+      .partner-box { flex: 1 !important; max-height: unset !important; aspect-ratio: unset !important; height: 120px !important; padding: 0.5rem !important; }
+      .partner-box img { max-height: 80px !important; }
       #partners .barrel > div { padding: 1.5rem 1.25rem !important; }
 
       /* ── Strefy ── */
@@ -563,13 +575,20 @@
       .contact-grid > div { border-right: none !important; padding-right: 0 !important; padding-left: 0 !important; border-bottom: 1px solid rgba(10,12,15,0.15) !important; }
       .contact-grid > div:last-child { border-bottom: none !important; }
 
+      /* ── Section labels ── */
+      .section-label, .section-label-white { font-size: 1.1rem !important; }
+
       /* ── FAQ ── */
       section#faq { padding: 1rem 1rem 2rem !important; }
+      #faq h2 { font-size: clamp(1.8rem, 8vw, 2.5rem) !important; }
+
+      /* ── Plakat ── */
+      .page-pad > div > img[alt="Plakat All Star Festival"] { border-radius: 0 !important; }
 
       /* ── Footer ── */
       .site-footer { padding: 2.5rem 1.5rem !important; }
       .footer-inner { flex-direction: column !important; gap: 2rem !important; align-items: flex-start !important; }
-      .footer-inner img { height: 120px !important; }
+      .footer-inner img { height: 120px !important; margin-left: -30px !important; }
       .footer-nav { gap: 2rem !important; }
 
       /* ── Artists section ── */
@@ -578,6 +597,10 @@
 
       /* ── Instagram ── */
       section#instagram { padding: 0 1rem 1.5rem !important; }
+
+      /* ── Password gate ── */
+      #password-gate img { height: 140px !important; }
+      #password-gate input, #password-gate button { width: 260px !important; }
     }
 
     /* ════════════════════════════════
