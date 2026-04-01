@@ -9,6 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Forum&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'KTF Rublena';
+      src: url('brand_assets/KTFRublenaTrial-Solid.otf') format('opentype');
+      font-weight: 400 900;
+      font-display: swap;
+    }
+
     :root {
       --black: #0A0C0F;
       --citrine: #EED410;
@@ -46,7 +53,7 @@
 
     /* ── Section label style ── */
     .section-label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 900;
       font-size: 1.5rem;
       letter-spacing: 0.1em;
@@ -68,7 +75,7 @@
       background: #fff;
     }
     .section-label-white {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 900;
       font-size: 1.5rem;
       letter-spacing: 0.1em;
@@ -89,7 +96,7 @@
 
     /* ── Buttons ── */
     .btn-white-outline {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 800;
       font-size: 0.8rem;
       letter-spacing: 0.12em;
@@ -108,7 +115,7 @@
     .btn-white-outline:hover { background: #fff; color: var(--black); }
 
     .btn-black {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 800;
       font-size: 0.85rem;
       letter-spacing: 0.12em;
@@ -128,7 +135,7 @@
     .btn-black:active { transform: scale(0.97); }
 
     .btn-black-outline {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 800;
       font-size: 0.85rem;
       letter-spacing: 0.12em;
@@ -181,17 +188,17 @@
 
     /* ── Countdown numbers ── */
     .cd-num {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
       line-height: 1;
       color: var(--black);
       letter-spacing: -0.02em;
     }
     .cd-label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 700;
-      font-size: 0.65rem;
+      font-size: 0.55rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--black);
@@ -199,9 +206,9 @@
       margin-top: 0.25rem;
     }
     .cd-sep {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-size: clamp(1.5rem, 2.5vw, 2.4rem);
       line-height: 1;
       color: var(--black);
       opacity: 0.4;
@@ -232,14 +239,14 @@
       left: 0.75rem;
     }
     .artist-card-num {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 600;
       font-size: 0.65rem;
       color: rgba(255,255,255,0.7);
       letter-spacing: 0.1em;
     }
     .artist-card-name {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 800;
       font-size: 1.1rem;
       color: #fff;
@@ -255,7 +262,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 900;
       font-size: 1.1rem;
       letter-spacing: 0.08em;
@@ -298,14 +305,14 @@
       left: 1.25rem;
     }
     .strefa-num {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 600;
       font-size: 0.65rem;
       color: rgba(255,255,255,0.7);
       letter-spacing: 0.1em;
     }
     .strefa-name {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 800;
       font-size: 1.15rem;
       color: #fff;
@@ -321,7 +328,7 @@
       margin-bottom: 0.5rem;
     }
     .faq-question {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: 1.25rem;
       color: var(--black);
@@ -333,7 +340,7 @@
       user-select: none;
     }
     .faq-answer {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-size: 1.1rem;
       color: #444;
       padding: 0 1.5rem;
@@ -362,7 +369,7 @@
     }
     .ticket-row:last-child { border-bottom: none; }
     .ticket-name {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 800;
       font-size: 1.4rem;
       letter-spacing: 0.02em;
@@ -376,7 +383,7 @@
       opacity: 0.7;
     }
     .ticket-countdown {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
       color: var(--black);
@@ -385,7 +392,7 @@
 
     /* ── Lineup grid ── */
     .lineup-name {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 900;
       font-size: clamp(2rem, 4vw, 3.5rem);
       text-transform: uppercase;
@@ -394,7 +401,7 @@
       line-height: 1.1;
     }
     .lineup-num {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 600;
       font-size: 1.1rem;
       color: var(--black);
@@ -439,7 +446,7 @@
 
     /* ── Footer nav ── */
     .footer-nav-link {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: 0.8rem;
       letter-spacing: 0.1em;
@@ -606,7 +613,7 @@
   <img src="brand_assets/newlogo.png" alt="OSHEE ALL STAR FESTIVAL" style="height: 200px; width: auto;">
   <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
     <input id="gate-input" type="password" placeholder="WPISZ HASŁO" style="
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: 0.9rem;
       letter-spacing: 0.12em;
@@ -620,7 +627,7 @@
       width: 300px;
       transition: border-color 0.2s;
     " onfocus="this.style.borderColor='var(--citrine)'" onblur="this.style.borderColor='rgba(255,255,255,0.3)'">
-    <p id="gate-error" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.8rem; color: #ff4444; letter-spacing: 0.05em; opacity: 0; transition: opacity 0.2s;">NIEPRAWIDŁOWE HASŁO</p>
+    <p id="gate-error" style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.8rem; color: #ff4444; letter-spacing: 0.05em; opacity: 0; transition: opacity 0.2s;">NIEPRAWIDŁOWE HASŁO</p>
   </div>
 </div>
 
@@ -694,7 +701,7 @@
     <img src="brand_assets/STRONA1.png" alt="" class="barrel-img" style="width: 100%; display: block;">
     <!-- Overlay: full live countdown centered on the empty yellow center of the image -->
     <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; pointer-events: none; text-align: center;">
-      <p style="font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.9rem, 1.6vw, 1.2rem); font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; color: var(--black); margin: 0;">Do wydarzenia pozostało:</p>
+      <p style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-size: clamp(0.9rem, 1.6vw, 1.2rem); font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; color: var(--black); margin: 0;">Do wydarzenia pozostało:</p>
       <div style="display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.75rem, 2vw, 2rem);">
         <div style="text-align: center;">
           <div class="cd-num" id="cd-days">000</div>
@@ -728,7 +735,7 @@
 ═══════════════════════════════════════════ -->
 <div class="page-pad">
   <div class="barrel" id="about" style="background: none;">
-    <img src="brand_assets/Obszar%20roboczy%201_1.png" alt="Poznaj AllStar Festival" class="barrel-img barrel-img-about" style="width: 100%; display: block;">
+    <img src="brand_assets/allstar-poznaj-nas.gif" alt="Poznaj AllStar Festival" class="barrel-img barrel-img-about" style="width: 100%; display: block;">
   </div>
 </div>
 
@@ -736,52 +743,55 @@
      4. TICKETS (Citrine barrel)
 ═══════════════════════════════════════════ -->
 <div class="page-pad" id="tickets">
-  <div class="barrel" style="background: var(--citrine);">
-    <div style="padding: 2.5rem 3rem 3rem;">
+  <div class="barrel" style="background: url('brand_assets/bilety-tlo.webp') center/cover no-repeat;">
+    <div style="padding: 3rem 3rem 3.5rem;">
       <span class="section-label section-label-dark" style="margin-bottom: 2rem;">BILETY</span>
 
       <!-- KARNETY 2 DNIOWE -->
-      <h3 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--black); margin-bottom: 0.3rem;">KARNETY 2 DNIOWE</h3>
-      <p style="font-family: 'Barlow Condensed', sans-serif; font-weight: 400; font-size: 0.85rem; color: var(--black); opacity: 0.7; margin-bottom: 1.5rem;">Bilet upoważnia do wstępu na oba dni festiwalu — 27 i 28.06.2026</p>
+      <h3 style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--black); margin-bottom: 0.3rem;">KARNETY 2 DNIOWE</h3>
+      <p style="font-family: 'Forum', serif; font-size: 1.05rem; color: var(--black); opacity: 0.6; margin-bottom: 1.5rem;">Bilet upoważnia do wstępu na oba dni festiwalu — 27 i 28.06.2026</p>
 
-      <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(10,12,15,0.15); padding-bottom: 0.6rem;">
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">PRE-SALE STARTER PASS</span>
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--black); white-space: nowrap;">199 PLN <span style="opacity: 0.5; font-weight: 400; font-size: 0.8rem;">× 1000 szt</span></span>
+      <div style="display: flex; flex-direction: column; border-top: 2px solid var(--black); margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--black); padding: 0.75rem 0;">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">PRE-SALE STARTER PASS</span>
+            <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; color: var(--citrine); background: var(--black); padding: 0.3rem 0.8rem; letter-spacing: 0.18em;" id="presale-countdown"></span>
+          </div>
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; color: var(--black); white-space: nowrap;">199 PLN <span style="opacity: 0.4; font-family: 'Forum', serif; font-weight: 400; font-size: 0.95rem;">× 1000 szt</span></span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(10,12,15,0.15); padding-bottom: 0.6rem;">
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">MEMBER PASS</span>
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--black); white-space: nowrap;">249 PLN <span style="opacity: 0.5; font-weight: 400; font-size: 0.8rem;">× 1000 szt</span></span>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--black); padding: 0.75rem 0;">
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">MEMBER PASS</span>
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; color: var(--black); white-space: nowrap;">249 PLN <span style="opacity: 0.4; font-family: 'Forum', serif; font-weight: 400; font-size: 0.95rem;">× 1000 szt</span></span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(10,12,15,0.15); padding-bottom: 0.6rem;">
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">FAN PASS</span>
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--black); white-space: nowrap;">349 PLN <span style="opacity: 0.5; font-weight: 400; font-size: 0.8rem;">× 5000 szt</span></span>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--black); padding: 0.75rem 0;">
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">FAN PASS</span>
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; color: var(--black); white-space: nowrap;">349 PLN <span style="opacity: 0.4; font-family: 'Forum', serif; font-weight: 400; font-size: 0.95rem;">× 5000 szt</span></span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(10,12,15,0.15); padding-bottom: 0.6rem;">
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">ALL STAR PASS</span>
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--black); white-space: nowrap;">399 PLN <span style="opacity: 0.5; font-weight: 400; font-size: 0.8rem;">× 6000 szt</span></span>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--black); padding: 0.75rem 0;">
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">ALL STAR PASS</span>
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; color: var(--black); white-space: nowrap;">399 PLN <span style="opacity: 0.4; font-family: 'Forum', serif; font-weight: 400; font-size: 0.95rem;">× 6000 szt</span></span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(10,12,15,0.15); padding-bottom: 0.6rem;">
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">BUZZER PASS — FINAL CALL</span>
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--black); white-space: nowrap;">449 PLN <span style="opacity: 0.5; font-weight: 400; font-size: 0.8rem;">× 2000 szt</span></span>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--black); padding: 0.75rem 0;">
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">BUZZER PASS — FINAL CALL</span>
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; color: var(--black); white-space: nowrap;">449 PLN <span style="opacity: 0.4; font-family: 'Forum', serif; font-weight: 400; font-size: 0.95rem;">× 2000 szt</span></span>
         </div>
       </div>
 
       <!-- KARNETY VIP -->
-      <h3 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--black); margin-bottom: 1.5rem;">KARNETY VIP</h3>
+      <h3 style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--black); margin-bottom: 1.5rem;">KARNETY VIP</h3>
 
-      <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(10,12,15,0.15); padding-bottom: 0.6rem;">
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">VIP ACCESS (DROP 1)</span>
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--black); white-space: nowrap;">699 PLN <span style="opacity: 0.5; font-weight: 400; font-size: 0.8rem;">× 200 szt</span></span>
+      <div style="display: flex; flex-direction: column; border-top: 2px solid var(--black); margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--black); padding: 0.75rem 0;">
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">VIP ACCESS (DROP 1)</span>
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; color: var(--black); white-space: nowrap;">699 PLN <span style="opacity: 0.4; font-family: 'Forum', serif; font-weight: 400; font-size: 0.95rem;">× 200 szt</span></span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(10,12,15,0.15); padding-bottom: 0.6rem;">
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">VIP ACCESS (DROP 2)</span>
-          <span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--black); white-space: nowrap;">999 PLN <span style="opacity: 0.5; font-weight: 400; font-size: 0.8rem;">× 300 szt</span></span>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--black); padding: 0.75rem 0;">
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black);">VIP ACCESS (DROP 2)</span>
+          <span style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; color: var(--black); white-space: nowrap;">999 PLN <span style="opacity: 0.4; font-family: 'Forum', serif; font-weight: 400; font-size: 0.95rem;">× 300 szt</span></span>
         </div>
       </div>
 
-      <p style="font-family: 'Barlow Condensed', sans-serif; font-weight: 400; font-size: 0.85rem; color: var(--black); opacity: 0.7; line-height: 1.6; max-width: 700px;">Bilet VIP zawiera: wejście bez kolejki, dedykowana opaska, dostęp do strefy VIP z widokiem na scenę, a w niej: dedykowana strefa gastronomiczna, bary, chili zone oraz sanitariaty o podwyższonym standardzie.</p>
+      <p style="font-family: 'Forum', serif; font-size: 1.05rem; color: var(--black); opacity: 0.6; line-height: 1.6; max-width: 700px;">Bilet VIP zawiera: wejście bez kolejki, dedykowana opaska, dostęp do strefy VIP z widokiem na scenę, a w niej: dedykowana strefa gastronomiczna, bary, chili zone oraz sanitariaty o podwyższonym standardzie.</p>
     </div>
   </div>
 </div>
@@ -804,7 +814,7 @@
     <!-- Header row -->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
       <span class="section-label-white">POZNAJ ARTYSTÓW</span>
-      <a href="#" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--citrine); text-decoration: none;">WSZYSCY ARTYŚCI</a>
+      <a href="#" style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--citrine); text-decoration: none;">WSZYSCY ARTYŚCI</a>
     </div>
 
     <!-- Horizontal scroll -->
@@ -861,7 +871,7 @@
       <div class="news-card" style="border-radius: 8px; overflow: hidden;">
         <img src="https://placehold.co/1120x500/222/444" alt="" style="width: 100%; display: block;">
         <div style="padding: 1rem;">
-          <p style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; color: var(--black); letter-spacing: 0.02em; line-height: 1.2; margin-bottom: 0.4rem;">OGŁASZAMY PEŁNY LINEUP FESTIWALU</p>
+          <p style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; color: var(--black); letter-spacing: 0.02em; line-height: 1.2; margin-bottom: 0.4rem;">OGŁASZAMY PEŁNY LINEUP FESTIWALU</p>
           <p style="font-family: 'Forum', serif; font-size: 0.8rem; color: #888;">9 marca 2026</p>
         </div>
       </div>
@@ -949,7 +959,7 @@
     <div style="padding: 2rem 2rem 1.5rem;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
         <span class="section-label">INSTAGRAM</span>
-        <a href="#" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--black); text-decoration: none; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">@allstarfestival</a>
+        <a href="#" style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--black); text-decoration: none; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">@allstarfestival</a>
       </div>
       <div class="insta-row" style="display: flex; gap: 0.75rem;">
         <div class="insta-photo"><img src="https://placehold.co/220x220/222/555" alt=""></div>
@@ -980,19 +990,19 @@
       <div style="position: relative; z-index: 2;">
         <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(10,12,15,0.2);">
           <div style="padding: 1.5rem 0; border-bottom: 1px solid rgba(10,12,15,0.2); padding-right: 2rem; border-right: 1px solid rgba(10,12,15,0.2);">
-            <p style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Obsługa uczestników/Pomoc</p>
+            <p style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Obsługa uczestników/Pomoc</p>
             <a href="mailto:bok@allstarfestival.pl" style="font-family: 'Forum', serif; font-size: 0.95rem; color: var(--black); text-decoration: none; opacity: 0.75;">bok@allstarfestival.pl</a>
           </div>
           <div style="padding: 1.5rem 0 1.5rem 2rem; border-bottom: 1px solid rgba(10,12,15,0.2);">
-            <p style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Media/prasa</p>
+            <p style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Media/prasa</p>
             <a href="mailto:media@allstarfestival.pl" style="font-family: 'Forum', serif; font-size: 0.95rem; color: var(--black); text-decoration: none; opacity: 0.75;">media@allstarfestival.pl</a>
           </div>
           <div style="padding: 1.5rem 0; padding-right: 2rem; border-right: 1px solid rgba(10,12,15,0.2);">
-            <p style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Artyści</p>
+            <p style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Artyści</p>
             <a href="mailto:artist@allstarfestival.pl" style="font-family: 'Forum', serif; font-size: 0.95rem; color: var(--black); text-decoration: none; opacity: 0.75;">artist@allstarfestival.pl</a>
           </div>
           <div style="padding: 1.5rem 0 1.5rem 2rem;">
-            <p style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Wystawcy/strefy/food trucki</p>
+            <p style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 0.35rem;">Wystawcy/strefy/food trucki</p>
             <a href="mailto:strefy@allstarfestival.pl" style="font-family: 'Forum', serif; font-size: 0.95rem; color: var(--black); text-decoration: none; opacity: 0.75;">strefy@allstarfestival.pl</a>
           </div>
         </div>
@@ -1006,7 +1016,7 @@
 ═══════════════════════════════════════════ -->
 <section id="faq" style="padding: 1rem 2rem 3rem;">
   <div style="max-width: 1120px; margin: 0 auto;">
-    <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; letter-spacing: 0.04em; color: #fff; margin: 0 0 2rem 0;">FAQ</h2>
+    <h2 style="font-family: 'KTF Rublena', 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; letter-spacing: 0.04em; color: #fff; margin: 0 0 2rem 0;">FAQ</h2>
     <div class="faq-item">
       <div class="faq-question" onclick="toggleFaq(this)">
         <span>Czy można wnosić broń?</span>
@@ -1108,6 +1118,22 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // ── Pre-sale countdown (to 11.04.2026) ──
+  const presaleEnd = new Date('2026-04-11T23:59:59');
+  function updatePresale() {
+    const now = new Date();
+    const diff = presaleEnd - now;
+    const el = document.getElementById('presale-countdown');
+    if (diff <= 0) { el.textContent = 'SOLD OUT'; return; }
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    el.textContent = `ENDS IN: ${d}D ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }
+  updatePresale();
+  setInterval(updatePresale, 1000);
 
   // ── Ticket pula 1 countdown ──
   const pula1End = new Date();
