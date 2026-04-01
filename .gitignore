@@ -1,0 +1,17 @@
+# Environment and credentials
+.env
+credentials.json
+token.json
+
+# Temporary files
+.tmp/
+__pycache__/
+*.pyc
+.DS_Store
+temporary screenshots/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

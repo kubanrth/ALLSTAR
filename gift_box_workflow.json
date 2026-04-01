@@ -1,0 +1,194 @@
+{
+  "name": "Gift Box Image Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Gift Box Image Generator\n\n**Uzupelnij przed uruchomieniem:**\n\n1. Node **Airtable - Nowy rekord**: Base ID i Table ID\n2. Node **Generuj obraz (Gemini)**: wpisz swoj GEMINI_API_KEY\n3. Node **Google Drive - Upload**: ID folderu docelowego\n4. Node **Airtable - Aktualizuj rekord**: Base ID i Table ID\n\n**Wymagane kolumny w Airtable:**\n- product_name (Text)\n- base_image_url (URL)\n- label_image_url (URL)\n- lid_image_url (URL)\n- status (Single select: pending / done / error)\n- result_url (URL)\n\n**Jak uzywac:**\nDodaj nowy rekord w Airtable ze statusem 'pending' i uzupelnij URL obrazkow. Workflow odpali sie automatycznie co minute.",
+        "height": 420,
+        "width": 460,
+        "color": 4
+      },
+      "id": "aaaaaaaa-bbbb-cccc-dddd-000000000001",
+      "name": "Instrukcja",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [0, -250]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "baseId": {
+          "__rl": true,
+          "value": "TWOJE_BASE_ID",
+          "mode": "id"
+        },
+        "tableId": {
+          "__rl": true,
+          "value": "TWOJE_TABLE_ID",
+          "mode": "id"
+        },
+        "triggerField": "Created",
+        "additionalOptions": {
+          "filterByFormula": "{status}='pending'"
+        }
+      },
+      "id": "aaaaaaaa-bbbb-cccc-dddd-000000000002",
+      "name": "Airtable - Nowy rekord",
+      "type": "n8n-nodes-base.airtableTrigger",
+      "typeVersion": 2,
+      "position": [500, 300],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "1",
+          "name": "Airtable account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first();\n\n// === UZUPELNIJ SWOJ KLUCZ API ===\nconst GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY';\n// ==================================\n\nconst baseImageUrl = item.json.base_image_url;\nconst labelImageUrl = item.json.label_image_url;\nconst lidImageUrl = item.json.lid_image_url;\nconst productName = item.json.product_name;\nconst airtableId = item.json.id;\n\nasync function urlToBase64(url) {\n  const response = await fetch(url);\n  if (!response.ok) {\n    throw new Error(`Nie udalo sie pobrac obrazu: ${url} (status: ${response.status})`);\n  }\n  const arrayBuffer = await response.arrayBuffer();\n  return Buffer.from(arrayBuffer).toString('base64');\n}\n\nfunction getMimeType(url) {\n  const lower = url.toLowerCase().split('?')[0];\n  if (lower.endsWith('.png')) return 'image/png';\n  if (lower.endsWith('.webp')) return 'image/webp';\n  return 'image/jpeg';\n}\n\nconst [baseB64, labelB64, lidB64] = await Promise.all([\n  urlToBase64(baseImageUrl),\n  urlToBase64(labelImageUrl),\n  urlToBase64(lidImageUrl),\n]);\n\nconst prompt = `ULTRA PHOTOREALISTIC PRODUCT IMAGE EDIT.\n\nUse the attached base image of the premium gift box as the main source image.\nPreserve the full original composition EXACTLY.\n\nEDIT ONLY THESE TWO PRINTED AREAS:\n1. Replace the front candle label on the jar on the left with the attached new candle label artwork.\n2. Replace only the visible top printed label / artwork on the tea lid on the right with the attached new lid label artwork.\n\nIMPORTANT:\nDo NOT replace the entire tea lid.\nDo NOT change the lid material, shape, size, rim, gloss, reflections, or perspective.\nOnly replace the printed artwork visible on the top surface of the lid.\n\nSTRICT PRESERVATION RULES:\n- Keep the exact same box.\n- Keep the exact same kraft cardboard texture.\n- Keep the exact same straw / wood wool filling.\n- Keep the exact same camera angle: top-down packshot.\n- Keep the exact same crop and framing.\n- Keep the exact same object positions and spacing.\n- Keep the exact same candle jar shape, amber glass, and black lid.\n- Keep the exact same tea container and lid geometry.\n- Keep the exact same lighting, shadows, reflections, and highlights.\n- Do not redesign the packaging.\n- Do not add or remove objects.\n- Do not stylize.\n- Do not create a new composition.\n- Do not move the products.\n\nREALISM RULES:\n- The candle label must look naturally printed and physically applied to the candle jar.\n- Respect label perspective, curvature, slight glass reflections, and natural shadow integration.\n- The lid label must look naturally printed or applied on the top surface of the existing black lid.\n- Respect circular perspective, lid curvature, gloss, highlight falloff, and edge visibility.\n- Preserve the original black rim around the lid.\n- The final image must look like a real premium e-commerce product photo, not CGI.\n\nGOLD FRAME PRESERVATION RULE:\nThe candle label contains a visible gold border frame around the label.\nThis gold frame must remain EXACTLY the same as in the original image.\n\nSTRICT RULES:\n- Do not change the gold border.\n- Do not recolor the gold border.\n- Do not modify its thickness.\n- Do not modify its shape.\n- Do not remove it.\n- Do not add additional decorative borders.\n\nEDIT AREA LIMITATION:\nOnly edit the inner printed content inside the gold frame.\nThe gold frame must stay perfectly intact and identical to the original image.\nThe new label artwork must appear naturally inside the existing gold frame while preserving the frame exactly as it is.\n\nABSOLUTE LOCK:\nThis is an image editing task, not a redesign task.\nOnly swap the visible printed label on the candle and the visible printed artwork on the top of the tea lid.\nEverything else must remain identical to the source image.\n\nTEXT AND TYPOGRAPHY LOCK:\nAll text visible on the provided label artworks must be reproduced EXACTLY as in the reference images.\n\nSTRICT TEXT RULES:\n- Do not change any words.\n- Do not change spelling.\n- Do not translate text.\n- Do not paraphrase text.\n- Do not shorten text.\n- Do not add any new words.\n- Do not remove any words.\n\nTYPOGRAPHY RULES:\n- Preserve the exact typography from the label artwork.\n- Preserve font style, font weight, and letter spacing.\n- Preserve capitalization and line breaks.\n- Preserve logo placement and brand marks.\n- Do not add decorative elements, flourishes, ornaments, or swirls.\n- Do not invent new graphic elements.\n\nThe label designs must be transferred EXACTLY as provided on the reference label images.\nThe output must match the text and typography of the labels perfectly.`;\n\nconst requestBody = {\n  contents: [{\n    parts: [\n      { inline_data: { mime_type: getMimeType(baseImageUrl), data: baseB64 } },\n      { inline_data: { mime_type: getMimeType(labelImageUrl), data: labelB64 } },\n      { inline_data: { mime_type: getMimeType(lidImageUrl), data: lidB64 } },\n      { text: prompt },\n    ],\n  }],\n  generationConfig: {\n    responseModalities: ['IMAGE', 'TEXT'],\n  },\n};\n\nconst geminiRes = await fetch(\n  `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent?key=${GEMINI_API_KEY}`,\n  {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify(requestBody),\n  }\n);\n\nif (!geminiRes.ok) {\n  const errText = await geminiRes.text();\n  throw new Error(`Gemini API error ${geminiRes.status}: ${errText}`);\n}\n\nconst result = await geminiRes.json();\nconst imagePart = result.candidates?.[0]?.content?.parts?.find(p => p.inline_data);\n\nif (!imagePart) {\n  throw new Error('Gemini nie zwrocil obrazu. Response: ' + JSON.stringify(result).substring(0, 500));\n}\n\nreturn [{\n  json: {\n    product_name: productName,\n    airtable_id: airtableId,\n    image_base64: imagePart.inline_data.data,\n    mime_type: imagePart.inline_data.mime_type || 'image/jpeg',\n  },\n}];"
+      },
+      "id": "aaaaaaaa-bbbb-cccc-dddd-000000000003",
+      "name": "Generuj obraz (Gemini)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [800, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first();\n\nconst base64Data = item.json.image_base64;\nconst mimeType = item.json.mime_type || 'image/jpeg';\nconst ext = mimeType.includes('png') ? 'png' : 'jpg';\nconst fileName = `${item.json.product_name}.${ext}`;\n\nconst buffer = Buffer.from(base64Data, 'base64');\nconst binaryData = await this.helpers.prepareBinaryData(buffer, fileName, mimeType);\n\nreturn [{\n  json: {\n    product_name: item.json.product_name,\n    airtable_id: item.json.airtable_id,\n    fileName,\n  },\n  binary: {\n    data: binaryData,\n  },\n}];"
+      },
+      "id": "aaaaaaaa-bbbb-cccc-dddd-000000000004",
+      "name": "Przygotuj binary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, 300]
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "name": "={{ $json.fileName }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://www.googleapis.com/drive/v3/files/root"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "TWOJ_FOLDER_ID",
+          "mode": "id"
+        },
+        "binaryData": true,
+        "binaryPropertyName": "data",
+        "options": {}
+      },
+      "id": "aaaaaaaa-bbbb-cccc-dddd-000000000005",
+      "name": "Google Drive - Upload",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [1400, 300],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "2",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "baseId": {
+          "__rl": true,
+          "value": "TWOJE_BASE_ID",
+          "mode": "id"
+        },
+        "tableId": {
+          "__rl": true,
+          "value": "TWOJE_TABLE_ID",
+          "mode": "id"
+        },
+        "id": "={{ $('Generuj obraz (Gemini)').item.json.airtable_id }}",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "done",
+            "result_url": "={{ $json.webViewLink }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "aaaaaaaa-bbbb-cccc-dddd-000000000006",
+      "name": "Airtable - Aktualizuj rekord",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [1700, 300],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "1",
+          "name": "Airtable account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Airtable - Nowy rekord": {
+      "main": [
+        [
+          {
+            "node": "Generuj obraz (Gemini)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generuj obraz (Gemini)": {
+      "main": [
+        [
+          {
+            "node": "Przygotuj binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Przygotuj binary": {
+      "main": [
+        [
+          {
+            "node": "Google Drive - Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive - Upload": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Aktualizuj rekord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "aaaaaaaa-bbbb-cccc-dddd-000000000000"
+}
