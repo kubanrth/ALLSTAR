@@ -600,6 +600,59 @@
 <body>
 
 <!-- ═══════════════════════════════════════════
+     PASSWORD GATE
+═══════════════════════════════════════════ -->
+<div id="password-gate" style="position: fixed; inset: 0; z-index: 9999; background: var(--black); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;">
+  <img src="brand_assets/newlogo.png" alt="OSHEE ALL STAR FESTIVAL" style="height: 200px; width: auto;">
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+    <input id="gate-input" type="password" placeholder="WPISZ HASŁO" style="
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0.85rem 2.5rem;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: #fff;
+      outline: none;
+      width: 300px;
+      transition: border-color 0.2s;
+    " onfocus="this.style.borderColor='var(--citrine)'" onblur="this.style.borderColor='rgba(255,255,255,0.3)'">
+    <p id="gate-error" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.8rem; color: #ff4444; letter-spacing: 0.05em; opacity: 0; transition: opacity 0.2s;">NIEPRAWIDŁOWE HASŁO</p>
+  </div>
+</div>
+
+<script>
+  const GATE_HASH = '89f22cac';
+  function simpleHash(s) {
+    let h = 0;
+    for (let i = 0; i < s.length; i++) {
+      h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+    }
+    return (h >>> 0).toString(16);
+  }
+  const gateInput = document.getElementById('gate-input');
+  const gateError = document.getElementById('gate-error');
+  gateInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      if (simpleHash(gateInput.value) === GATE_HASH) {
+        document.getElementById('password-gate').style.display = 'none';
+        sessionStorage.setItem('gate-passed', '1');
+      } else {
+        gateError.style.opacity = '1';
+        gateInput.style.borderColor = '#ff4444';
+        setTimeout(() => { gateError.style.opacity = '0'; gateInput.style.borderColor = 'rgba(255,255,255,0.3)'; }, 2000);
+      }
+    }
+  });
+  if (sessionStorage.getItem('gate-passed') === '1') {
+    document.getElementById('password-gate').style.display = 'none';
+  }
+</script>
+
+<!-- ═══════════════════════════════════════════
      1. HEADER
 ═══════════════════════════════════════════ -->
 <header class="site-header" style="background: var(--black); padding: 1.5rem 4rem; min-height: 280px; display: flex; align-items: center; justify-content: space-between; position: relative;">
