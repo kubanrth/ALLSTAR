@@ -24,16 +24,15 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
+    html, body {
       overflow-x: hidden;
+      max-width: 100%;
     }
 
     body {
       font-family: 'Forum', serif;
       background: var(--black);
       color: var(--black);
-      overflow-x: hidden;
-      max-width: 100vw;
     }
 
     /* ── Barrel containers ── */
@@ -680,7 +679,7 @@
       /* ── Footer ── */
       .site-footer { padding: 2.5rem 1.5rem !important; }
       .footer-inner { flex-direction: column !important; gap: 2rem !important; align-items: flex-start !important; }
-      .footer-inner img { height: 120px !important; margin-left: -30px !important; }
+      .footer-inner img { height: 120px !important; margin-left: 0 !important; }
       .footer-nav { gap: 2rem !important; }
 
       /* ── Artists section ── */
