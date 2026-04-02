@@ -24,11 +24,16 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html {
+      overflow-x: hidden;
+    }
+
     body {
       font-family: 'Forum', serif;
       background: var(--black);
       color: var(--black);
       overflow-x: hidden;
+      max-width: 100vw;
     }
 
     /* ── Barrel containers ── */
@@ -769,6 +774,7 @@
   function tryGatePassword() {
     if (simpleHash(gateInput.value) === GATE_HASH) {
       document.getElementById('password-gate').style.display = 'none';
+      document.getElementById('hamburger-btn').style.display = 'flex';
       sessionStorage.setItem('gate-passed', '1');
     } else {
       gateError.style.opacity = '1';
@@ -781,6 +787,9 @@
   });
   if (sessionStorage.getItem('gate-passed') === '1') {
     document.getElementById('password-gate').style.display = 'none';
+    document.getElementById('hamburger-btn').style.display = 'flex';
+  } else {
+    document.getElementById('hamburger-btn').style.display = 'none';
   }
 </script>
 
