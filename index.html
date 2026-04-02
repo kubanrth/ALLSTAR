@@ -459,6 +459,77 @@
     }
     .footer-nav-link:hover { opacity: 0.5; }
 
+    /* ── Hamburger Menu ── */
+    .hamburger-btn {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 10001;
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 0;
+    }
+    .hamburger-btn span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: #fff;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger-btn.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+    .hamburger-btn.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .menu-backdrop.open { opacity: 1; pointer-events: all; }
+
+    .menu-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 320px;
+      height: 100vh;
+      background: var(--black);
+      z-index: 10000;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 5rem 2.5rem 2.5rem;
+    }
+    .menu-panel.open { transform: translateX(0); }
+
+    .menu-panel a.menu-link {
+      font-family: 'Anton', sans-serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      padding: 0.75rem 0;
+      display: block;
+      transition: color 0.2s;
+    }
+    .menu-panel a.menu-link:hover { color: var(--citrine); }
+
+    body.menu-locked { overflow: hidden; }
+
     /* ── Desktop/Mobile toggles ── */
     .mobile-only { display: none; }
     .desktop-only { display: block; }
@@ -711,6 +782,45 @@
   if (sessionStorage.getItem('gate-passed') === '1') {
     document.getElementById('password-gate').style.display = 'none';
   }
+</script>
+
+<!-- ═══════════════════════════════════════════
+     HAMBURGER MENU
+═══════════════════════════════════════════ -->
+<button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<div class="menu-backdrop" id="menu-backdrop"></div>
+<div class="menu-panel" id="menu-panel">
+  <img src="brand_assets/newlogo.png" alt="ASF" style="height: 140px; width: auto; margin-bottom: 2rem; object-fit: contain;">
+  <nav>
+    <a href="#" class="menu-link">LINEUP</a>
+    <a href="#" class="menu-link">O FESTIWALU</a>
+    <a href="#faq" class="menu-link" onclick="closeMenu()">FAQ</a>
+    <a href="#" class="menu-link">KONTAKT</a>
+  </nav>
+</div>
+
+<script>
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const menuPanel = document.getElementById('menu-panel');
+  const menuBackdrop = document.getElementById('menu-backdrop');
+  function toggleMenu() {
+    hamburgerBtn.classList.toggle('open');
+    menuPanel.classList.toggle('open');
+    menuBackdrop.classList.toggle('open');
+    document.body.classList.toggle('menu-locked');
+  }
+  function closeMenu() {
+    hamburgerBtn.classList.remove('open');
+    menuPanel.classList.remove('open');
+    menuBackdrop.classList.remove('open');
+    document.body.classList.remove('menu-locked');
+  }
+  hamburgerBtn.addEventListener('click', toggleMenu);
+  menuBackdrop.addEventListener('click', closeMenu);
 </script>
 
 <!-- ═══════════════════════════════════════════
