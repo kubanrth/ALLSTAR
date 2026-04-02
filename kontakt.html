@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KONTAKT — OSHEE ALL STAR FESTIVAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Forum&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0A0C0F;
+      --citrine: #EED410;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Forum', serif;
+      background: var(--citrine);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .kontakt-box {
+      max-width: 700px;
+      width: 100%;
+    }
+    h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      margin-bottom: 2rem;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 2px solid var(--black);
+    }
+    .contact-cell {
+      padding: 1.5rem 0;
+      border-bottom: 2px solid rgba(10,12,15,0.2);
+    }
+    .contact-cell:nth-child(odd) {
+      padding-right: 2rem;
+      border-right: 2px solid rgba(10,12,15,0.2);
+    }
+    .contact-cell:nth-child(even) {
+      padding-left: 2rem;
+    }
+    .contact-cell p {
+      font-family: 'Anton', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--black);
+      margin-bottom: 0.35rem;
+    }
+    .contact-cell a {
+      font-family: 'Forum', serif;
+      font-size: 0.95rem;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.75;
+    }
+    .contact-cell a:hover { opacity: 1; }
+    .back-link {
+      font-family: 'Anton', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border: 2px solid var(--black);
+      padding: 0.6rem 1.5rem;
+      margin-top: 2.5rem;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-link:hover { background: var(--black); color: var(--citrine); }
+    @media (max-width: 600px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-cell:nth-child(odd) { padding-right: 0; border-right: none; }
+      .contact-cell:nth-child(even) { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="kontakt-box">
+    <h1>KONTAKT</h1>
+    <div class="contact-grid">
+      <div class="contact-cell">
+        <p>Obsługa uczestników/Pomoc</p>
+        <a href="mailto:bok@allstarfestival.pl">bok@allstarfestival.pl</a>
+      </div>
+      <div class="contact-cell">
+        <p>Media/prasa</p>
+        <a href="mailto:media@allstarfestival.pl">media@allstarfestival.pl</a>
+      </div>
+      <div class="contact-cell">
+        <p>Artyści</p>
+        <a href="mailto:artist@allstarfestival.pl">artist@allstarfestival.pl</a>
+      </div>
+      <div class="contact-cell">
+        <p>Wystawcy/strefy/food trucki</p>
+        <a href="mailto:strefy@allstarfestival.pl">strefy@allstarfestival.pl</a>
+      </div>
+    </div>
+    <a href="index.html" class="back-link">POWRÓT</a>
+  </div>
+</body>
+</html>
