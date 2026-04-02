@@ -800,7 +800,7 @@
 <!-- ═══════════════════════════════════════════
      HAMBURGER MENU
 ═══════════════════════════════════════════ -->
-<button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+<button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" style="display: none;">
   <span></span>
   <span></span>
   <span></span>
@@ -811,7 +811,6 @@
   <nav>
     <a href="lineup.html" class="menu-link">LINEUP</a>
     <a href="o-festiwalu.html" class="menu-link">O FESTIWALU</a>
-    <a href="#faq" class="menu-link" onclick="closeMenu()">FAQ</a>
     <a href="kontakt.html" class="menu-link">KONTAKT</a>
   </nav>
 </div>
@@ -886,54 +885,6 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     12. FAQ (full-bleed black)
-═══════════════════════════════════════════ -->
-<section id="faq" style="padding: 2rem 2rem 3rem;">
-  <div style="max-width: 1120px; margin: 0 auto;">
-    <h2 style="font-family: 'Anton', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; letter-spacing: 0.04em; color: #fff; margin: 0 0 2rem 0;">FAQ</h2>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Jaka jest dokładna lokalizacja OSHEE All Star Festiwal?</span>
-        <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </div>
-      <div class="faq-answer" style="font-family: 'Forum', serif;">Wydarzenie odbędzie się na stadionie Legii Warszawa - ul. Łazienkowskiej 3, 00-449 Warszawa</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Jak kupić bilety?</span>
-        <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </div>
-      <div class="faq-answer" style="font-family: 'Forum', serif;">Skorzystaj z opcji przycisku „kup bilet" — zostaniesz przekierowany na specjalną stronę z możliwością zakupu biletów.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Czy bilety są imienne?</span>
-        <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </div>
-      <div class="faq-answer" style="font-family: 'Forum', serif;">Informacja o imienności jest opisana przy każdym bilecie.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Czy na terenie festiwalu będą punkty gastronomiczne?</span>
-        <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </div>
-      <div class="faq-answer" style="font-family: 'Forum', serif;">Tak. Na terenie festiwalu będzie dostępna strefa gastronomiczna.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Jak uzyskać akredytację jako media?</span>
-        <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </div>
-      <div class="faq-answer" style="font-family: 'Forum', serif;">Napisz wiadomość na adres media@allstarfestival.pl</div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════════════════════════════════
      13. FOOTER (full-bleed Citrine)
@@ -964,7 +915,6 @@
     <div class="footer-nav" style="display: flex; gap: 5rem; flex: 1; justify-content: flex-end;">
       <div style="display: flex; flex-direction: column; gap: 0.1rem;">
         <a href="#partners" class="footer-nav-link">PARTNERZY</a>
-        <a href="#faq" class="footer-nav-link">FAQ</a>
         <a href="#" class="footer-nav-link">POLITYKA PRYWATNOŚCI</a>
         <a href="#" class="footer-nav-link">REGULAMIN WYDARZENIA</a>
       </div>
