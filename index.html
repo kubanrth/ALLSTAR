@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>OSHEE ALL STAR FESTIVAL</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -778,6 +778,8 @@
       document.getElementById('password-gate').style.display = 'none';
       document.getElementById('hamburger-btn').style.display = 'flex';
       sessionStorage.setItem('gate-passed', '1');
+      window.scrollTo(0, 0);
+      gateInput.blur();
     } else {
       gateError.style.opacity = '1';
       gateInput.style.borderColor = '#ff4444';
