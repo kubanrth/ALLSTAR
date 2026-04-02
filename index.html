@@ -575,9 +575,12 @@
       .site-header > a.btn-white-outline { display: none !important; }
       .site-header > div:last-child { display: none !important; }
 
-      /* ── Barrel border-radius on mobile ── */
-      .barrel { border-radius: 0 !important; margin: 0.5rem 0 !important; }
+      /* ── Barrel on mobile ── */
+      .barrel { border-radius: 0 !important; margin: 0.5rem 0 !important; border: none !important; }
       .white-card { margin: 0.5rem 0 !important; }
+
+      /* ── Prevent any overflow ── */
+      img, div, section, footer { max-width: 100% !important; }
 
       /* ── Barrel images on mobile: full width, auto height ── */
       .barrel-img { height: auto !important; width: 100% !important; object-fit: contain !important; }
