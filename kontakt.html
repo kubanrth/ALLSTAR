@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>KONTAKT — OSHEE ALL STAR FESTIVAL</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,85 +15,69 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Forum', serif;
-      background: var(--citrine);
-      color: var(--black);
+      background: var(--black);
+      color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
-    }
-    .kontakt-box {
-      max-width: 700px;
-      width: 100%;
+      padding: 3rem 2rem;
+      text-align: center;
     }
     h1 {
       font-family: 'Anton', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      color: var(--black);
-      margin-bottom: 2rem;
+      color: var(--citrine);
+      margin-bottom: 1rem;
     }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 2px solid var(--black);
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: var(--citrine);
+      margin: 0 auto 2rem;
     }
-    .contact-cell {
-      padding: 1.5rem 0;
-      border-bottom: 2px solid rgba(10,12,15,0.2);
-    }
-    .contact-cell:nth-child(odd) {
-      padding-right: 2rem;
-      border-right: 2px solid rgba(10,12,15,0.2);
-    }
-    .contact-cell:nth-child(even) {
-      padding-left: 2rem;
-    }
-    .contact-cell p {
+    .label {
       font-family: 'Anton', sans-serif;
-      font-size: 1rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--black);
-      margin-bottom: 0.35rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.75rem;
     }
-    .contact-cell a {
+    .email {
       font-family: 'Forum', serif;
-      font-size: 0.95rem;
-      color: var(--black);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      color: #fff;
       text-decoration: none;
-      opacity: 0.75;
+      border-bottom: 2px solid var(--citrine);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s;
     }
-    .contact-cell a:hover { opacity: 1; }
+    .email:hover { color: var(--citrine); }
     .back-link {
       font-family: 'Anton', sans-serif;
       font-size: 0.85rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--black);
+      color: #fff;
       text-decoration: none;
-      border: 2px solid var(--black);
+      border: 2px solid rgba(255,255,255,0.3);
       padding: 0.6rem 1.5rem;
-      margin-top: 2.5rem;
+      margin-top: 3.5rem;
       display: inline-block;
-      transition: background 0.2s, color 0.2s;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .back-link:hover { background: var(--black); color: var(--citrine); }
-    @media (max-width: 600px) {
-      .contact-grid { grid-template-columns: 1fr; }
-      .contact-cell:nth-child(odd) { padding-right: 0; border-right: none; }
-      .contact-cell:nth-child(even) { padding-left: 0; }
-    }
+    .back-link:hover { border-color: var(--citrine); color: var(--citrine); }
   </style>
 </head>
 <body>
-  <div class="kontakt-box">
-    <h1>KONTAKT</h1>
-    <a href="mailto:kontakt@allstarfestival.pl" style="font-family: 'Forum', serif; font-size: 1.2rem; color: var(--black); text-decoration: none; opacity: 0.75;">kontakt@allstarfestival.pl</a>
-    <a href="index.html" class="back-link">POWRÓT</a>
-  </div>
+  <h1>KONTAKT</h1>
+  <div class="divider"></div>
+  <p class="label">NAPISZ DO NAS</p>
+  <a href="mailto:kontakt@allstarfestival.pl" class="email">kontakt@allstarfestival.pl</a>
+  <a href="index.html" class="back-link">POWRÓT</a>
 </body>
 </html>
