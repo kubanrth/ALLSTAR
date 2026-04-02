@@ -791,9 +791,6 @@
   });
   if (sessionStorage.getItem('gate-passed') === '1') {
     document.getElementById('password-gate').style.display = 'none';
-    document.getElementById('hamburger-btn').style.display = 'flex';
-  } else {
-    document.getElementById('hamburger-btn').style.display = 'none';
   }
 </script>
 
@@ -833,6 +830,10 @@
   }
   hamburgerBtn.addEventListener('click', toggleMenu);
   menuBackdrop.addEventListener('click', closeMenu);
+  // Show hamburger only if gate already passed
+  if (sessionStorage.getItem('gate-passed') === '1') {
+    document.getElementById('hamburger-btn').style.display = 'flex';
+  }
 </script>
 
 <!-- ═══════════════════════════════════════════
