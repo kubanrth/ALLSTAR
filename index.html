@@ -694,8 +694,6 @@
       section#instagram { padding: 0 1rem 1.5rem !important; }
 
       /* ── Password gate ── */
-      #password-gate img { height: 140px !important; }
-      #password-gate input, #password-gate button { width: 260px !important; }
     }
 
     /* ════════════════════════════════
@@ -725,80 +723,9 @@
 <body>
 
 <!-- ═══════════════════════════════════════════
-     PASSWORD GATE
-═══════════════════════════════════════════ -->
-<div id="password-gate" style="position: fixed; inset: 0; z-index: 9999; background: var(--black); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;">
-  <img src="brand_assets/newlogo.png" alt="OSHEE ALL STAR FESTIVAL" style="height: 200px; width: auto;">
-  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-    <input id="gate-input" type="password" placeholder="ENTER PASSWORD" style="
-      font-family: 'Anton', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 0.85rem 2.5rem;
-      background: transparent;
-      border: 2px solid rgba(255,255,255,0.3);
-      color: #fff;
-      outline: none;
-      width: 300px;
-      transition: border-color 0.2s;
-    " onfocus="this.style.borderColor='var(--citrine)'" onblur="this.style.borderColor='rgba(255,255,255,0.3)'">
-    <button id="gate-btn" onclick="tryGatePassword()" style="
-      font-family: 'Anton', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.75rem 2.5rem;
-      background: var(--citrine);
-      color: var(--black);
-      border: none;
-      cursor: pointer;
-      width: 300px;
-      transition: opacity 0.2s;
-    ">ENTER</button>
-    <p id="gate-error" style="font-family: 'Anton', sans-serif; font-weight: 600; font-size: 0.8rem; color: #ff4444; letter-spacing: 0.05em; opacity: 0; transition: opacity 0.2s;">WRONG PASSWORD</p>
-  </div>
-</div>
-
-<script>
-  const GATE_HASH = '89f22cac';
-  function simpleHash(s) {
-    let h = 0;
-    for (let i = 0; i < s.length; i++) {
-      h = ((h << 5) - h + s.charCodeAt(i)) | 0;
-    }
-    return (h >>> 0).toString(16);
-  }
-  const gateInput = document.getElementById('gate-input');
-  const gateError = document.getElementById('gate-error');
-  function tryGatePassword() {
-    if (simpleHash(gateInput.value) === GATE_HASH) {
-      document.getElementById('password-gate').style.display = 'none';
-      document.getElementById('hamburger-btn').style.display = 'flex';
-      sessionStorage.setItem('gate-passed', '1');
-      window.scrollTo(0, 0);
-      gateInput.blur();
-    } else {
-      gateError.style.opacity = '1';
-      gateInput.style.borderColor = '#ff4444';
-      setTimeout(() => { gateError.style.opacity = '0'; gateInput.style.borderColor = 'rgba(255,255,255,0.3)'; }, 2000);
-    }
-  }
-  gateInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') tryGatePassword();
-  });
-  if (sessionStorage.getItem('gate-passed') === '1') {
-    document.getElementById('password-gate').style.display = 'none';
-  }
-</script>
-
-<!-- ═══════════════════════════════════════════
      HAMBURGER MENU
 ═══════════════════════════════════════════ -->
-<button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" style="display: none;">
+<button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
   <span></span>
   <span></span>
   <span></span>
@@ -831,10 +758,6 @@
   }
   hamburgerBtn.addEventListener('click', toggleMenu);
   menuBackdrop.addEventListener('click', closeMenu);
-  // Show hamburger only if gate already passed
-  if (sessionStorage.getItem('gate-passed') === '1') {
-    document.getElementById('hamburger-btn').style.display = 'flex';
-  }
 </script>
 
 <!-- ═══════════════════════════════════════════
