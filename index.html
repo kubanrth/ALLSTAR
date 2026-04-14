@@ -247,9 +247,9 @@
        MOBILE — iPhone 13/14 (390px) matching Figma WWW Mobile 1:1
        =================================================================== */
     @media (max-width: 768px) {
-      /* Mobile bg from Figma (390x3549 gradient + noise) */
+      /* Mobile bg — same as desktop (bg-full.png), scales to fit width */
       .page-bg {
-        background: url('brand_assets/bg-mobile.png') top center / 100% auto no-repeat, #eed410 !important;
+        background: url('brand_assets/bg-full.png') top center / 100% auto no-repeat, #eed410 !important;
       }
       /* Fixed UI: hamburger + star at top right */
       .hamburger { width: 46px; height: 46px; top: 24px; right: 16px; gap: 6px; border: none; background: transparent; }
@@ -265,11 +265,12 @@
          HERO — 844px, dark bg, stadium image behind, content centered
          ========================================================= */
       #hero { height: 844px !important; background: #141414 !important; }
-      /* Stadium BG: -75 left, 93 top, 540x437 */
+      /* Stadium BG: centered, plus-lighter blend like web */
       #hero img[src*="stadium-bg.jpg"] {
-        top: 93px !important; left: -75px !important; transform: none !important;
-        width: 540px !important; height: 437px !important; border-radius: 0 !important;
-        mix-blend-mode: plus-lighter;
+        top: 93px !important; left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 540px !important; height: 437px !important; border-radius: 12px !important;
+        mix-blend-mode: plus-lighter !important; opacity: 1 !important;
       }
       /* Logo ASF: center top, 184x88 at y=40 */
       #hero img[src*="asf-logo.svg"] {
@@ -277,24 +278,26 @@
       }
       #hero > div[style*="top: 32px"] { top: 40px !important; }
 
-      /* Star arcs — 1:1 z Figmy: x=16,y=330 left; x=374,y=330 right (extends off-screen), each 94x400 */
-      #hero > div[style*="top: 200px"][style*="left: 13.5%"] {
-        top: 330px !important; left: 16px !important; right: auto !important;
-        width: 94px !important; height: 400px !important;
+      /* Star arcs — smaller + slightly wider spacing */
+      #hero > div[style*="top: 250px"][style*="left: 13.5%"] {
+        top: 350px !important; left: 0 !important; right: auto !important;
+        width: 70px !important; height: 340px !important;
+        opacity: 0.85;
       }
-      #hero > div[style*="top: 200px"][style*="right: 13.5%"] {
-        top: 330px !important; right: 16px !important; left: auto !important;
-        width: 94px !important; height: 400px !important;
+      #hero > div[style*="top: 250px"][style*="right: 13.5%"] {
+        top: 350px !important; right: 0 !important; left: auto !important;
+        width: 70px !important; height: 340px !important;
+        opacity: 0.85;
       }
-      #hero > div[style*="top: 200px"] img {
-        width: 94px !important; height: 400px !important;
+      #hero > div[style*="top: 250px"] img {
+        width: 70px !important; height: 340px !important;
       }
 
-      /* Sponsor row — 1:1 z Figmy: x=54, y=433, w=247, h=48 */
+      /* Sponsor row — centered on mobile */
       #hero > div[style*="top: 860px"] {
         top: 433px !important;
-        left: 54px !important; transform: none !important;
-        width: 247px !important; height: 48px !important;
+        left: 50% !important; transform: translateX(-50%) !important;
+        width: auto !important; height: 48px !important;
         gap: 0 !important;
       }
       /* Sponsor icons: Grail 104.28x32 at x=12,y=8; OSHEE 39x48 at x=12; SoHard 47x32 at x=12,y=8 */
@@ -305,28 +308,26 @@
 
       /* Hide RIGHT date column */
       #hero > div[style*="right: 48px"][style*="width: 592px"] { display: none !important; }
-      /* Date block — 1:1 z Figmy: x=16, y=529, w=358, h=167 */
+      /* Date block — centered on mobile */
       #hero > div[style*="left: 48px"][style*="width: 592px"] {
         top: 529px !important;
-        left: 16px !important; transform: none !important;
+        left: 50% !important; transform: translateX(-50%) !important;
         width: 358px !important; gap: 0 !important;
       }
       #hero > div[style*="left: 48px"] > div:first-child { gap: 12px !important; }
-      /* "27-28.06.2026" 28px height → 28px font */
+      /* "27-28.06.2026" BIG */
       #hero > div[style*="left: 48px"] p[style*="font-size: 40px"]:first-of-type {
-        font-size: 28px !important; line-height: 1 !important;
+        font-size: 44px !important; line-height: 1 !important;
       }
-      /* "Stadion Legii Warszawa" 60px height for 2 lines → 30px font */
+      /* "Stadion Legii Warszawa" BIG 2 lines */
       #hero > div[style*="left: 48px"] p[style*="font-size: 40px"]:last-of-type {
-        font-size: 30px !important; line-height: 1 !important;
+        font-size: 42px !important; line-height: 1 !important;
       }
-      /* SAVE THE DATE 15px */
+      /* SAVE THE DATE */
       #hero > div[style*="left: 48px"] p:last-child {
-        font-size: 15px !important; margin-top: 40px !important; letter-spacing: 0.1em !important;
+        font-size: 28px !important; margin-top: 32px !important; letter-spacing: 0.1em !important;
       }
       #hero .sep-line-gold { width: 280px !important; }
-      /* Stadium: keep plus-lighter blend */
-      #hero img[src*="stadium-bg.jpg"] { mix-blend-mode: plus-lighter !important; }
 
       /* =========================================================
          TICKET BAR — mobile 357x54 centered inside 390x80
@@ -342,18 +343,22 @@
       .ticket-bar a { padding: 14px 20px !important; font-size: 14px !important; margin-left: 8px !important; }
 
       /* =========================================================
-         ABOUT — mobile y=856, OSHEE ALL STAR FESTIVAL big
+         ABOUT — mobile s2: yellow bg, DARK title, small description, button
          ========================================================= */
-      #about { padding: 110px 16px 60px !important; }
-      #about > div { gap: 24px !important; padding: 0 !important; }
-      #about img[src*="five-stars"] { width: 160px !important; height: 24px !important; }
+      #about { padding: 90px 16px 40px !important; }
+      #about > div { gap: 20px !important; padding: 0 !important; max-width: 100% !important; }
+      #about > div > div:first-child img[src*="five-stars"] {
+        width: 160px !important; height: 24px !important;
+      }
+      /* OSHEE ALL STAR FESTIVAL: dark on yellow bg, 40px */
+      #about > div > div:nth-of-type(2) { color: #141414 !important; }
       #about p[style*="font-size: 104px"] {
-        font-size: 44px !important; line-height: 1 !important;
+        font-size: 36px !important; line-height: 1 !important; color: #141414 !important;
       }
       #about p[style*="font-size: 40px"] {
-        font-size: 18px !important; line-height: 1.3 !important;
+        font-size: 15px !important; line-height: 1.3 !important;
       }
-      #about a { padding: 16px 32px !important; font-size: 13px !important; margin-top: 16px !important; }
+      #about a { padding: 14px 32px !important; font-size: 13px !important; margin-top: 12px !important; }
 
       /* =========================================================
          DRAFT — mobile: photo full screen width, names 25% margins top/bottom
