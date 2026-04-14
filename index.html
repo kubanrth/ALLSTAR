@@ -187,15 +187,14 @@
   <!-- ===== PAGE ===== -->
   <div class="page-wrapper">
     <div class="page-bg"><div class="page-bg-img" id="pageBgImg"></div></div>
+    <!-- Stadium lives outside page-content so it blends with page-bg -->
+    <img src="brand_assets/stadium-bg.jpg" alt="" id="stadiumImg" style="position: fixed; top: 81px; left: 50%; transform: translateX(-50%); width: 1233px; height: auto; mix-blend-mode: plus-lighter; border-radius: 12px; pointer-events: none; z-index: 1;" />
     <div class="page-content">
 
       <!-- ===== HERO (h=1080px, positioned elements like Figma) ===== -->
       <section style="position: relative; height: 1080px; overflow: hidden;" id="hero">
 
-        <!-- Stadium BG (center, plus-lighter) -->
-        <div style="position: absolute; top: 81px; left: 50%; transform: translateX(-50%); width: 1233px; mix-blend-mode: plus-lighter;">
-          <img src="brand_assets/stadium-bg.jpg" alt="" style="width: 100%; height: auto; display: block;" />
-        </div>
+        <!-- Stadium is rendered outside page-content for blend to work -->
 
         <!-- Star arc LEFT (y=250, x=13.5%) -->
         <div style="position: absolute; top: 250px; left: 13.5%; width: 202px; height: 864px;">
@@ -573,8 +572,21 @@
 
       pageBgImg.style.transform = `translateY(${bgY}px)`;
     }
-    window.addEventListener('scroll', updateBg, { passive: true });
+    // STADIUM — scroll with page, hide after hero
+    const stadiumImg = document.getElementById('stadiumImg');
+    function updateStadium() {
+      const scrollY = window.scrollY;
+      stadiumImg.style.top = (81 - scrollY) + 'px';
+      stadiumImg.style.opacity = scrollY > 1080 ? '0' : '1';
+    }
+
+    function onScroll() {
+      updateBg();
+      updateStadium();
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
     updateBg();
+    updateStadium();
   </script>
 </body>
 </html>
