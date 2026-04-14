@@ -539,18 +539,37 @@
     const draftDots = document.getElementById('draftDots').children;
     const totalSlides = 4;
     function updateDraft() {
-      const sectionTop = draftSection.offsetTop;
-      const sectionHeight = draftSection.offsetHeight;
-      const scrollInSection = window.scrollY - sectionTop;
-      const scrollRange = sectionHeight - window.innerHeight;
+      // Use getBoundingClientRect for zoom-aware visual coordinates
+      const rect = draftSection.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const viewportH = window.innerHeight;
+      const scrollInSection = -rect.top;
+      const scrollRange = sectionHeight - viewportH;
       if (scrollRange <= 0) return;
-      const progress = Math.max(0, Math.min(1, scrollInSection / scrollRange));
-      const slideIndex = Math.min(totalSlides - 1, Math.floor(progress * totalSlides));
-      const translateX = -(progress * (totalSlides - 1)) * 100;
-      draftTrack.style.transform = `translateX(${translateX}vw)`;
+      const rawProgress = Math.max(0, Math.min(1, scrollInSection / scrollRange));
+      // Slides finish at 90%, then short dwell on slide 4 before sticky releases
+      const animEnd = 0.9;
+      const progress = Math.min(1, rawProgress / animEnd);
+      // Pixel-based transform (vw doesn't work correctly with html zoom)
+      const slideWidth = draftTrack.parentElement.clientWidth;
+      const translateX = -(progress * (totalSlides - 1)) * slideWidth;
+      draftTrack.style.transform = `translateX(${translateX}px)`;
+      const slideIndex = Math.min(totalSlides - 1, Math.round(progress * (totalSlides - 1)));
       Array.from(draftDots).forEach((dot, i) => { dot.style.opacity = i === slideIndex ? '1' : '0.3'; });
     }
     window.addEventListener('scroll', updateDraft, { passive: true });
+    updateDraft();
+
+    // Click on dots to jump to slide
+    Array.from(draftDots).forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        const rect = draftSection.getBoundingClientRect();
+        const sectionTopAbs = window.scrollY + rect.top;
+        const scrollRange = rect.height - window.innerHeight;
+        const slideProgress = i / (totalSlides - 1);
+        window.scrollTo({ top: sectionTopAbs + slideProgress * scrollRange * 0.9, behavior: 'smooth' });
+      });
+    });
 
   </script>
 </body>
