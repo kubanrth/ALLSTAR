@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OSHEE All Star Festival 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @font-face {
@@ -13,14 +16,21 @@
       font-style: normal;
       font-display: swap;
     }
+    .font-serif {
+      font-family: 'Cormorant', serif;
+      font-weight: 300;
+    }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: auto;
+      zoom: 0.85;
+    }
     body {
       font-family: 'KTFRublena', sans-serif;
       background: #141414;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-    html { scroll-behavior: auto; }
 
     /* ===== PAGE WRAPPER with Figma background ===== */
     .page-wrapper {
@@ -29,24 +39,16 @@
       background: #eed410; /* fallback */
     }
     .page-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      background-color: #eed410;
-      overflow: hidden;
-    }
-    .page-bg-img {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 6049px;
-      background: url('brand_assets/bg-full.png') top center / 100% auto no-repeat;
-      will-change: transform;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        url('brand_assets/bg-full.png') top center / 100% auto no-repeat,
+        #eed410;
     }
 
     .page-content {
@@ -186,15 +188,14 @@
 
   <!-- ===== PAGE ===== -->
   <div class="page-wrapper">
-    <div class="page-bg"><div class="page-bg-img" id="pageBgImg"></div></div>
-    <!-- Stadium lives outside page-content so it blends with page-bg -->
-    <img src="brand_assets/stadium-bg.jpg" alt="" id="stadiumImg" style="position: fixed; top: 81px; left: 50%; transform: translateX(-50%); width: 1233px; height: auto; mix-blend-mode: plus-lighter; border-radius: 12px; pointer-events: none; z-index: 1;" />
+    <div class="page-bg"></div>
     <div class="page-content">
 
       <!-- ===== HERO (h=1080px, positioned elements like Figma) ===== -->
-      <section style="position: relative; height: 1080px; overflow: hidden;" id="hero">
+      <section style="position: relative; height: 1080px; overflow: hidden; background: url('brand_assets/bg-full.png') top center / 100% auto no-repeat, #141414;" id="hero">
 
-        <!-- Stadium is rendered outside page-content for blend to work -->
+        <!-- Stadium BG (absolute in hero, plus-lighter blend with dark hero bg) -->
+        <img src="brand_assets/stadium-bg.jpg" alt="" style="position: absolute; top: 81px; left: 50%; transform: translateX(-50%); width: 1233px; height: auto; mix-blend-mode: plus-lighter; border-radius: 12px; pointer-events: none;" />
 
         <!-- Star arc LEFT (y=250, x=13.5%) -->
         <div style="position: absolute; top: 250px; left: 13.5%; width: 202px; height: 864px;">
@@ -215,7 +216,7 @@
           <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">27-28.06.2026</p>
           <div style="width: 280px; height: 2px; background: #eed410; margin: 12px auto;"></div>
           <p style="font-size: 40px; text-transform: uppercase; line-height: 0.8;">Stadion Legii<br>Warszawa</p>
-          <p style="font-size: 20px; text-transform: uppercase; line-height: 1.2; margin-top: 40px;">SAVE THE DATE</p>
+          <p class="font-serif" style="font-size: 20px; text-transform: uppercase; line-height: 1.2; margin-top: 40px; letter-spacing: 0.05em;">SAVE THE DATE</p>
         </div>
 
         <!-- Date & Location RIGHT (x=1280, y=466) -->
@@ -223,19 +224,19 @@
           <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">27-28.06.2026</p>
           <div style="width: 280px; height: 2px; background: #eed410; margin: 12px auto;"></div>
           <p style="font-size: 40px; text-transform: uppercase; line-height: 0.8;">Stadion Legii<br>Warszawa</p>
-          <p style="font-size: 20px; text-transform: uppercase; line-height: 1.2; margin-top: 40px;">SAVE THE DATE</p>
+          <p class="font-serif" style="font-size: 20px; text-transform: uppercase; line-height: 1.2; margin-top: 40px; letter-spacing: 0.05em;">SAVE THE DATE</p>
         </div>
 
-        <!-- Sponsor icons row (y=860, centered) -->
+        <!-- Sponsor icons row (y=860, centered) — exact Figma dimensions -->
         <div style="position: absolute; top: 860px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; z-index: 10;">
           <div style="padding: 20px 32px; height: 80px; display: flex; align-items: center;">
-            <img src="brand_assets/sponsor-2.svg" alt="" style="height: 40px; width: auto;" />
+            <img src="brand_assets/sponsor-2.svg" alt="Grail Point" style="width: 104.276px; height: 40px;" />
           </div>
           <div style="padding: 0 32px; height: 80px; display: flex; align-items: center;">
-            <img src="brand_assets/sponsor-oshee-icon.svg" alt="Oshee" style="height: 80px; width: auto;" />
+            <img src="brand_assets/sponsor-oshee-icon.svg" alt="Oshee" style="width: 65px; height: 80px;" />
           </div>
           <div style="padding: 20px 32px; height: 80px; display: flex; align-items: center;">
-            <img src="brand_assets/sponsor-3.svg" alt="" style="height: 40px; width: auto;" />
+            <img src="brand_assets/sponsor-3.svg" alt="So Hard" style="width: 59px; height: 40px;" />
           </div>
         </div>
       </section>
@@ -243,17 +244,19 @@
       <!-- ticket bar is fixed at bottom, see end of body -->
 
       <!-- ===== ABOUT ===== -->
-      <section style="padding: 128px 0; color: #141414;" id="about">
-        <div style="max-width: 1207px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 48px; padding: 0 32px; color: #141414;">
-          <!-- 5 stars -->
+      <section style="padding: 300px 0 128px;" id="about">
+        <div style="max-width: 1207px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 48px; padding: 0 32px;">
+          <!-- 5 stars (yellow, native SVG color) -->
           <div style="width: 355px; height: 48px;">
-            <img src="brand_assets/five-stars.svg" alt="" style="width: 355px; height: 48px; filter: brightness(0);" />
+            <img src="brand_assets/five-stars.svg" alt="" style="width: 355px; height: 48px;" />
           </div>
-          <div style="text-align: center;">
+          <!-- Main title: yellow (#eed410) -->
+          <div style="text-align: center; color: #eed410;">
             <p style="font-size: 104px; line-height: 0.8; text-transform: uppercase;">OSHEE</p>
             <p style="font-size: 104px; line-height: 0.8; text-transform: uppercase;">ALL STAR FESTIVAL</p>
           </div>
-          <p style="font-size: 40px; line-height: 1.04; text-transform: uppercase; max-width: 901px; text-align: center;">
+          <!-- Subtitle: dark (#141414), serif Cormorant -->
+          <p class="font-serif" style="font-size: 40px; line-height: 1.04; text-transform: uppercase; max-width: 901px; text-align: center; color: #141414;">
             to unikatowe w skali kraju wydarzenie łączące muzykę, modę i kulturę.
           </p>
           <a href="o-festivalu.html" class="btn-outline" style="color: #141414; border-color: #141414; margin-top: 32px;">
@@ -278,40 +281,48 @@
           <div class="draft-track" id="draftTrack">
             <!-- BEDOES 2115 -->
             <div class="draft-slide">
-              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-                <img src="brand_assets/draft-arc.svg" alt="" style="width: 1400px; height: 864px; opacity: 0.12;" />
+              <!-- Star arcs (left & right) -->
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 260px;">
+                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5;" />
+                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5; transform: scaleX(-1);" />
               </div>
-              <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; margin-top: 64px;">
-                <img src="brand_assets/artist-photo.png" alt="Bedoes 2115" style="width: 463px; height: 578px; object-fit: cover; mix-blend-mode: multiply;" />
-                <p style="font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; margin-top: -50px; position: relative; z-index: 20; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">BEDOES 2115</p>
-              </div>
+              <!-- Artist photo (multiply blend) -->
+              <img src="brand_assets/artist-photo.png" alt="Bedoes 2115" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 463px; height: 578px; object-fit: cover; mix-blend-mode: multiply; z-index: 5;" />
+              <!-- Stacked outlined artist names (draft-vector-top SVG) — positioned centered -->
+              <img src="brand_assets/draft-vector-top.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 823px; height: 817px; z-index: 10; pointer-events: none; mix-blend-mode: multiply;" />
+              <!-- Current artist name (white, overlaid at top of stack) -->
+              <p style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; z-index: 15; white-space: nowrap; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">BEDOES 2115</p>
             </div>
 
             <!-- MALIK MONTANA -->
             <div class="draft-slide">
-              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-                <img src="brand_assets/draft-arc.svg" alt="" style="width: 1400px; height: 864px; opacity: 0.12;" />
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 260px;">
+                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5;" />
+                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5; transform: scaleX(-1);" />
               </div>
-              <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; margin-top: 64px;">
-                <img src="brand_assets/artist-photo.png" alt="Malik Montana" style="width: 463px; height: 578px; object-fit: cover; mix-blend-mode: multiply;" />
-                <p style="font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; margin-top: -50px; position: relative; z-index: 20; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">MALIK MONTANA</p>
-              </div>
+              <img src="brand_assets/artist-photo.png" alt="Malik Montana" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 463px; height: 578px; object-fit: cover; mix-blend-mode: multiply; z-index: 5;" />
+              <img src="brand_assets/draft-vector-top.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 823px; height: 817px; z-index: 10; pointer-events: none; mix-blend-mode: multiply;" />
+              <p style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; z-index: 15; white-space: nowrap; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">MALIK MONTANA</p>
             </div>
 
             <!-- TBA -->
             <div class="draft-slide">
-              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-                <img src="brand_assets/draft-arc.svg" alt="" style="width: 1400px; height: 864px; opacity: 0.12;" />
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 260px;">
+                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5;" />
+                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5; transform: scaleX(-1);" />
               </div>
-              <p style="color: white; font-size: 40px; text-transform: uppercase;">TBA</p>
+              <img src="brand_assets/draft-vector-top.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 823px; height: 817px; z-index: 10; pointer-events: none; mix-blend-mode: multiply;" />
+              <p style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; z-index: 15; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">TBA</p>
             </div>
 
             <!-- TBA 2 -->
             <div class="draft-slide">
-              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-                <img src="brand_assets/draft-arc.svg" alt="" style="width: 1400px; height: 864px; opacity: 0.12;" />
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 260px;">
+                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5;" />
+                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5; transform: scaleX(-1);" />
               </div>
-              <p style="color: white; font-size: 40px; text-transform: uppercase;">TBA</p>
+              <img src="brand_assets/draft-vector-top.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 823px; height: 817px; z-index: 10; pointer-events: none; mix-blend-mode: multiply;" />
+              <p style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; z-index: 15; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">TBA</p>
             </div>
           </div>
 
@@ -541,52 +552,6 @@
     }
     window.addEventListener('scroll', updateDraft, { passive: true });
 
-    // BACKGROUND PARALLAX — compress draft section's virtual scroll
-    const pageBgImg = document.getElementById('pageBgImg');
-    function updateBg() {
-      const scrollY = window.scrollY;
-      const draftTop = draftSection.offsetTop;
-      const draftHeight = draftSection.offsetHeight;
-      const draftVisualHeight = window.innerHeight; // draft is visually 1vh
-      const draftExtraScroll = draftHeight - draftVisualHeight;
-
-      // Calculate "effective" scroll — draft section counts as 1vh instead of 500vh
-      let effectiveScroll;
-      if (scrollY <= draftTop) {
-        effectiveScroll = scrollY;
-      } else if (scrollY <= draftTop + draftHeight) {
-        // Inside draft: compress to 1vh worth of movement
-        const draftProgress = (scrollY - draftTop) / draftHeight;
-        effectiveScroll = draftTop + draftProgress * draftVisualHeight;
-      } else {
-        // After draft: offset by the removed extra scroll
-        effectiveScroll = scrollY - draftExtraScroll;
-      }
-
-      // Map effective scroll to bg position
-      // Effective page height = actual page height - draft extra scroll
-      const effectivePageHeight = document.documentElement.scrollHeight - draftExtraScroll;
-      const bgTravel = 6049 - window.innerHeight; // how far bg can move
-      const progress = effectiveScroll / (effectivePageHeight - window.innerHeight);
-      const bgY = -Math.min(bgTravel, progress * bgTravel);
-
-      pageBgImg.style.transform = `translateY(${bgY}px)`;
-    }
-    // STADIUM — scroll with page, hide after hero
-    const stadiumImg = document.getElementById('stadiumImg');
-    function updateStadium() {
-      const scrollY = window.scrollY;
-      stadiumImg.style.top = (81 - scrollY) + 'px';
-      stadiumImg.style.opacity = scrollY > 1080 ? '0' : '1';
-    }
-
-    function onScroll() {
-      updateBg();
-      updateStadium();
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    updateBg();
-    updateStadium();
   </script>
 </body>
 </html>
