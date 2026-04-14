@@ -277,7 +277,7 @@
       }
       #hero > div[style*="top: 32px"] { top: 40px !important; }
 
-      /* Star arcs — positioned at y=330, 94x400 each side */
+      /* Star arcs — 1:1 z Figmy: x=16,y=330 left; x=374,y=330 right (extends off-screen), each 94x400 */
       #hero > div[style*="top: 200px"][style*="left: 13.5%"] {
         top: 330px !important; left: 16px !important; right: auto !important;
         width: 94px !important; height: 400px !important;
@@ -290,32 +290,43 @@
         width: 94px !important; height: 400px !important;
       }
 
-      /* Sponsor row — y=433, centered horizontally */
+      /* Sponsor row — 1:1 z Figmy: x=54, y=433, w=247, h=48 */
       #hero > div[style*="top: 860px"] {
         top: 433px !important;
-        left: 50% !important; transform: translateX(-50%);
+        left: 54px !important; transform: none !important;
+        width: 247px !important; height: 48px !important;
         gap: 0 !important;
       }
-      #hero > div[style*="top: 860px"] > div { padding: 0 8px !important; height: 48px !important; }
-      #hero > div[style*="top: 860px"] img[src*="sponsor-2"] { height: 32px !important; width: auto !important; }
-      #hero > div[style*="top: 860px"] img[src*="sponsor-oshee-icon"] { height: 48px !important; width: auto !important; }
-      #hero > div[style*="top: 860px"] img[src*="sponsor-3"] { height: 32px !important; width: auto !important; }
+      /* Sponsor icons: Grail 104.28x32 at x=12,y=8; OSHEE 39x48 at x=12; SoHard 47x32 at x=12,y=8 */
+      #hero > div[style*="top: 860px"] > div { padding: 0 12px !important; height: 48px !important; display: flex !important; align-items: center !important; }
+      #hero > div[style*="top: 860px"] img[src*="sponsor-2"] { height: 32px !important; width: 83px !important; }
+      #hero > div[style*="top: 860px"] img[src*="sponsor-oshee-icon"] { height: 48px !important; width: 39px !important; }
+      #hero > div[style*="top: 860px"] img[src*="sponsor-3"] { height: 32px !important; width: 47px !important; }
 
-      /* Hide RIGHT date column on mobile */
+      /* Hide RIGHT date column */
       #hero > div[style*="right: 48px"][style*="width: 592px"] { display: none !important; }
-      /* LEFT date — center, y=529, width 358 */
+      /* Date block — 1:1 z Figmy: x=16, y=529, w=358, h=167 */
       #hero > div[style*="left: 48px"][style*="width: 592px"] {
         top: 529px !important;
-        left: 50% !important; transform: translateX(-50%) !important;
-        width: 358px !important; gap: 16px !important;
+        left: 16px !important; transform: none !important;
+        width: 358px !important; gap: 0 !important;
       }
-      #hero > div[style*="left: 48px"] p[style*="font-size: 40px"] {
+      #hero > div[style*="left: 48px"] > div:first-child { gap: 12px !important; }
+      /* "27-28.06.2026" 28px height → 28px font */
+      #hero > div[style*="left: 48px"] p[style*="font-size: 40px"]:first-of-type {
         font-size: 28px !important; line-height: 1 !important;
       }
+      /* "Stadion Legii Warszawa" 60px height for 2 lines → 30px font */
+      #hero > div[style*="left: 48px"] p[style*="font-size: 40px"]:last-of-type {
+        font-size: 30px !important; line-height: 1 !important;
+      }
+      /* SAVE THE DATE 15px */
       #hero > div[style*="left: 48px"] p:last-child {
-        font-size: 13px !important; margin-top: 40px !important;
+        font-size: 15px !important; margin-top: 40px !important; letter-spacing: 0.1em !important;
       }
       #hero .sep-line-gold { width: 280px !important; }
+      /* Stadium: keep plus-lighter blend */
+      #hero img[src*="stadium-bg.jpg"] { mix-blend-mode: plus-lighter !important; }
 
       /* =========================================================
          TICKET BAR — mobile 357x54 centered inside 390x80
