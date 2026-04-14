@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSHEE All Star Festival 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'KTFRublena';
+      src: url('brand_assets/KTFRublena-Black.woff') format('woff');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'KTFRublena', sans-serif;
+      background: #141414;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    html { scroll-behavior: auto; }
+
+    /* ===== PAGE WRAPPER with Figma background ===== */
+    .page-wrapper {
+      position: relative;
+      width: 100%;
+      background: #eed410; /* fallback */
+    }
+    .page-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background-color: #eed410;
+      overflow: hidden;
+    }
+    .page-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6049px;
+      background: url('brand_assets/bg-full.png') top center / 100% auto no-repeat;
+      will-change: transform;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== TICKET BAR =====
+       Fixed at bottom of viewport.
+       BG layer uses mix-blend-mode: difference → inverts background & stars behind it.
+       Content layer is isolated → text inside bar is NOT blended.
+       Text/images on the page use isolation: isolate → NOT inverted by the bar.
+    */
+    .ticket-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 50;
+      background: #eed410;
+      mix-blend-mode: difference;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    /* ===== MENU ===== */
+    .menu-panel {
+      position: fixed; top: 0; right: 0;
+      width: 640px; max-width: 85vw; height: 100vh;
+      background: #141414; z-index: 100;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px;
+    }
+    .menu-panel.open { transform: translateX(0); }
+    .menu-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 99;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .menu-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ===== DRAFT GALLERY ===== */
+    .draft-section { position: relative; }
+    .draft-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+    .draft-track { display: flex; height: 100%; }
+    .draft-slide {
+      min-width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+
+    /* ===== Q&A ===== */
+    .qa-item { cursor: pointer; }
+    .qa-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .qa-item.open .qa-answer { max-height: 800px; }
+    .qa-toggle { transition: transform 0.3s ease; }
+    .qa-item.open .qa-toggle { transform: rotate(45deg); }
+
+    /* ===== SHARED ===== */
+    .sep-line { width: 100%; height: 2px; background: #141414; }
+    .sep-line-gold { width: 280px; height: 2px; background: #eed410; }
+
+    .btn-outline {
+      border: 2px solid currentColor; padding: 20px 56px;
+      text-transform: uppercase; font-size: 20px;
+      line-height: 1.09; display: inline-flex; align-items: center;
+      justify-content: center; cursor: pointer; background: transparent;
+      color: inherit; font-family: 'KTFRublena', sans-serif;
+      transition: background 0.3s ease; text-decoration: none;
+    }
+    .btn-outline:hover { background: currentColor; }
+    .btn-outline:hover span { filter: invert(1); }
+    .btn-outline:focus-visible { outline: 2px solid #eed410; outline-offset: 4px; }
+    .btn-outline:active { transform: scale(0.97); }
+
+    .social-icon {
+      width: 70px; height: 70px; border: 2px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s ease; cursor: pointer; text-decoration: none;
+    }
+    .social-icon:hover { background: currentColor; }
+    .social-icon:hover img { filter: invert(1) !important; }
+
+    /* ===== HAMBURGER ===== */
+    .hamburger {
+      width: 70px; height: 70px; background: #141414; border: none;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 8px; cursor: pointer;
+      position: fixed; top: 33px; right: 80px; z-index: 110;
+    }
+    .hamburger span {
+      display: block; width: 32px; height: 2px;
+      background: #eed410; transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+  </style>
+</head>
+<body>
+
+  <!-- FIXED UI: Hamburger + Star -->
+  <button class="hamburger" id="menuBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div style="position: fixed; top: 43px; right: 160px; z-index: 110; width: 32px; height: 32px;">
+    <img src="brand_assets/star-small.svg" alt="" style="width: 32px; height: 32px;" />
+  </div>
+
+  <!-- MENU -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="menu-panel" id="menuPanel">
+    <div class="flex flex-col gap-20">
+      <div style="width: 65px; height: 80px;"><img src="brand_assets/sponsor-oshee-icon.svg" alt="Oshee" style="width: 65px; height: 80px;" /></div>
+      <div class="flex flex-col gap-4">
+        <a href="#draft" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline" onclick="closeMenu()">Draft</a>
+        <a href="o-festivalu.html" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">O Festivalu</a>
+        <a href="#contact" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline" onclick="closeMenu()">Kontakt</a>
+      </div>
+      <div class="flex gap-4">
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-ig.svg" alt="Instagram" style="width: 24px; height: 24px;" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-tiktok.svg" alt="TikTok" style="width: 21px; height: 24px;" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-spotify.svg" alt="Spotify" style="width: 24px; height: 24px;" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-fb.svg" alt="Facebook" style="width: 24px; height: 24px;" /></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE ===== -->
+  <div class="page-wrapper">
+    <div class="page-bg"><div class="page-bg-img" id="pageBgImg"></div></div>
+    <div class="page-content">
+
+      <!-- ===== HERO (h=1080px, positioned elements like Figma) ===== -->
+      <section style="position: relative; height: 1080px; overflow: hidden;" id="hero">
+
+        <!-- Stadium BG (center, plus-lighter) -->
+        <div style="position: absolute; top: 81px; left: 50%; transform: translateX(-50%); width: 1233px; mix-blend-mode: plus-lighter;">
+          <img src="brand_assets/stadium-bg.jpg" alt="" style="width: 100%; height: auto; display: block;" />
+        </div>
+
+        <!-- Star arc LEFT (y=250, x=13.5%) -->
+        <div style="position: absolute; top: 250px; left: 13.5%; width: 202px; height: 864px;">
+          <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px;" />
+        </div>
+        <!-- Star arc RIGHT (mirrored) -->
+        <div style="position: absolute; top: 250px; right: 13.5%; width: 202px; height: 864px; transform: scaleX(-1);">
+          <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px;" />
+        </div>
+
+        <!-- ASF Logo (center, y=32) -->
+        <div style="position: absolute; top: 32px; left: 50%; transform: translateX(-50%); z-index: 10;">
+          <img src="brand_assets/asf-logo.svg" alt="Oshee All Star Festival" style="width: 335px; height: 160px;" />
+        </div>
+
+        <!-- Date & Location LEFT (x=48, y=466) -->
+        <div style="position: absolute; top: 466px; left: 48px; width: 592px; z-index: 10; color: #eed410; text-align: center;">
+          <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">27-28.06.2026</p>
+          <div style="width: 280px; height: 2px; background: #eed410; margin: 12px auto;"></div>
+          <p style="font-size: 40px; text-transform: uppercase; line-height: 0.8;">Stadion Legii<br>Warszawa</p>
+          <p style="font-size: 20px; text-transform: uppercase; line-height: 1.2; margin-top: 40px;">SAVE THE DATE</p>
+        </div>
+
+        <!-- Date & Location RIGHT (x=1280, y=466) -->
+        <div style="position: absolute; top: 466px; right: 48px; width: 592px; z-index: 10; color: #eed410; text-align: center;">
+          <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">27-28.06.2026</p>
+          <div style="width: 280px; height: 2px; background: #eed410; margin: 12px auto;"></div>
+          <p style="font-size: 40px; text-transform: uppercase; line-height: 0.8;">Stadion Legii<br>Warszawa</p>
+          <p style="font-size: 20px; text-transform: uppercase; line-height: 1.2; margin-top: 40px;">SAVE THE DATE</p>
+        </div>
+
+        <!-- Sponsor icons row (y=860, centered) -->
+        <div style="position: absolute; top: 860px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; z-index: 10;">
+          <div style="padding: 20px 32px; height: 80px; display: flex; align-items: center;">
+            <img src="brand_assets/sponsor-2.svg" alt="" style="height: 40px; width: auto;" />
+          </div>
+          <div style="padding: 0 32px; height: 80px; display: flex; align-items: center;">
+            <img src="brand_assets/sponsor-oshee-icon.svg" alt="Oshee" style="height: 80px; width: auto;" />
+          </div>
+          <div style="padding: 20px 32px; height: 80px; display: flex; align-items: center;">
+            <img src="brand_assets/sponsor-3.svg" alt="" style="height: 40px; width: auto;" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ticket bar is fixed at bottom, see end of body -->
+
+      <!-- ===== ABOUT ===== -->
+      <section style="padding: 128px 0; color: #141414;" id="about">
+        <div style="max-width: 1207px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 48px; padding: 0 32px; color: #141414;">
+          <!-- 5 stars -->
+          <div style="width: 355px; height: 48px;">
+            <img src="brand_assets/five-stars.svg" alt="" style="width: 355px; height: 48px; filter: brightness(0);" />
+          </div>
+          <div style="text-align: center;">
+            <p style="font-size: 104px; line-height: 0.8; text-transform: uppercase;">OSHEE</p>
+            <p style="font-size: 104px; line-height: 0.8; text-transform: uppercase;">ALL STAR FESTIVAL</p>
+          </div>
+          <p style="font-size: 40px; line-height: 1.04; text-transform: uppercase; max-width: 901px; text-align: center;">
+            to unikatowe w skali kraju wydarzenie łączące muzykę, modę i kulturę.
+          </p>
+          <a href="o-festivalu.html" class="btn-outline" style="color: #141414; border-color: #141414; margin-top: 32px;">
+            <span>czytaj wiecej</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ===== DRAFT GALLERY ===== -->
+      <section class="draft-section" id="draft" style="height: 500vh;">
+        <div class="draft-sticky">
+          <div style="position: absolute; top: 48px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+            <div style="width: 39px; height: 48px;">
+              <img src="brand_assets/star-small.svg" alt="" style="width: 39px; height: 48px; filter: brightness(0);" />
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+              <p style="color: #141414; font-size: 40px; text-transform: uppercase; line-height: 0.96;">NEW Draft</p>
+              <div class="sep-line" style="width: 280px;"></div>
+            </div>
+          </div>
+
+          <div class="draft-track" id="draftTrack">
+            <!-- BEDOES 2115 -->
+            <div class="draft-slide">
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+                <img src="brand_assets/draft-arc.svg" alt="" style="width: 1400px; height: 864px; opacity: 0.12;" />
+              </div>
+              <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; margin-top: 64px;">
+                <img src="brand_assets/artist-photo.png" alt="Bedoes 2115" style="width: 463px; height: 578px; object-fit: cover; mix-blend-mode: multiply;" />
+                <p style="font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; margin-top: -50px; position: relative; z-index: 20; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">BEDOES 2115</p>
+              </div>
+            </div>
+
+            <!-- MALIK MONTANA -->
+            <div class="draft-slide">
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+                <img src="brand_assets/draft-arc.svg" alt="" style="width: 1400px; height: 864px; opacity: 0.12;" />
+              </div>
+              <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; margin-top: 64px;">
+                <img src="brand_assets/artist-photo.png" alt="Malik Montana" style="width: 463px; height: 578px; object-fit: cover; mix-blend-mode: multiply;" />
+                <p style="font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; margin-top: -50px; position: relative; z-index: 20; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">MALIK MONTANA</p>
+              </div>
+            </div>
+
+            <!-- TBA -->
+            <div class="draft-slide">
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+                <img src="brand_assets/draft-arc.svg" alt="" style="width: 1400px; height: 864px; opacity: 0.12;" />
+              </div>
+              <p style="color: white; font-size: 40px; text-transform: uppercase;">TBA</p>
+            </div>
+
+            <!-- TBA 2 -->
+            <div class="draft-slide">
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+                <img src="brand_assets/draft-arc.svg" alt="" style="width: 1400px; height: 864px; opacity: 0.12;" />
+              </div>
+              <p style="color: white; font-size: 40px; text-transform: uppercase;">TBA</p>
+            </div>
+          </div>
+
+          <div style="position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; gap: 12px;" id="draftDots">
+            <button style="width: 12px; height: 12px; border-radius: 50%; background: #141414; border: none; cursor: pointer;" data-index="0"></button>
+            <button style="width: 12px; height: 12px; border-radius: 50%; background: #141414; opacity: 0.3; border: none; cursor: pointer;" data-index="1"></button>
+            <button style="width: 12px; height: 12px; border-radius: 50%; background: #141414; opacity: 0.3; border: none; cursor: pointer;" data-index="2"></button>
+            <button style="width: 12px; height: 12px; border-radius: 50%; background: #141414; opacity: 0.3; border: none; cursor: pointer;" data-index="3"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Q&A ===== -->
+      <section style="padding: 128px 0; color: #141414; isolation: isolate;" id="qa">
+        <div style="max-width: 1516px; margin: 0 auto; padding: 0 48px;">
+          <div style="margin-bottom: 40px;">
+            <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Q & A</p>
+            <div class="sep-line" style="margin-top: 16px;"></div>
+          </div>
+
+          <div class="qa-item" onclick="toggleQA(this)">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; padding: 40px 0;">
+              <div style="display: flex; gap: 16px; flex: 1;">
+                <span style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 60px; flex-shrink: 0;">1.</span>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase;">Kiedy i gdzie odbywa się festiwal?</p>
+              </div>
+              <div class="qa-toggle" style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0;">+</div>
+            </div>
+            <div class="qa-answer">
+              <div style="display: flex; gap: 178px; padding-bottom: 40px;">
+                <div style="width: 592px; flex-shrink: 0;"></div>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 592px;">Festiwal odbędzie się w dniach 27-28.06.2026 na terenie Stadionu Legii Warszawa. Dokładny adres oraz mapa dojazdu będą dostępne na stronie wydarzenia w zakładce „Lokalizacja".</p>
+              </div>
+            </div>
+            <div class="sep-line"></div>
+          </div>
+
+          <div class="qa-item" onclick="toggleQA(this)">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; padding: 40px 0;">
+              <div style="display: flex; gap: 16px; flex: 1;">
+                <span style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 60px; flex-shrink: 0;">2.</span>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase;">Jak mogę kupić bilety i jakie są dostępne opcje (np. jednodniowe, karnety)?</p>
+              </div>
+              <div class="qa-toggle" style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0;">+</div>
+            </div>
+            <div class="qa-answer">
+              <div style="display: flex; gap: 178px; padding-bottom: 40px;">
+                <div style="width: 592px; flex-shrink: 0;"></div>
+                <div style="width: 592px;">
+                  <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase; margin-bottom: 24px;">Bilety można zakupić bezpośrednio na naszej stronie internetowej w sekcji „Bilety". Dostępne są różne opcje, w tym:</p>
+                  <ul style="font-size: 20px; line-height: 1.2; text-transform: uppercase; list-style: disc; padding-left: 24px; margin-bottom: 24px;">
+                    <li>bilety jednodniowe</li>
+                    <li>karnety na cały festiwal</li>
+                    <li>bilety VIP (z dodatkowymi udogodnieniami)</li>
+                  </ul>
+                  <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase;">Po dokonaniu zakupu bilet zostanie wysłany na adres e-mail podany podczas rejestracji.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sep-line"></div>
+          </div>
+
+          <div class="qa-item" onclick="toggleQA(this)">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; padding: 40px 0;">
+              <div style="display: flex; gap: 16px; flex: 1;">
+                <span style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 60px; flex-shrink: 0;">3.</span>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase;">Czy mogę zwrócić lub wymienić bilet w razie zmiany planów?</p>
+              </div>
+              <div class="qa-toggle" style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0;">+</div>
+            </div>
+            <div class="qa-answer">
+              <div style="display: flex; gap: 178px; padding-bottom: 40px;">
+                <div style="width: 592px; flex-shrink: 0;"></div>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 592px;">Szczegółowe zasady zwrotów i wymian biletów będą dostępne w regulaminie wydarzenia na naszej stronie.</p>
+              </div>
+            </div>
+            <div class="sep-line"></div>
+          </div>
+
+          <div class="qa-item" onclick="toggleQA(this)">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; padding: 40px 0;">
+              <div style="display: flex; gap: 16px; flex: 1;">
+                <span style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 60px; flex-shrink: 0;">4.</span>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase;">Jakie przedmioty można wnieść na teren festiwalu, a czego nie wolno?</p>
+              </div>
+              <div class="qa-toggle" style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0;">+</div>
+            </div>
+            <div class="qa-answer">
+              <div style="display: flex; gap: 178px; padding-bottom: 40px;">
+                <div style="width: 592px; flex-shrink: 0;"></div>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 592px;">Lista dozwolonych i zabronionych przedmiotów zostanie opublikowana w zakładce „Regulamin".</p>
+              </div>
+            </div>
+            <div class="sep-line"></div>
+          </div>
+
+          <div class="qa-item" onclick="toggleQA(this)">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; padding: 40px 0;">
+              <div style="display: flex; gap: 16px; flex: 1;">
+                <span style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 60px; flex-shrink: 0;">5.</span>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase;">Czy na miejscu będą dostępne jedzenie, napoje i strefy odpoczynku?</p>
+              </div>
+              <div class="qa-toggle" style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0;">+</div>
+            </div>
+            <div class="qa-answer">
+              <div style="display: flex; gap: 178px; padding-bottom: 40px;">
+                <div style="width: 592px; flex-shrink: 0;"></div>
+                <p style="font-size: 40px; line-height: 0.96; text-transform: uppercase; width: 592px;">Tak! Miasteczko festiwalowe z licznymi strefami: gastro, chili & fun.</p>
+              </div>
+            </div>
+            <div class="sep-line"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PARTNERS ===== -->
+      <section style="padding: 128px 0; color: #141414; isolation: isolate;" id="partners">
+        <div style="max-width: 1516px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 178px;">
+          <div>
+            <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Partnerzy</p>
+            <div class="sep-line" style="margin-top: 16px; margin-bottom: 48px;"></div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div style="height: 168px; padding: 24px 32px; display: flex; align-items: center;">
+                <img src="brand_assets/partner-1.svg" alt="" style="height: 100px; width: auto;" />
+              </div>
+              <div style="height: 168px; padding: 24px 32px; display: flex; align-items: center;">
+                <img src="brand_assets/partner-2.svg" alt="" style="height: 120px; width: auto;" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Sponsor tytularny</p>
+            <div class="sep-line" style="margin-top: 16px; margin-bottom: 48px;"></div>
+            <div style="height: 168px; display: flex; align-items: center;">
+              <img src="brand_assets/sponsor-oshee-big.svg" alt="OSHEE" style="height: 168px; width: auto;" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CONTACT ===== -->
+      <section style="padding: 128px 0; color: #141414; isolation: isolate;" id="contact">
+        <div style="max-width: 1516px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 178px;">
+          <div>
+            <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Kontakt</p>
+            <div class="sep-line" style="margin-top: 16px; margin-bottom: 80px;"></div>
+            <a href="mailto:kontakt@allstarfestival.pl" class="btn-outline" style="color: #141414; border-color: #141414;"><span>kontakt@allstarfestival.pl</span></a>
+          </div>
+          <div>
+            <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Social media</p>
+            <div class="sep-line" style="margin-top: 16px; margin-bottom: 80px;"></div>
+            <div style="display: flex; gap: 16px;">
+              <a href="#" class="social-icon" style="color: #141414;"><img src="brand_assets/social-ig.svg" alt="Instagram" style="width: 24px; height: 24px; filter: brightness(0);" /></a>
+              <a href="#" class="social-icon" style="color: #141414;"><img src="brand_assets/social-tiktok.svg" alt="TikTok" style="width: 21px; height: 24px; filter: brightness(0);" /></a>
+              <a href="#" class="social-icon" style="color: #141414;"><img src="brand_assets/social-spotify.svg" alt="Spotify" style="width: 24px; height: 24px; filter: brightness(0);" /></a>
+              <a href="#" class="social-icon" style="color: #141414;"><img src="brand_assets/social-fb.svg" alt="Facebook" style="width: 24px; height: 24px; filter: brightness(0);" /></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FOOTER ===== -->
+      <footer style="padding: 64px 0; color: #141414;">
+        <div style="max-width: 1516px; margin: 0 auto; padding: 0 48px; display: flex; align-items: center; justify-content: space-between;">
+          <div style="height: 80px; width: 154px;">
+            <img src="brand_assets/footer-logo.svg" alt="ASF" style="height: 80px; width: auto; filter: brightness(0);" />
+          </div>
+          <div style="display: flex; gap: 40px; font-size: 20px; text-transform: uppercase; line-height: 0.96;">
+            <a href="#" style="color: #141414; text-decoration: none; opacity: 0.8;">Polityka prywatności</a>
+            <a href="#" style="color: #141414; text-decoration: none; opacity: 0.8;">Regulamin wydarzenia</a>
+            <a href="#" style="color: #141414; text-decoration: none; opacity: 0.8;">Polityka cookies</a>
+          </div>
+        </div>
+      </footer>
+
+    </div><!-- /page-content -->
+
+    <!-- ===== TICKET BAR — fixed at bottom, INSIDE page-wrapper so blend works ===== -->
+    <div class="ticket-bar">
+      <span style="color: #141414; font-size: 40px; text-transform: uppercase; line-height: 1.09; white-space: nowrap;">Kup bilet i dolacz do</span>
+      <span style="color: #141414; font-size: 64px; text-transform: uppercase; line-height: 1.09; white-space: nowrap;">druzyny</span>
+      <a href="#" class="btn-outline" style="color: #141414; border-color: #141414; white-space: nowrap; margin-left: 8px;">
+        <span>kup bilet</span>
+      </a>
+    </div>
+
+  </div><!-- /page-wrapper -->
+
+  <script>
+    // MENU
+    const menuBtn = document.getElementById('menuBtn');
+    const menuPanel = document.getElementById('menuPanel');
+    const menuOverlay = document.getElementById('menuOverlay');
+    function openMenu() {
+      menuBtn.classList.add('open'); menuPanel.classList.add('open');
+      menuOverlay.classList.add('open'); document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menuBtn.classList.remove('open'); menuPanel.classList.remove('open');
+      menuOverlay.classList.remove('open'); document.body.style.overflow = '';
+    }
+    menuBtn.addEventListener('click', () => menuPanel.classList.contains('open') ? closeMenu() : openMenu());
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // Q&A
+    function toggleQA(el) {
+      document.querySelectorAll('.qa-item.open').forEach(item => { if (item !== el) item.classList.remove('open'); });
+      el.classList.toggle('open');
+    }
+
+    // DRAFT SCROLL HIJACK
+    const draftSection = document.getElementById('draft');
+    const draftTrack = document.getElementById('draftTrack');
+    const draftDots = document.getElementById('draftDots').children;
+    const totalSlides = 4;
+    function updateDraft() {
+      const sectionTop = draftSection.offsetTop;
+      const sectionHeight = draftSection.offsetHeight;
+      const scrollInSection = window.scrollY - sectionTop;
+      const scrollRange = sectionHeight - window.innerHeight;
+      if (scrollRange <= 0) return;
+      const progress = Math.max(0, Math.min(1, scrollInSection / scrollRange));
+      const slideIndex = Math.min(totalSlides - 1, Math.floor(progress * totalSlides));
+      const translateX = -(progress * (totalSlides - 1)) * 100;
+      draftTrack.style.transform = `translateX(${translateX}vw)`;
+      Array.from(draftDots).forEach((dot, i) => { dot.style.opacity = i === slideIndex ? '1' : '0.3'; });
+    }
+    window.addEventListener('scroll', updateDraft, { passive: true });
+
+    // BACKGROUND PARALLAX — compress draft section's virtual scroll
+    const pageBgImg = document.getElementById('pageBgImg');
+    function updateBg() {
+      const scrollY = window.scrollY;
+      const draftTop = draftSection.offsetTop;
+      const draftHeight = draftSection.offsetHeight;
+      const draftVisualHeight = window.innerHeight; // draft is visually 1vh
+      const draftExtraScroll = draftHeight - draftVisualHeight;
+
+      // Calculate "effective" scroll — draft section counts as 1vh instead of 500vh
+      let effectiveScroll;
+      if (scrollY <= draftTop) {
+        effectiveScroll = scrollY;
+      } else if (scrollY <= draftTop + draftHeight) {
+        // Inside draft: compress to 1vh worth of movement
+        const draftProgress = (scrollY - draftTop) / draftHeight;
+        effectiveScroll = draftTop + draftProgress * draftVisualHeight;
+      } else {
+        // After draft: offset by the removed extra scroll
+        effectiveScroll = scrollY - draftExtraScroll;
+      }
+
+      // Map effective scroll to bg position
+      // Effective page height = actual page height - draft extra scroll
+      const effectivePageHeight = document.documentElement.scrollHeight - draftExtraScroll;
+      const bgTravel = 6049 - window.innerHeight; // how far bg can move
+      const progress = effectiveScroll / (effectivePageHeight - window.innerHeight);
+      const bgY = -Math.min(bgTravel, progress * bgTravel);
+
+      pageBgImg.style.transform = `translateY(${bgY}px)`;
+    }
+    window.addEventListener('scroll', updateBg, { passive: true });
+    updateBg();
+  </script>
+</body>
+</html>

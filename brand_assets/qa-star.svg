@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 235">
+<g id="Rectangle 12">
+<mask id="path-1-inside-1_0_46" fill="white">
+<path d="M0 0H70V70H0V0Z"/>
+</mask>
+<path d="M0 0V2H70V0V-2H0V0Z" fill="var(--stroke-0, #141414)" mask="url(#path-1-inside-1_0_46)"/>
+</g>
+<path id="Vector 6" d="M55 25L35 45L15 25" stroke="var(--stroke-0, #141414)" stroke-width="2"/>
+</g>
+</svg>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Festivalu — OSHEE All Star Festival 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'KTFRublena';
+      src: url('brand_assets/KTFRublena-Black.woff') format('woff');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'KTFRublena', sans-serif;
+      background: #141414;
+      color: #eed410;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+    html { scroll-behavior: auto; }
+
+    /* TICKET BAR */
+    .ticket-bar {
+      position: absolute; top: 1000px; left: 0; width: 100%; height: 80px;
+      background: #eed410; z-index: 40;
+      display: flex; align-items: center; justify-content: center;
+      mix-blend-mode: difference;
+    }
+    .ticket-bar.is-fixed { position: fixed; top: 0; }
+
+    .blend-isolate { isolation: isolate; }
+
+    /* MENU */
+    .menu-panel {
+      position: fixed; top: 0; right: 0;
+      width: 640px; max-width: 85vw; height: 100vh;
+      background: #141414; z-index: 100;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px;
+    }
+    .menu-panel.open { transform: translateX(0); }
+    .menu-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 99;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .menu-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .sep-line-gold { width: 280px; height: 2px; background: #eed410; }
+
+    .btn-outline {
+      border: 2px solid currentColor; padding: 20px 56px;
+      text-transform: uppercase; font-size: 20px; letter-spacing: 0.02em;
+      line-height: 1.09; display: inline-flex; align-items: center;
+      justify-content: center; cursor: pointer; background: transparent;
+      color: inherit; font-family: 'KTFRublena', sans-serif;
+      transition: background 0.3s ease; text-decoration: none;
+    }
+    .btn-outline:hover { background: currentColor; }
+    .btn-outline:hover span { filter: invert(1); }
+    .btn-outline:focus-visible { outline: 2px solid #eed410; outline-offset: 4px; }
+    .btn-outline:active { transform: scale(0.97); }
+
+    .social-icon {
+      width: 70px; height: 70px; border: 2px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s ease; cursor: pointer; text-decoration: none;
+    }
+    .social-icon:hover { background: currentColor; }
+    .social-icon:hover img { filter: invert(1) !important; }
+
+    .hamburger {
+      width: 70px; height: 70px; background: #141414; border: none;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 8px; cursor: pointer;
+      position: fixed; top: 33px; right: 80px; z-index: 110;
+    }
+    .hamburger span {
+      display: block; width: 32px; height: 2px;
+      background: #eed410; transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    .star-icon {
+      position: fixed; top: 43px; right: 160px;
+      z-index: 110; width: 32px; height: 32px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HAMBURGER -->
+  <button class="hamburger blend-isolate" id="menuBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <img src="brand_assets/star-small.png" alt="" class="star-icon blend-isolate" />
+
+  <!-- MENU OVERLAY + PANEL -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="menu-panel" id="menuPanel">
+    <div class="flex flex-col gap-20">
+      <img src="brand_assets/sponsor-oshee-icon.png" alt="Oshee" class="w-[65px] h-[80px] object-contain" />
+      <div class="flex flex-col gap-4">
+        <a href="index.html#draft" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Draft</a>
+        <a href="o-festivalu.html" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">O Festivalu</a>
+        <a href="index.html#contact" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Kontakt</a>
+      </div>
+      <div class="flex gap-4">
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-ig.png" alt="Instagram" class="w-6 h-6" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-tiktok.png" alt="TikTok" class="w-6 h-5" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-spotify.png" alt="Spotify" class="w-6 h-6" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-fb.png" alt="Facebook" class="w-6 h-6" /></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE CONTENT ===== -->
+  <main class="relative min-h-screen" style="background: #141414;">
+
+    <!-- Star arcs -->
+    <div class="absolute top-[250px] left-[13.5%] w-[202px] h-[864px]">
+      <img src="brand_assets/star-arc-left.png" alt="" class="w-full h-full object-contain" />
+    </div>
+    <div class="absolute top-[250px] right-[13.5%] w-[202px] h-[864px] scale-x-[-1]">
+      <img src="brand_assets/star-arc-left.png" alt="" class="w-full h-full object-contain" />
+    </div>
+
+    <!-- ASF Logo -->
+    <div class="relative z-10 flex justify-center pt-8">
+      <img src="brand_assets/asf-logo.png" alt="Oshee All Star Festival" class="w-[335px] h-auto" />
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-[1145px] mx-auto flex flex-col items-center px-8 pt-[200px] pb-[120px]">
+      <!-- 5 Stars -->
+      <img src="brand_assets/five-stars.png" alt="" class="h-[48px] w-auto mb-12" />
+
+      <!-- Title -->
+      <h1 class="text-[104px] leading-[0.8] uppercase text-center mb-10">O Festivalu</h1>
+
+      <!-- Subtitle -->
+      <div class="text-[40px] leading-[1.04] uppercase text-center max-w-[901px] mb-40">
+        <p>Coś więcej niż festiwal.</p>
+        <p>Coś więcej niż koncerty.</p>
+      </div>
+
+      <!-- Main description -->
+      <p class="text-[40px] leading-[0.96] uppercase text-center max-w-[900px] mb-20">
+        OSHEE ALL STAR FESTIVAL to unikatowe w skali kraju wydarzenie łączące muzykę, modę i kulturę.
+      </p>
+
+      <!-- Sub-descriptions -->
+      <div class="flex flex-col items-center gap-20 text-[20px] leading-[1.2] uppercase text-center max-w-[438px] mb-20">
+        <p>
+          Jedyny festiwal, na którym zobaczysz stadionowe występy największych gwiazd polskiego rapu.
+        </p>
+        <p>
+          Wyjątkowe doświadczenie audiowizualne, spektakularna scena ulokowana na murawie boiska oraz miasteczko festiwalowe z licznymi atrakcjami, strefami: gastro, chili & fun.
+        </p>
+      </div>
+
+      <!-- CTA text -->
+      <p class="text-[40px] leading-[0.96] uppercase text-center max-w-[900px] mb-40">
+        Dołącz do festiwalowego DREAM TEAMu i przeżyj z nami dwa dni niezapomnianych emocji!
+      </p>
+
+      <!-- Date & Location -->
+      <div class="flex flex-col gap-10 items-center w-[592px]">
+        <div class="flex flex-col gap-3 items-center w-full">
+          <p class="text-[40px] uppercase leading-[0.96] text-center w-full">27-28.06.2026</p>
+          <div class="sep-line-gold"></div>
+          <p class="text-[40px] uppercase leading-[0.8] text-center w-full">Stadion Legii<br>Warszawa</p>
+        </div>
+        <p class="text-[20px] uppercase leading-[1.2] text-center tracking-wide">SAVE THE DATE</p>
+      </div>
+    </div>
+
+    <!-- TICKET BAR -->
+    <div class="ticket-bar" id="ticketBar">
+      <div class="flex items-center gap-6">
+        <span class="text-[#141414] text-[28px] lg:text-[40px] uppercase leading-[1.09] whitespace-nowrap">Kup bilet i dolacz do</span>
+        <span class="text-[#141414] text-[44px] lg:text-[64px] uppercase leading-[1.09] whitespace-nowrap">druzyny</span>
+        <a href="#" class="btn-outline text-[#141414] border-[#141414] whitespace-nowrap no-underline ml-2">
+          <span>kup bilet</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // MENU
+    const menuBtn = document.getElementById('menuBtn');
+    const menuPanel = document.getElementById('menuPanel');
+    const menuOverlay = document.getElementById('menuOverlay');
+    function openMenu() {
+      menuBtn.classList.add('open'); menuPanel.classList.add('open');
+      menuOverlay.classList.add('open'); document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menuBtn.classList.remove('open'); menuPanel.classList.remove('open');
+      menuOverlay.classList.remove('open'); document.body.style.overflow = '';
+    }
+    menuBtn.addEventListener('click', () => {
+      menuPanel.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // TICKET BAR
+    const ticketBar = document.getElementById('ticketBar');
+    function updateTicketBar() {
+      if (window.scrollY >= 920) {
+        ticketBar.classList.add('is-fixed');
+      } else {
+        ticketBar.classList.remove('is-fixed');
+      }
+    }
+    window.addEventListener('scroll', updateTicketBar, { passive: true });
+    updateTicketBar();
+  </script>
+</body>
+</html>
