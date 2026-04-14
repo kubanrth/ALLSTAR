@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>O Festivalu — OSHEE All Star Festival 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @font-face {
@@ -13,6 +16,7 @@
       font-style: normal;
       font-display: swap;
     }
+    .font-serif { font-family: 'Cormorant', serif; font-weight: 300; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'KTFRublena', sans-serif;
@@ -23,16 +27,21 @@
     ::-webkit-scrollbar { width: 0; background: transparent; }
     html { scroll-behavior: auto; }
 
-    /* TICKET BAR */
+    /* TICKET BAR — fixed at bottom, mix-blend-difference (jak na stronie głównej) */
     .ticket-bar {
-      position: absolute; top: 1000px; left: 0; width: 100%; height: 80px;
-      background: #eed410; z-index: 40;
-      display: flex; align-items: center; justify-content: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 50;
+      background: #eed410;
       mix-blend-mode: difference;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
     }
-    .ticket-bar.is-fixed { position: fixed; top: 0; }
-
-    .blend-isolate { isolation: isolate; }
 
     /* MENU */
     .menu-panel {
@@ -99,67 +108,67 @@
 <body>
 
   <!-- HAMBURGER -->
-  <button class="hamburger blend-isolate" id="menuBtn" aria-label="Menu">
+  <button class="hamburger" id="menuBtn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-  <img src="brand_assets/star-small.png" alt="" class="star-icon blend-isolate" />
+  <img src="brand_assets/star-small.svg" alt="" class="star-icon" />
 
   <!-- MENU OVERLAY + PANEL -->
   <div class="menu-overlay" id="menuOverlay"></div>
   <nav class="menu-panel" id="menuPanel">
     <div class="flex flex-col gap-20">
-      <img src="brand_assets/sponsor-oshee-icon.png" alt="Oshee" class="w-[65px] h-[80px] object-contain" />
+      <img src="brand_assets/sponsor-oshee-icon.svg" alt="Oshee" class="w-[65px] h-[80px] object-contain" />
       <div class="flex flex-col gap-4">
         <a href="index.html#draft" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Draft</a>
         <a href="o-festivalu.html" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">O Festivalu</a>
         <a href="index.html#contact" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Kontakt</a>
       </div>
       <div class="flex gap-4">
-        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-ig.png" alt="Instagram" class="w-6 h-6" /></a>
-        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-tiktok.png" alt="TikTok" class="w-6 h-5" /></a>
-        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-spotify.png" alt="Spotify" class="w-6 h-6" /></a>
-        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-fb.png" alt="Facebook" class="w-6 h-6" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-ig.svg" alt="Instagram" style="width: 24px; height: 24px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-tiktok.svg" alt="TikTok" style="width: 21px; height: 24px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-spotify.svg" alt="Spotify" style="width: 24px; height: 24px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-fb.svg" alt="Facebook" style="width: 24px; height: 24px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
       </div>
     </div>
   </nav>
 
   <!-- ===== PAGE CONTENT ===== -->
-  <main class="relative min-h-screen" style="background: #141414;">
+  <main class="relative min-h-screen" style="background: #141414; position: relative;">
 
-    <!-- Star arcs -->
-    <div class="absolute top-[250px] left-[13.5%] w-[202px] h-[864px]">
-      <img src="brand_assets/star-arc-left.png" alt="" class="w-full h-full object-contain" />
+    <!-- Star arcs (positioned like hero) -->
+    <div style="position: absolute; top: 200px; left: 13.5%; width: 202px; height: 864px;">
+      <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px;" />
     </div>
-    <div class="absolute top-[250px] right-[13.5%] w-[202px] h-[864px] scale-x-[-1]">
-      <img src="brand_assets/star-arc-left.png" alt="" class="w-full h-full object-contain" />
-    </div>
-
-    <!-- ASF Logo -->
-    <div class="relative z-10 flex justify-center pt-8">
-      <img src="brand_assets/asf-logo.png" alt="Oshee All Star Festival" class="w-[335px] h-auto" />
+    <div style="position: absolute; top: 200px; right: 13.5%; width: 202px; height: 864px; transform: scaleX(-1);">
+      <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px;" />
     </div>
 
-    <!-- Content -->
-    <div class="relative z-10 max-w-[1145px] mx-auto flex flex-col items-center px-8 pt-[200px] pb-[120px]">
+    <!-- ASF Logo at top -->
+    <div class="relative flex justify-center pt-8" style="z-index: 51; isolation: isolate;">
+      <img src="brand_assets/asf-logo.svg" alt="Oshee All Star Festival" style="width: 335px; height: 160px;" />
+    </div>
+
+    <!-- Content — z-index 51 above ticket bar (50), so text/images NOT inverted by bar -->
+    <div class="relative max-w-[1145px] mx-auto flex flex-col items-center px-8 pt-[200px] pb-[160px]" style="z-index: 51; isolation: isolate;">
       <!-- 5 Stars -->
-      <img src="brand_assets/five-stars.png" alt="" class="h-[48px] w-auto mb-12" />
+      <img src="brand_assets/five-stars.svg" alt="" style="width: 355px; height: 48px;" class="mb-12" />
 
       <!-- Title -->
-      <h1 class="text-[104px] leading-[0.8] uppercase text-center mb-10">O Festivalu</h1>
+      <h1 class="text-[104px] leading-[0.8] uppercase text-center mb-10" style="color: #eed410;">O Festivalu</h1>
 
-      <!-- Subtitle -->
-      <div class="text-[40px] leading-[1.04] uppercase text-center max-w-[901px] mb-40">
+      <!-- Subtitle (serif Cormorant) -->
+      <div class="font-serif text-[40px] leading-[1.04] uppercase text-center max-w-[901px] mb-40" style="color: #eed410;">
         <p>Coś więcej niż festiwal.</p>
         <p>Coś więcej niż koncerty.</p>
       </div>
 
       <!-- Main description -->
-      <p class="text-[40px] leading-[0.96] uppercase text-center max-w-[900px] mb-20">
+      <p class="text-[40px] leading-[0.96] uppercase text-center max-w-[900px] mb-20" style="color: #eed410;">
         OSHEE ALL STAR FESTIVAL to unikatowe w skali kraju wydarzenie łączące muzykę, modę i kulturę.
       </p>
 
       <!-- Sub-descriptions -->
-      <div class="flex flex-col items-center gap-20 text-[20px] leading-[1.2] uppercase text-center max-w-[438px] mb-20">
+      <div class="font-serif flex flex-col items-center gap-20 text-[20px] leading-[1.2] uppercase text-center max-w-[438px] mb-20" style="color: #eed410;">
         <p>
           Jedyny festiwal, na którym zobaczysz stadionowe występy największych gwiazd polskiego rapu.
         </p>
@@ -169,32 +178,30 @@
       </div>
 
       <!-- CTA text -->
-      <p class="text-[40px] leading-[0.96] uppercase text-center max-w-[900px] mb-40">
+      <p class="text-[40px] leading-[0.96] uppercase text-center max-w-[900px] mb-40" style="color: #eed410;">
         Dołącz do festiwalowego DREAM TEAMu i przeżyj z nami dwa dni niezapomnianych emocji!
       </p>
 
       <!-- Date & Location -->
-      <div class="flex flex-col gap-10 items-center w-[592px]">
+      <div class="flex flex-col gap-10 items-center w-[592px]" style="color: #eed410;">
         <div class="flex flex-col gap-3 items-center w-full">
           <p class="text-[40px] uppercase leading-[0.96] text-center w-full">27-28.06.2026</p>
           <div class="sep-line-gold"></div>
           <p class="text-[40px] uppercase leading-[0.8] text-center w-full">Stadion Legii<br>Warszawa</p>
         </div>
-        <p class="text-[20px] uppercase leading-[1.2] text-center tracking-wide">SAVE THE DATE</p>
-      </div>
-    </div>
-
-    <!-- TICKET BAR -->
-    <div class="ticket-bar" id="ticketBar">
-      <div class="flex items-center gap-6">
-        <span class="text-[#141414] text-[28px] lg:text-[40px] uppercase leading-[1.09] whitespace-nowrap">Kup bilet i dolacz do</span>
-        <span class="text-[#141414] text-[44px] lg:text-[64px] uppercase leading-[1.09] whitespace-nowrap">druzyny</span>
-        <a href="#" class="btn-outline text-[#141414] border-[#141414] whitespace-nowrap no-underline ml-2">
-          <span>kup bilet</span>
-        </a>
+        <p class="font-serif text-[20px] uppercase leading-[1.2] text-center" style="letter-spacing: 0.05em;">SAVE THE DATE</p>
       </div>
     </div>
   </main>
+
+  <!-- TICKET BAR — fixed at bottom z mix-blend (tak jak na głównej) -->
+  <div class="ticket-bar">
+    <span style="color: #141414; font-size: 40px; text-transform: uppercase; line-height: 1.09; white-space: nowrap;">Kup bilet i dolacz do</span>
+    <span style="color: #141414; font-size: 64px; text-transform: uppercase; line-height: 1.09; white-space: nowrap;">druzyny</span>
+    <a href="#" class="btn-outline" style="color: #141414; border-color: #141414; white-space: nowrap; margin-left: 8px;">
+      <span>kup bilet</span>
+    </a>
+  </div>
 
   <script>
     // MENU
@@ -213,18 +220,6 @@
       menuPanel.classList.contains('open') ? closeMenu() : openMenu();
     });
     menuOverlay.addEventListener('click', closeMenu);
-
-    // TICKET BAR
-    const ticketBar = document.getElementById('ticketBar');
-    function updateTicketBar() {
-      if (window.scrollY >= 920) {
-        ticketBar.classList.add('is-fixed');
-      } else {
-        ticketBar.classList.remove('is-fixed');
-      }
-    }
-    window.addEventListener('scroll', updateTicketBar, { passive: true });
-    updateTicketBar();
   </script>
 </body>
 </html>

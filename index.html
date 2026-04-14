@@ -44,7 +44,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
       pointer-events: none;
       background:
         url('brand_assets/bg-full.png') top center / 100% auto no-repeat,
@@ -53,7 +52,6 @@
 
     .page-content {
       position: relative;
-      z-index: 2;
     }
 
     /* ===== TICKET BAR =====
@@ -96,14 +94,103 @@
     }
     .menu-overlay.open { opacity: 1; pointer-events: auto; }
 
-    /* ===== DRAFT GALLERY ===== */
+    /* ===== DRAFT GALLERY (vertical list) ===== */
     .draft-section { position: relative; }
     .draft-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
-    .draft-track { display: flex; height: 100%; }
-    .draft-slide {
-      min-width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
+
+    /* Photos — desaturated + multiply on yellow bg = duotone yellow effect (jak Figma) */
+    .draft-photos {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 463px; height: 578px;
+      background: #eed410;
+      isolation: isolate;
+    }
+    .draft-photos img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      mix-blend-mode: multiply;
+      filter: saturate(0) brightness(1.1);
+    }
+    .draft-photos img.active { opacity: 1; }
+
+    /* Names list — vertically clipped to photo bounds, horizontal can extend */
+    .draft-list-wrapper {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 578px;
+      z-index: 10;
+      pointer-events: none;
+      /* Clip top/bottom to photo height, leave horizontal free for active text overflow */
+      clip-path: inset(0 0 0 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .draft-list {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 6px;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .draft-name {
+      font-size: 44px;
+      line-height: 1;
+      text-transform: uppercase;
+      text-align: center;
+      color: transparent;
+      -webkit-text-stroke: 1.5px #141414;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0.65;
+      mix-blend-mode: multiply;
+    }
+    .draft-name.active {
+      color: white;
+      -webkit-text-stroke: 0;
+      font-size: 64px;
+      opacity: 1;
+      text-shadow: 0 4px 60px rgba(0,0,0,0.4);
+      mix-blend-mode: normal;
+    }
+    /* TBA — redacted bar style */
+    .draft-name-tba {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      mix-blend-mode: normal;
+    }
+    .draft-name-tba .tba-label {
+      font-size: 32px;
+      color: transparent;
+      -webkit-text-stroke: 1.5px #141414;
+      letter-spacing: 0.05em;
+    }
+    .draft-name-tba .tba-bar {
+      display: inline-block;
+      width: 320px;
+      height: 38px;
+      border: 1.5px solid #141414;
+      background: transparent;
+    }
+    .draft-name-tba.active {
+      mix-blend-mode: normal;
+    }
+    .draft-name-tba.active .tba-label {
+      color: white;
+      -webkit-text-stroke: 0;
+      font-size: 42px;
+    }
+    .draft-name-tba.active .tba-bar {
+      width: 360px;
+      height: 50px;
+      background: white;
+      border: 0;
     }
 
     /* ===== Q&A ===== */
@@ -155,6 +242,134 @@
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    /* ===================================================================
+       MOBILE — iPhone 13/14 (390px) and similar
+       =================================================================== */
+    @media (max-width: 768px) {
+      /* HAMBURGER smaller */
+      .hamburger { width: 46px; height: 46px; top: 24px; right: 16px; gap: 6px; }
+      .hamburger span { width: 24px; }
+      .star-icon { display: none; }
+
+      /* MENU */
+      .menu-panel { width: 100%; max-width: 100%; padding: 60px 24px; }
+      .menu-panel a { font-size: 32px !important; }
+
+      /* HERO */
+      #hero { height: 844px !important; }
+      #hero img[src*="stadium-bg.jpg"] {
+        top: 93px !important; left: -75px !important; transform: none !important;
+        width: 540px !important; height: 437px !important; border-radius: 0 !important;
+      }
+      /* Logo ASF smaller */
+      #hero img[src*="asf-logo.svg"] {
+        width: 184px !important; height: 88px !important;
+      }
+      #hero > div[style*="top: 32px"] { top: 40px !important; }
+      /* Star arcs smaller, positioned on sides */
+      #hero > div[style*="top: 200px"] {
+        top: 330px !important;
+        left: 0 !important;
+        right: auto !important;
+        width: 94px !important; height: 400px !important;
+        padding-left: 16px;
+      }
+      #hero > div[style*="top: 200px"] img {
+        width: 94px !important; height: 400px !important;
+      }
+      /* Right star arc */
+      #hero > div[style*="top: 200px"]:nth-of-type(2) {
+        top: 330px !important;
+        left: auto !important;
+        right: 0 !important;
+        padding-right: 16px;
+      }
+      /* Hide RIGHT date column on mobile */
+      #hero > div[style*="right: 48px"][style*="width: 592px"] { display: none !important; }
+      /* LEFT date — center it, full width */
+      #hero > div[style*="left: 48px"][style*="width: 592px"] {
+        top: 529px !important;
+        left: 50% !important;
+        transform: translateX(-50%);
+        width: 358px !important;
+      }
+      #hero > div[style*="left: 48px"] p[style*="font-size: 40px"] { font-size: 28px !important; line-height: 1 !important; }
+      #hero > div[style*="left: 48px"] p:last-child { font-size: 16px !important; margin-top: 24px !important; }
+      /* Sponsor row */
+      #hero > div[style*="top: 860px"] {
+        top: 433px !important;
+        gap: 0 !important;
+      }
+      #hero > div[style*="top: 860px"] > div { padding: 0 12px !important; height: 48px !important; }
+      #hero > div[style*="top: 860px"] img[src*="sponsor-2"] { height: 32px !important; width: 83px !important; }
+      #hero > div[style*="top: 860px"] img[src*="sponsor-oshee-icon"] { height: 48px !important; width: 39px !important; }
+      #hero > div[style*="top: 860px"] img[src*="sponsor-3"] { height: 32px !important; width: 47px !important; }
+
+      /* TICKET BAR — smaller text */
+      .ticket-bar { height: 80px; gap: 12px; padding: 0 16px; }
+      .ticket-bar span:nth-child(1) { font-size: 14px !important; line-height: 1.2 !important; white-space: normal !important; max-width: 130px; }
+      .ticket-bar span:nth-child(2) { font-size: 24px !important; }
+      .ticket-bar a { padding: 12px 24px !important; font-size: 14px !important; }
+
+      /* ABOUT */
+      #about { padding: 100px 16px 80px !important; }
+      #about > div { gap: 24px !important; padding: 0 !important; }
+      #about img[src*="five-stars"] { width: 160px !important; height: 24px !important; }
+      #about p[style*="font-size: 104px"] { font-size: 46px !important; line-height: 1 !important; }
+      #about p[style*="font-size: 40px"] { font-size: 18px !important; line-height: 1.3 !important; }
+      #about a { padding: 16px 32px !important; font-size: 14px !important; margin-top: 16px !important; }
+
+      /* DRAFT */
+      .draft-section { height: 350vh; }
+      .draft-photos { width: 358px !important; height: 488px !important; }
+      .draft-list-wrapper { width: 358px !important; height: 488px !important; }
+      .draft-name { font-size: 28px !important; }
+      .draft-name.active { font-size: 42px !important; }
+      .draft-name-tba .tba-label { font-size: 22px !important; }
+      .draft-name-tba.active .tba-label { font-size: 28px !important; }
+      .draft-name-tba .tba-bar { width: 220px !important; height: 26px !important; }
+      .draft-name-tba.active .tba-bar { width: 250px !important; height: 34px !important; }
+      .draft-section img[src*="draft-arcs-bg"] {
+        width: 358px !important; height: 600px !important;
+      }
+      .draft-section > div > div[style*="top: 0"] { top: 80px !important; }
+      .draft-section > div > div[style*="top: 0"] p { font-size: 28px !important; }
+      .draft-section > div > div[style*="top: 0"] img { width: 24px !important; height: 30px !important; }
+
+      /* Q&A — single column */
+      #qa { padding: 100px 16px 80px !important; }
+      #qa > div { padding: 0 !important; }
+      #qa p[style*="font-size: 40px"] { font-size: 28px !important; }
+      #qa .qa-item span[style*="width: 60px"] { width: 30px !important; font-size: 22px !important; }
+      #qa .qa-item p[style*="font-size: 40px"] { font-size: 18px !important; }
+      #qa .qa-item .qa-toggle { width: 46px !important; height: 46px !important; font-size: 28px !important; }
+      #qa .qa-answer > div { display: block !important; padding-bottom: 20px !important; }
+      #qa .qa-answer > div > div[style*="width: 592px"][style*="shrink: 0"] { display: none !important; }
+      #qa .qa-answer p, #qa .qa-answer div[style*="width: 592px"] { width: 100% !important; font-size: 18px !important; }
+      #qa .qa-answer ul li { font-size: 14px !important; }
+
+      /* PARTNERS / CONTACT — stack */
+      #partners, #contact {
+        padding: 0 16px 60px !important;
+      }
+      #partners > div, #contact > div {
+        grid-template-columns: 1fr !important;
+        gap: 60px !important;
+        padding: 0 !important;
+      }
+      #partners p[style*="font-size: 40px"], #contact p[style*="font-size: 40px"] { font-size: 18px !important; }
+      #partners img, #contact img { max-width: 100% !important; }
+      #contact a { font-size: 13px !important; padding: 16px 24px !important; }
+      .social-icon { width: 54px !important; height: 54px !important; }
+
+      /* FOOTER */
+      footer { padding: 32px 16px !important; }
+      footer > div { flex-direction: column !important; gap: 24px !important; align-items: flex-start !important; padding: 0 !important; }
+      footer img { height: 54px !important; }
+      footer div[style*="display: flex"] { flex-direction: column !important; gap: 8px !important; }
+      footer a { font-size: 14px !important; }
+    }
   </style>
 </head>
 <body>
@@ -178,10 +393,10 @@
         <a href="#contact" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline" onclick="closeMenu()">Kontakt</a>
       </div>
       <div class="flex gap-4">
-        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-ig.svg" alt="Instagram" style="width: 24px; height: 24px;" /></a>
-        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-tiktok.svg" alt="TikTok" style="width: 21px; height: 24px;" /></a>
-        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-spotify.svg" alt="Spotify" style="width: 24px; height: 24px;" /></a>
-        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-fb.svg" alt="Facebook" style="width: 24px; height: 24px;" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-ig.svg" alt="Instagram" style="width: 24px; height: 24px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-tiktok.svg" alt="TikTok" style="width: 21px; height: 24px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-spotify.svg" alt="Spotify" style="width: 24px; height: 24px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="#" class="social-icon text-[#eed410]"><img src="brand_assets/social-fb.svg" alt="Facebook" style="width: 24px; height: 24px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
       </div>
     </div>
   </nav>
@@ -265,10 +480,11 @@
         </div>
       </section>
 
-      <!-- ===== DRAFT GALLERY ===== -->
-      <section class="draft-section" id="draft" style="height: 500vh;">
+      <!-- ===== DRAFT GALLERY (sticky, smooth scroll mapping, 9 artists) ===== -->
+      <section class="draft-section" id="draft" style="height: 350vh;">
         <div class="draft-sticky">
-          <div style="position: absolute; top: 48px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+          <!-- NEW DRAFT header at very top of section (1:1 z Figma — relative y=0) -->
+          <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 30; display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 0;">
             <div style="width: 39px; height: 48px;">
               <img src="brand_assets/star-small.svg" alt="" style="width: 39px; height: 48px; filter: brightness(0);" />
             </div>
@@ -278,59 +494,28 @@
             </div>
           </div>
 
-          <div class="draft-track" id="draftTrack">
-            <!-- BEDOES 2115 -->
-            <div class="draft-slide">
-              <!-- Star arcs (left & right) -->
-              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 260px;">
-                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5;" />
-                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5; transform: scaleX(-1);" />
-              </div>
-              <!-- Artist photo (multiply blend) -->
-              <img src="brand_assets/artist-photo.png" alt="Bedoes 2115" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 463px; height: 578px; object-fit: cover; mix-blend-mode: multiply; z-index: 5;" />
-              <!-- Stacked outlined artist names (draft-vector-top SVG) — positioned centered -->
-              <img src="brand_assets/draft-vector-top.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 823px; height: 817px; z-index: 10; pointer-events: none; mix-blend-mode: multiply;" />
-              <!-- Current artist name (white, overlaid at top of stack) -->
-              <p style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; z-index: 15; white-space: nowrap; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">BEDOES 2115</p>
-            </div>
+          <!-- Star arcs background — exact 1:1 from Figma -->
+          <img src="brand_assets/draft-arcs-bg.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 1400px; height: 864px; pointer-events: none; z-index: 1;" />
 
-            <!-- MALIK MONTANA -->
-            <div class="draft-slide">
-              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 260px;">
-                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5;" />
-                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5; transform: scaleX(-1);" />
-              </div>
-              <img src="brand_assets/artist-photo.png" alt="Malik Montana" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 463px; height: 578px; object-fit: cover; mix-blend-mode: multiply; z-index: 5;" />
-              <img src="brand_assets/draft-vector-top.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 823px; height: 817px; z-index: 10; pointer-events: none; mix-blend-mode: multiply;" />
-              <p style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; z-index: 15; white-space: nowrap; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">MALIK MONTANA</p>
-            </div>
-
-            <!-- TBA -->
-            <div class="draft-slide">
-              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 260px;">
-                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5;" />
-                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5; transform: scaleX(-1);" />
-              </div>
-              <img src="brand_assets/draft-vector-top.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 823px; height: 817px; z-index: 10; pointer-events: none; mix-blend-mode: multiply;" />
-              <p style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; z-index: 15; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">TBA</p>
-            </div>
-
-            <!-- TBA 2 -->
-            <div class="draft-slide">
-              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 260px;">
-                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5;" />
-                <img src="brand_assets/star-arc-left.svg" alt="" style="width: 202px; height: 864px; filter: brightness(0); opacity: 0.5; transform: scaleX(-1);" />
-              </div>
-              <img src="brand_assets/draft-vector-top.svg" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 823px; height: 817px; z-index: 10; pointer-events: none; mix-blend-mode: multiply;" />
-              <p style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); font-size: 104px; line-height: 1.04; text-transform: uppercase; color: white; text-align: center; z-index: 15; text-shadow: 0 4px 80px rgba(0,0,0,0.3);">TBA</p>
-            </div>
+          <!-- Photo crossfade -->
+          <div class="draft-photos" id="draftPhotos">
+            <img src="brand_assets/artist-bedoes.png" alt="Bedoes 2115" class="active" />
+            <img src="brand_assets/artist-malik.png" alt="Malik Montana" />
           </div>
 
-          <div style="position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; gap: 12px;" id="draftDots">
-            <button style="width: 12px; height: 12px; border-radius: 50%; background: #141414; border: none; cursor: pointer;" data-index="0"></button>
-            <button style="width: 12px; height: 12px; border-radius: 50%; background: #141414; opacity: 0.3; border: none; cursor: pointer;" data-index="1"></button>
-            <button style="width: 12px; height: 12px; border-radius: 50%; background: #141414; opacity: 0.3; border: none; cursor: pointer;" data-index="2"></button>
-            <button style="width: 12px; height: 12px; border-radius: 50%; background: #141414; opacity: 0.3; border: none; cursor: pointer;" data-index="3"></button>
+          <!-- Vertical names list — all 9 names always visible, list shifts up per slide -->
+          <div class="draft-list-wrapper">
+            <div class="draft-list" id="draftList">
+              <div class="draft-name active" data-index="0">BEDOES 2115</div>
+              <div class="draft-name" data-index="1">MALIK MONTANA</div>
+              <div class="draft-name" data-index="2">BAMBI</div>
+              <div class="draft-name" data-index="3">SOBEL</div>
+              <div class="draft-name draft-name-tba" data-index="4"><span class="tba-label">TBA</span><span class="tba-bar"></span></div>
+              <div class="draft-name draft-name-tba" data-index="5"><span class="tba-label">TBA</span><span class="tba-bar"></span></div>
+              <div class="draft-name draft-name-tba" data-index="6"><span class="tba-label">TBA</span><span class="tba-bar"></span></div>
+              <div class="draft-name draft-name-tba" data-index="7"><span class="tba-label">TBA</span><span class="tba-bar"></span></div>
+              <div class="draft-name draft-name-tba" data-index="8"><span class="tba-label">TBA</span><span class="tba-bar"></span></div>
+            </div>
           </div>
         </div>
       </section>
@@ -533,31 +718,44 @@
       el.classList.toggle('open');
     }
 
-    // DRAFT SCROLL HIJACK
+    // DRAFT — sticky 400vh, scroll maps to slide index, all names always visible
     const draftSection = document.getElementById('draft');
-    const draftTrack = document.getElementById('draftTrack');
-    const draftDots = document.getElementById('draftDots').children;
-    const totalSlides = 4;
+    const draftList = document.getElementById('draftList');
+    const draftNames = document.querySelectorAll('.draft-name');
+    const draftPhotos = document.querySelectorAll('#draftPhotos img');
+    const totalSlides = draftNames.length; // 9
+    let currentDraftIdx = -1;
+    const SHIFT_PER_SLIDE = 50; // px to shift list up per slide
+
+    function setDraftSlide(idx) {
+      if (idx === currentDraftIdx) return;
+      currentDraftIdx = Math.max(0, Math.min(totalSlides - 1, idx));
+      // All names visible — toggle active
+      draftNames.forEach((n, i) => n.classList.toggle('active', i === currentDraftIdx));
+      // Photo: only first 2 have photos (BEDOES, MALIK), keep last shown for others
+      draftPhotos.forEach((p, i) => p.classList.toggle('active', i === Math.min(currentDraftIdx, draftPhotos.length - 1)));
+      // Translate list so active item is at vertical center
+      // Slide 0: translate +CENTER_OFFSET (push down so item 0 at center)
+      // Slide totalSlides-1: translate -CENTER_OFFSET (push up so last item at center)
+      const centerSlide = (totalSlides - 1) / 2;
+      const offset = (centerSlide - currentDraftIdx) * SHIFT_PER_SLIDE;
+      draftList.style.transform = `translateY(${offset}px)`;
+    }
+
     function updateDraft() {
-      // Use getBoundingClientRect for zoom-aware visual coordinates
       const rect = draftSection.getBoundingClientRect();
       const sectionHeight = rect.height;
       const viewportH = window.innerHeight;
       const scrollInSection = -rect.top;
       const scrollRange = sectionHeight - viewportH;
       if (scrollRange <= 0) return;
-      const rawProgress = Math.max(0, Math.min(1, scrollInSection / scrollRange));
-      // Slides finish at 90%, then short dwell on slide 4 before sticky releases
-      const animEnd = 0.9;
-      const progress = Math.min(1, rawProgress / animEnd);
-      // Pixel-based transform (vw doesn't work correctly with html zoom)
-      const slideWidth = draftTrack.parentElement.clientWidth;
-      const translateX = -(progress * (totalSlides - 1)) * slideWidth;
-      draftTrack.style.transform = `translateX(${translateX}px)`;
-      const slideIndex = Math.min(totalSlides - 1, Math.round(progress * (totalSlides - 1)));
-      Array.from(draftDots).forEach((dot, i) => { dot.style.opacity = i === slideIndex ? '1' : '0.3'; });
+      const progress = Math.max(0, Math.min(1, scrollInSection / scrollRange));
+      const idx = Math.min(totalSlides - 1, Math.round(progress * (totalSlides - 1)));
+      setDraftSlide(idx);
     }
     window.addEventListener('scroll', updateDraft, { passive: true });
+    updateDraft();
+
     updateDraft();
 
     // Click on dots to jump to slide
