@@ -509,7 +509,7 @@
          Questions: numbered list "1." prefix, text 20px, + icon 46x46
          ========================================================= */
       #qa { padding: 160px 16px 0 !important; }
-      #qa > div { padding: 0 !important; max-width: 358px !important; margin: 0 !important; }
+      #qa > div { padding: 0 !important; max-width: 358px !important; margin: 0 auto !important; }
       #qa > div > div:first-child { margin-bottom: 24px !important; }
       #qa > div > div:first-child p[style*="font-size: 40px"] {
         font-size: 40px !important; line-height: 0.96 !important; color: #141414 !important;
@@ -566,7 +566,7 @@
       #partners { padding: 80px 16px 0 !important; }
       #partners > div {
         grid-template-columns: 1fr !important;
-        gap: 80px !important; padding: 0 !important; max-width: 358px !important; margin: 0 !important;
+        gap: 80px !important; padding: 0 !important; max-width: 358px !important; margin: 0 auto !important;
       }
       #partners p[style*="font-size: 40px"] {
         font-size: 20px !important; line-height: 0.96 !important; color: #141414 !important;
@@ -588,7 +588,7 @@
       #contact { padding: 80px 16px 0 !important; }
       #contact > div {
         grid-template-columns: 1fr !important;
-        gap: 80px !important; padding: 0 !important; max-width: 358px !important; margin: 0 !important;
+        gap: 80px !important; padding: 0 !important; max-width: 358px !important; margin: 0 auto !important;
       }
       #contact p[style*="font-size: 40px"] {
         font-size: 20px !important; line-height: 0.96 !important; color: #141414 !important;
@@ -601,6 +601,7 @@
       .social-icon { width: 54px !important; height: 54px !important; }
       #contact > div > div:last-child > div[style*="display: flex"] {
         gap: 47px !important; justify-content: flex-start !important;
+        flex-wrap: wrap !important;
       }
 
       /* =========================================================
@@ -613,7 +614,7 @@
         align-items: flex-start !important;
         padding: 0 !important;
         max-width: 358px !important;
-        margin: 0 !important;
+        margin: 0 auto !important;
         justify-content: flex-start !important;
       }
       footer > div > div:first-child { height: 148px !important; width: 54px !important; }
@@ -975,6 +976,12 @@
     }
     menuBtn.addEventListener('click', () => menuPanel.classList.contains('open') ? closeMenu() : openMenu());
     menuOverlay.addEventListener('click', closeMenu);
+
+    // Mobile: swap footer logo to portrait version
+    if (window.innerWidth <= 768) {
+      const fl = document.querySelector('footer img');
+      if (fl) fl.src = 'brand_assets/footer-logo-mobile.svg';
+    }
 
     // Q&A
     function toggleQA(el) {
