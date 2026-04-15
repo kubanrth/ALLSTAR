@@ -103,6 +103,114 @@
       position: fixed; top: 43px; right: 160px;
       z-index: 110; width: 32px; height: 32px;
     }
+
+    /* ====== MOBILE — 1:1 Figma node 45:918 ====== */
+    @media (max-width: 768px) {
+      main { min-height: auto !important; }
+      /* Hamburger — smaller dark square top right */
+      .hamburger {
+        width: 46px !important; height: 46px !important;
+        top: 24px !important; right: 16px !important;
+        background: #141414 !important; border: none !important;
+        padding: 15px 8px !important; gap: 4px !important;
+      }
+      .hamburger span { width: 30px !important; height: 2px !important; }
+      body > div[style*="star-small.svg"] { display: none !important; }
+      .menu-panel { width: 100% !important; max-width: 100% !important; padding: 80px 24px !important; }
+      .menu-panel > div > div:nth-child(2) a { font-size: 32px !important; }
+
+      /* Hide big star arcs, show 94x400 at y=223 both sides */
+      main > div[style*="top: 200px"] {
+        top: 223px !important; left: 16px !important; right: auto !important;
+        width: 94px !important; height: 400px !important;
+      }
+      main > div[style*="top: 200px"][style*="right: 13.5%"] {
+        right: 16px !important; left: auto !important;
+      }
+      main > div[style*="top: 200px"] img {
+        width: 94px !important; height: 400px !important;
+      }
+
+      /* ASF Logo at top — 184x74 at y=33 */
+      main > div[class*="pt-8"] { padding-top: 33px !important; }
+      main > div[class*="pt-8"] img[src*="asf-logo"] {
+        width: 184px !important; height: 74px !important;
+      }
+
+      /* Content container — remove desktop padding, tight layout */
+      main > div[class*="max-w-[1145px]"] {
+        max-width: 100% !important;
+        padding: 94px 16px 40px !important;
+        gap: 0 !important;
+      }
+
+      /* 5 stars: 160x24 */
+      main img[src*="five-stars"] {
+        width: 160px !important; height: 24px !important;
+        margin-bottom: 48px !important;
+      }
+
+      /* "O FESTIVALU" title — 40px */
+      main h1 {
+        font-size: 40px !important; line-height: 0.8 !important;
+        margin-bottom: 24px !important;
+      }
+
+      /* Subtitle "COŚ WIĘCEJ NIŻ FESTIWAL..." — 20px IvyPresto serif */
+      main > div[class*="max-w-[1145px]"] > div.font-serif:first-of-type {
+        font-size: 20px !important; line-height: 1.04 !important;
+        max-width: 358px !important; margin-bottom: 80px !important;
+      }
+      main > div[class*="max-w-[1145px]"] > div.font-serif:first-of-type p {
+        font-size: 20px !important; line-height: 1.04 !important;
+      }
+
+      /* Main description (first 40px p) — 20px centered */
+      main > div[class*="max-w-[1145px]"] > p[class*="mb-20"]:nth-of-type(1),
+      main > div[class*="max-w-[1145px]"] > p.text-\[40px\]:first-of-type {
+        font-size: 20px !important; line-height: 0.96 !important;
+        max-width: 358px !important; margin-bottom: 40px !important;
+      }
+      /* All KTFRublena 40px paragraphs → 20px on mobile */
+      main > div[class*="max-w-[1145px]"] > p {
+        font-size: 20px !important; line-height: 0.96 !important;
+        max-width: 358px !important; margin-bottom: 40px !important;
+      }
+
+      /* Sub-description block (serif) */
+      main > div.font-serif.flex.flex-col {
+        max-width: 358px !important; margin-bottom: 40px !important;
+        gap: 40px !important;
+      }
+      main > div.font-serif.flex.flex-col p {
+        font-size: 20px !important; line-height: 1.2 !important;
+      }
+
+      /* Date block — w=358, gap=40 */
+      main > div[class*="max-w-[1145px]"] > div.flex.flex-col.gap-10 {
+        width: 358px !important; gap: 40px !important;
+        margin-top: 80px !important;
+      }
+      main > div[class*="max-w-[1145px]"] > div.flex.flex-col.gap-10 > div:first-child { gap: 12px !important; }
+      main > div[class*="max-w-[1145px]"] > div.flex.flex-col.gap-10 p {
+        font-size: 40px !important;
+      }
+      main > div[class*="max-w-[1145px]"] > div.flex.flex-col.gap-10 > p.font-serif {
+        font-size: 20px !important; letter-spacing: 0 !important;
+      }
+      main .sep-line-gold { width: 280px !important; }
+
+      /* Ticket bar mobile */
+      .ticket-bar { height: 80px !important; gap: 8px !important; padding: 13px 16px !important; }
+      .ticket-bar > span:nth-child(1) {
+        font-size: 16px !important; line-height: 1 !important;
+        white-space: normal !important; max-width: 140px !important;
+      }
+      .ticket-bar > span:nth-child(2) {
+        font-size: 32px !important; line-height: 1 !important;
+      }
+      .ticket-bar a.btn-outline { padding: 12px 16px !important; font-size: 14px !important; margin-left: 4px !important; }
+    }
   </style>
 </head>
 <body>
