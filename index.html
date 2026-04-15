@@ -308,16 +308,19 @@
       }
       #hero > div[style*="top: 32px"] { top: 33px !important; }
 
-      /* Star arcs: top=290 (moved down but not cut off, 290+400=690 fits in 691 hero), 94x400 */
+      /* Star arcs: smaller 80x340 at top=240 so they fit fully in 691 hero with margin */
       #hero > div[style*="top: 250px"][style*="left: 13.5%"] {
-        top: 290px !important; left: 16px !important; right: auto !important;
-        width: 94px !important; height: 400px !important;
+        top: 240px !important; left: 16px !important; right: auto !important;
+        width: 80px !important; height: 340px !important;
         opacity: 1 !important;
       }
       #hero > div[style*="top: 250px"][style*="right: 13.5%"] {
-        top: 290px !important; right: 16px !important; left: auto !important;
-        width: 94px !important; height: 400px !important;
+        top: 240px !important; right: 16px !important; left: auto !important;
+        width: 80px !important; height: 340px !important;
         opacity: 1 !important;
+      }
+      #hero > div[style*="top: 250px"] img {
+        width: 80px !important; height: 340px !important;
       }
       #hero > div[style*="top: 250px"] img {
         width: 94px !important; height: 400px !important;
@@ -375,8 +378,8 @@
          ABOUT — Figma y=856, 5stars 160x24 + 3-line title + desc + button
          Bg is yellow (Rectangle4) so description/button DARK
          ========================================================= */
-      /* About: y=856 (165px gap from hero 691); end ~y=1150 */
-      #about { padding: 165px 16px 0 !important; }
+      /* About: raised — 80px gap from hero */
+      #about { padding: 80px 16px 0 !important; }
       #about > div { gap: 40px !important; padding: 0 !important; max-width: 100% !important; align-items: center !important; }
       #about > div > div:first-child img[src*="five-stars"] {
         width: 280px !important; height: 42px !important;
@@ -427,26 +430,26 @@
       .draft-section > div > div[style*="top: 0"] div[style*="width: 280px"] { width: 280px !important; }
       /* Decorative background arc: hidden on mobile (too big) */
       .draft-section img[src*="draft-arcs-bg"] { display: none !important; }
-      /* Mobile draft photo arcs — overlaid on photo, centered vertically in sticky viewport */
+      /* Mobile draft photo arcs — overlaid on photo at top=204 (matches photo top 160 + ~44 offset) */
       .draft-photo-arc-left, .draft-photo-arc-right {
         display: block !important;
         position: absolute !important;
-        top: 50% !important; transform: translateY(-50%) !important;
+        top: 204px !important; transform: none !important;
         width: 94px !important; height: 400px !important;
         pointer-events: none !important;
         z-index: 15 !important;
       }
       .draft-photo-arc-left { left: 16px !important; }
-      .draft-photo-arc-right { right: 16px !important; transform: translateY(-50%) scaleX(-1) !important; }
+      .draft-photo-arc-right { right: 16px !important; transform: scaleX(-1) !important; }
       /* Star arcs on sides of draft: 94x400, top=1532 in Figma = relative 177 from draft start 1356
          Draft section padding-top = 206. Section content starts at y=0 = page y=1356.
          Arcs at Figma y=1532 = 177 relative to content start = 383 from section top */
-      /* Photo wrap — absolute centered in sticky viewport, full width */
+      /* Photo wrap — absolute, positioned below LINEUP header (160px from top of sticky) */
       .draft-photos {
         position: absolute !important;
         width: 100vw !important; height: 488px !important;
         left: 0 !important; right: 0 !important;
-        top: 50% !important; transform: translateY(-50%) !important;
+        top: 160px !important; transform: none !important;
         margin: 0 !important;
       }
       .draft-photos img {
@@ -457,12 +460,12 @@
         transition: opacity 0.5s ease !important;
       }
       .draft-photos img.active { opacity: 1 !important; }
-      /* Name overlay: 244px tall (middle 50% of 488 photo), feathered top/bottom */
+      /* Name overlay: 244px tall (middle 50% of 488 photo), positioned over photo center (160 + 244 = 404) */
       .draft-list-wrapper {
         position: absolute !important;
         left: 0 !important; right: 0 !important;
-        top: 50% !important; bottom: auto !important;
-        transform: translateY(-50%) !important;
+        top: 282px !important; bottom: auto !important;
+        transform: none !important;
         width: 100vw !important; height: 244px !important;
         display: flex !important; align-items: center !important; justify-content: center !important;
         pointer-events: none !important;
