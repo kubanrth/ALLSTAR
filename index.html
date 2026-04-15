@@ -1024,6 +1024,14 @@
       draftList.style.transform = `translateY(${offset}px)`;
     }
 
+    // Cache sticky's natural offsetTop BEFORE scroll can alter it (sticky state changes offsetTop mid-lock)
+    let cachedStickyOffsetTop = null;
+    function getStickyOffsetTop(sticky) {
+      if (cachedStickyOffsetTop === null) {
+        cachedStickyOffsetTop = sticky.offsetTop;
+      }
+      return cachedStickyOffsetTop;
+    }
     function updateDraft() {
       const sticky = draftSection.querySelector('.draft-sticky');
       if (!sticky) return;
@@ -1031,10 +1039,8 @@
       const stickyH = sticky.offsetHeight;
       const stickyTopOffset = (viewportH - stickyH) / 2;
       const sectionTop = draftSection.offsetTop;
-      const stickyOffsetInSection = sticky.offsetTop;
-      // Scroll position where sticky engages (its top reaches the CSS top offset)
+      const stickyOffsetInSection = getStickyOffsetTop(sticky);
       const lockStart = sectionTop + stickyOffsetInSection - stickyTopOffset;
-      // Scroll position where sticky releases (bottom of sticky reaches bottom of section)
       const sectionHeight = draftSection.offsetHeight;
       const lockEnd = sectionTop + sectionHeight - stickyH - stickyTopOffset;
       const range = lockEnd - lockStart;
@@ -1043,7 +1049,6 @@
       if (scrollY < lockStart) { setDraftSlide(0); return; }
       if (scrollY > lockEnd) { setDraftSlide(totalSlides - 1); return; }
       const progress = (scrollY - lockStart) / range;
-      // Even distribution: each slide gets 1/totalSlides of the range
       const idx = Math.min(totalSlides - 1, Math.floor(progress * totalSlides));
       setDraftSlide(idx);
     }
