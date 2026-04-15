@@ -335,18 +335,27 @@
     });
     menuOverlay.addEventListener('click', closeMenu);
 
-    // Desktop: zoom proportionally if window narrower than design width 1440
+    // Desktop: scale main proportionally if window narrower than design width 1440
     function scaleDesktop() {
+      const w = document.querySelector('main');
+      if (!w) return;
       if (window.innerWidth <= 768) {
-        document.documentElement.style.zoom = '';
+        w.style.transform = '';
+        w.style.transformOrigin = '';
+        w.style.width = '';
+        document.body.style.height = '';
         return;
       }
       const designW = 1440;
       const scale = Math.min(1, window.innerWidth / designW);
-      document.documentElement.style.zoom = scale;
+      w.style.width = designW + 'px';
+      w.style.transformOrigin = 'top left';
+      w.style.transform = `scale(${scale})`;
+      document.body.style.height = (w.offsetHeight * scale) + 'px';
     }
     scaleDesktop();
     window.addEventListener('resize', scaleDesktop);
+    window.addEventListener('load', scaleDesktop);
   </script>
 </body>
 </html>
