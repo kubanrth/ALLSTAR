@@ -1043,7 +1043,8 @@
       if (scrollY < lockStart) { setDraftSlide(0); return; }
       if (scrollY > lockEnd) { setDraftSlide(totalSlides - 1); return; }
       const progress = (scrollY - lockStart) / range;
-      const idx = Math.min(totalSlides - 1, Math.round(progress * (totalSlides - 1)));
+      // Even distribution: each slide gets 1/totalSlides of the range
+      const idx = Math.min(totalSlides - 1, Math.floor(progress * totalSlides));
       setDraftSlide(idx);
     }
     window.addEventListener('scroll', updateDraft, { passive: true });
