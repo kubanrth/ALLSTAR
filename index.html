@@ -244,9 +244,9 @@
     }
     .hamburger.open { background: #eed410; }
     .hamburger.open span { background: #141414; }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translateY(10px); }
+    .hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translateY(-10px); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
     /* ===================================================================
        MOBILE — iPhone 13/14 (390px) — 1:1 Figma node 45:722
@@ -282,8 +282,8 @@
       /* Mobile X: yellow bg + dark lines, correct rotation offset for 4px gap */
       .hamburger.open { background: #eed410 !important; }
       .hamburger.open span { background: #141414 !important; }
-      .hamburger.open span:nth-child(1) { transform: rotate(45deg) translateY(6px) !important; }
-      .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translateY(-6px) !important; }
+      .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg) !important; }
+      .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg) !important; }
       body > div[style*="star-small.svg"],
       body > div[style*="top: 33px; right: 166px"] { display: none !important; }
 
