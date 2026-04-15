@@ -259,16 +259,18 @@
       .mobile-br::before { content: "\A"; white-space: pre; }
       /* Rectangle4 bg starts at y=691 and extends to page end */
       .page-bg {
-        background-color: #101010 !important;
+        background-color: #eed410 !important;
         background-image: url('brand_assets/bg-mobile.png') !important;
         background-position: center 691px !important;
         background-size: 100% auto !important;
         background-repeat: no-repeat !important;
       }
-      .page-bg::after {
+      /* Dark hero overlay: separate element, positioned over 0-691px */
+      .page-wrapper::before {
         content: ""; position: absolute;
-        top: 4240px; left: 0; right: 0; bottom: 0;
-        background: #eed410; z-index: -1;
+        top: 0; left: 0; right: 0; height: 691px;
+        background: #101010; z-index: 0;
+        pointer-events: none;
       }
       /* Fixed UI: hamburger top-right 46x46 dark bg */
       .hamburger {
