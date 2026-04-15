@@ -430,33 +430,34 @@
       .draft-sticky > .draft-header > div { gap: 16px !important; }
       .draft-sticky > .draft-header p { font-size: 32px !important; }
       .draft-sticky > .draft-header .sep-line { width: 240px !important; }
-      /* Sticky — larger to fit header + photo; centered in viewport */
+      /* Sticky locks so PHOTO is centered in viewport (header sits above photo, scrolls into top) */
       .draft-sticky {
         position: sticky !important;
-        top: calc((100vh - 680px) / 2) !important;
-        height: 680px !important;
+        top: calc((100vh - 488px) / 2 - 140px) !important;
+        height: 628px !important;
         min-height: 0 !important;
         overflow: hidden !important;
       }
+      /* Header at top of sticky, photo 140px below */
+      .draft-sticky > .draft-header { top: 20px !important; }
       /* Decorative background arc: hidden on mobile */
       .draft-section img[src*="draft-arcs-bg"] { display: none !important; }
-      /* Side star arcs — aligned with photo (photo at top=192) */
+      /* Photo at top: 140 (just below header), arcs centered on photo */
       .draft-photo-arc-left, .draft-photo-arc-right {
         display: block !important;
         position: absolute !important;
-        top: 236px !important; transform: none !important;
+        top: 184px !important; transform: none !important;
         width: 94px !important; height: 400px !important;
         pointer-events: none !important;
         z-index: 15 !important;
       }
       .draft-photo-arc-left { left: 16px !important; }
       .draft-photo-arc-right { right: 16px !important; transform: scaleX(-1) !important; }
-      /* Photo — full width, below header */
       .draft-photos {
         position: absolute !important;
         width: 100vw !important; height: 488px !important;
         left: 0 !important; right: 0 !important;
-        top: 192px !important; transform: none !important;
+        top: 140px !important; transform: none !important;
         margin: 0 !important;
       }
       .draft-photos img {
@@ -467,11 +468,11 @@
         transition: opacity 0.5s ease !important;
       }
       .draft-photos img.active { opacity: 1 !important; }
-      /* Name overlay — centered on photo (photo top=192, photo height 488, feather middle 244) */
+      /* Name overlay centered on photo (photo top=140) */
       .draft-list-wrapper {
         position: absolute !important;
         left: 0 !important; right: 0 !important;
-        top: 314px !important; bottom: auto !important;
+        top: 262px !important; bottom: auto !important;
         transform: none !important;
         width: 100vw !important; height: 244px !important;
         display: flex !important; align-items: center !important; justify-content: center !important;
