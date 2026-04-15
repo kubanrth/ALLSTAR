@@ -97,17 +97,18 @@
     .menu-overlay.open { opacity: 1; pointer-events: auto; }
 
     /* ===== DRAFT GALLERY (vertical list) ===== */
-    .draft-section { position: relative; padding-bottom: 180px; }
+    .draft-section { position: relative; padding-bottom: 180px; padding-top: 100px; }
     .draft-sticky {
       position: sticky;
-      top: calc(50vh - 400px);
-      height: 800px;
+      top: calc((100vh - 850px) / 2);
+      height: 850px;
+      min-height: 800px;
       overflow: hidden;
     }
 
     /* Photos — desaturated + multiply on yellow bg = duotone yellow effect (jak Figma) */
     .draft-photos {
-      position: absolute; top: 200px; left: 50%;
+      position: absolute; top: 220px; left: 50%;
       transform: translateX(-50%);
       width: 463px; height: 578px;
       background: #eed410;
@@ -124,10 +125,10 @@
     }
     .draft-photos img.active { opacity: 1; }
 
-    /* Names list — aligned with photo (top=200, height 578) */
+    /* Names list — aligned with photo (top=220, height 578) */
     .draft-list-wrapper {
       position: absolute;
-      top: 200px; left: 50%;
+      top: 220px; left: 50%;
       transform: translateX(-50%);
       width: 800px;
       height: 578px;
@@ -767,7 +768,7 @@
           </div>
 
           <!-- Star arcs background — smaller per request -->
-          <img src="brand_assets/draft-arcs-bg.svg" alt="" style="position: absolute; top: 160px; left: 50%; transform: translateX(-50%); width: 980px; height: 600px; pointer-events: none; z-index: 1;" />
+          <img src="brand_assets/draft-arcs-bg.svg" alt="" style="position: absolute; top: 200px; left: 50%; transform: translateX(-50%); width: 980px; height: 600px; pointer-events: none; z-index: 1;" />
 
           <!-- Photo crossfade — order: SOBEL, BEDOES, BAMBI, MALIK -->
           <div class="draft-photos" id="draftPhotos">
