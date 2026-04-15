@@ -25,6 +25,9 @@
       scroll-behavior: auto;
       zoom: 0.85;
     }
+    @media (max-width: 768px) {
+      html { zoom: 1 !important; }
+    }
     body {
       font-family: 'KTFRublena', sans-serif;
       background: #141414;
@@ -193,13 +196,16 @@
       border: 0;
     }
 
+    /* Draft photo arcs (mobile-only) */
+    .draft-photo-arc-left, .draft-photo-arc-right { display: none; }
+
     /* ===== Q&A ===== */
     .qa-item { cursor: pointer; }
     .qa-answer {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      height: 0; overflow: hidden;
+      transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .qa-item.open .qa-answer { max-height: 800px; }
+    .qa-item.open .qa-answer { height: auto; }
     .qa-toggle { transition: transform 0.3s ease; }
     .qa-item.open .qa-toggle { transform: rotate(45deg); }
 
@@ -244,196 +250,302 @@
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
     /* ===================================================================
-       MOBILE — iPhone 13/14 (390px) matching Figma WWW Mobile 1:1
+       MOBILE — iPhone 13/14 (390px) — 1:1 Figma node 45:722
+       Flat layout, page ~4239px total. Dark y=0-691, yellow gradient y=691+
        =================================================================== */
     @media (max-width: 768px) {
-      /* Mobile bg — same as desktop (bg-full.png), scales to fit width */
+      body { background: #101010 !important; }
+      .mobile-br { display: inline !important; }
+      .mobile-br::before { content: "\A"; white-space: pre; }
+      /* Rectangle4 bg starts at y=691 and extends to page end */
       .page-bg {
-        background: url('brand_assets/bg-full.png') top center / 100% auto no-repeat, #eed410 !important;
+        background-color: #101010 !important;
+        background-image: url('brand_assets/bg-mobile.png') !important;
+        background-position: center 691px !important;
+        background-size: 100% auto !important;
+        background-repeat: no-repeat !important;
       }
-      /* Fixed UI: hamburger + star at top right */
-      .hamburger { width: 46px; height: 46px; top: 24px; right: 16px; gap: 6px; border: none; background: transparent; }
-      .hamburger span { width: 30px; height: 2px; background: #eed410; }
+      .page-bg::after {
+        content: ""; position: absolute;
+        top: 4240px; left: 0; right: 0; bottom: 0;
+        background: #eed410; z-index: -1;
+      }
+      /* Fixed UI: hamburger top-right 46x46 dark bg */
+      .hamburger {
+        width: 46px !important; height: 46px !important;
+        top: 24px !important; right: 16px !important; gap: 4px !important;
+        background: #141414 !important; border: none !important;
+        padding: 15px 8px !important;
+      }
+      .hamburger span { width: 30px !important; height: 2px !important; background: #eed410 !important; }
       body > div[style*="star-small.svg"],
       body > div[style*="top: 33px; right: 166px"] { display: none !important; }
 
       /* MENU */
-      .menu-panel { width: 100%; max-width: 100%; padding: 80px 24px; }
+      .menu-panel { width: 100% !important; max-width: 100% !important; padding: 80px 24px !important; }
       .menu-panel > div > div:nth-child(2) a { font-size: 32px !important; }
 
       /* =========================================================
-         HERO — 844px, dark bg, stadium image behind, content centered
+         HERO — 691px tall (Figma)
          ========================================================= */
-      #hero { height: 844px !important; background: #141414 !important; }
-      /* Stadium BG: centered, plus-lighter blend like web */
+      #hero { height: 691px !important; background: #101010 !important; }
+      /* Stadium: centered horizontally, top=93, 540x437, plus-lighter */
       #hero img[src*="stadium-bg.jpg"] {
         top: 93px !important; left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 540px !important; height: 437px !important; border-radius: 12px !important;
+        width: 540px !important; height: 437px !important; border-radius: 0 !important;
         mix-blend-mode: plus-lighter !important; opacity: 1 !important;
       }
-      /* Logo ASF: center top, 184x88 at y=40 */
+      /* ASF Logo: centered top y=33, 184x74 per Figma */
       #hero img[src*="asf-logo.svg"] {
-        width: 184px !important; height: 88px !important;
+        width: 184px !important; height: 74px !important;
       }
-      #hero > div[style*="top: 32px"] { top: 40px !important; }
+      #hero > div[style*="top: 32px"] { top: 33px !important; }
 
-      /* Star arcs — smaller + slightly wider spacing */
+      /* Star arcs: top=290 (moved down but not cut off, 290+400=690 fits in 691 hero), 94x400 */
       #hero > div[style*="top: 250px"][style*="left: 13.5%"] {
-        top: 350px !important; left: 0 !important; right: auto !important;
-        width: 70px !important; height: 340px !important;
-        opacity: 0.85;
+        top: 290px !important; left: 16px !important; right: auto !important;
+        width: 94px !important; height: 400px !important;
+        opacity: 1 !important;
       }
       #hero > div[style*="top: 250px"][style*="right: 13.5%"] {
-        top: 350px !important; right: 0 !important; left: auto !important;
-        width: 70px !important; height: 340px !important;
-        opacity: 0.85;
+        top: 290px !important; right: 16px !important; left: auto !important;
+        width: 94px !important; height: 400px !important;
+        opacity: 1 !important;
       }
       #hero > div[style*="top: 250px"] img {
-        width: 70px !important; height: 340px !important;
+        width: 94px !important; height: 400px !important;
       }
 
-      /* Sponsor row — centered on mobile */
+      /* Sponsor row: top=433, centered 3 logos */
       #hero > div[style*="top: 860px"] {
         top: 433px !important;
         left: 50% !important; transform: translateX(-50%) !important;
         width: auto !important; height: 48px !important;
-        gap: 0 !important;
+        gap: 24px !important;
       }
-      /* Sponsor icons: Grail 104.28x32 at x=12,y=8; OSHEE 39x48 at x=12; SoHard 47x32 at x=12,y=8 */
-      #hero > div[style*="top: 860px"] > div { padding: 0 12px !important; height: 48px !important; display: flex !important; align-items: center !important; }
+      #hero > div[style*="top: 860px"] > div { padding: 0 !important; height: 48px !important; display: flex !important; align-items: center !important; }
       #hero > div[style*="top: 860px"] img[src*="sponsor-2"] { height: 32px !important; width: 83px !important; }
       #hero > div[style*="top: 860px"] img[src*="sponsor-oshee-icon"] { height: 48px !important; width: 39px !important; }
       #hero > div[style*="top: 860px"] img[src*="sponsor-3"] { height: 32px !important; width: 47px !important; }
 
       /* Hide RIGHT date column */
       #hero > div[style*="right: 48px"][style*="width: 592px"] { display: none !important; }
-      /* Date block — centered on mobile */
+      /* Date block: top=529, centered horizontally, w=358, gap=40 */
       #hero > div[style*="left: 48px"][style*="width: 592px"] {
         top: 529px !important;
         left: 50% !important; transform: translateX(-50%) !important;
-        width: 358px !important; gap: 0 !important;
+        width: 358px !important; gap: 40px !important;
+        align-items: center !important; text-align: center !important;
       }
       #hero > div[style*="left: 48px"] > div:first-child { gap: 12px !important; }
-      /* "27-28.06.2026" BIG */
       #hero > div[style*="left: 48px"] p[style*="font-size: 40px"]:first-of-type {
-        font-size: 44px !important; line-height: 1 !important;
+        font-size: 40px !important; line-height: 0.96 !important;
       }
-      /* "Stadion Legii Warszawa" BIG 2 lines */
       #hero > div[style*="left: 48px"] p[style*="font-size: 40px"]:last-of-type {
-        font-size: 42px !important; line-height: 1 !important;
+        font-size: 40px !important; line-height: 0.8 !important;
       }
-      /* SAVE THE DATE */
+      /* SAVE THE DATE — IvyPresto serif 20px */
       #hero > div[style*="left: 48px"] p:last-child {
-        font-size: 28px !important; margin-top: 32px !important; letter-spacing: 0.1em !important;
+        font-size: 20px !important; margin-top: 0 !important; letter-spacing: 0 !important;
+        line-height: 1.2 !important;
       }
       #hero .sep-line-gold { width: 280px !important; }
 
       /* =========================================================
-         TICKET BAR — mobile 357x54 centered inside 390x80
+         TICKET BAR — mobile 80px tall
          ========================================================= */
       .ticket-bar { height: 80px !important; gap: 8px !important; padding: 13px 16px !important; }
       .ticket-bar > span:nth-child(1) {
-        font-size: 18px !important; line-height: 1 !important;
-        white-space: normal !important; max-width: 170px !important;
+        font-size: 16px !important; line-height: 1 !important;
+        white-space: normal !important; max-width: 140px !important;
       }
       .ticket-bar > span:nth-child(2) {
-        font-size: 36px !important; line-height: 1 !important;
+        font-size: 32px !important; line-height: 1 !important;
       }
-      .ticket-bar a { padding: 14px 20px !important; font-size: 14px !important; margin-left: 8px !important; }
+      .ticket-bar a { padding: 12px 16px !important; font-size: 14px !important; margin-left: 4px !important; }
 
       /* =========================================================
-         ABOUT — mobile s2: yellow bg, DARK title, small description, button
+         ABOUT — Figma y=856, 5stars 160x24 + 3-line title + desc + button
+         Bg is yellow (Rectangle4) so description/button DARK
          ========================================================= */
-      #about { padding: 90px 16px 40px !important; }
-      #about > div { gap: 20px !important; padding: 0 !important; max-width: 100% !important; }
+      /* About: y=856 (165px gap from hero 691); end ~y=1150 */
+      #about { padding: 165px 16px 0 !important; }
+      #about > div { gap: 40px !important; padding: 0 !important; max-width: 100% !important; align-items: center !important; }
       #about > div > div:first-child img[src*="five-stars"] {
-        width: 160px !important; height: 24px !important;
+        width: 280px !important; height: 42px !important;
       }
-      /* OSHEE ALL STAR FESTIVAL: dark on yellow bg, 40px */
-      #about > div > div:nth-of-type(2) { color: #141414 !important; }
+      #about > div > div:first-child {
+        display: flex !important; justify-content: center !important;
+        width: 100% !important;
+      }
+      #about > div > div:nth-of-type(2) {
+        text-align: center !important; color: #eed410 !important;
+      }
+      /* Title: 64px each line — bigger per request */
       #about p[style*="font-size: 104px"] {
-        font-size: 36px !important; line-height: 1 !important; color: #141414 !important;
+        font-size: 64px !important; line-height: 0.8 !important; color: #eed410 !important;
       }
+      /* Description 20px DARK on yellow bg */
       #about p[style*="font-size: 40px"] {
-        font-size: 15px !important; line-height: 1.3 !important;
+        font-size: 20px !important; line-height: 1.04 !important; color: #141414 !important;
+        max-width: 358px !important;
       }
-      #about a { padding: 14px 32px !important; font-size: 13px !important; margin-top: 12px !important; }
+      /* Button — DARK outline on yellow bg */
+      #about a {
+        padding: 20px 24px !important; font-size: 20px !important; margin-top: 0 !important;
+        color: #141414 !important; border-color: #141414 !important;
+      }
 
       /* =========================================================
-         DRAFT — mobile: photo full screen width, names 25% margins top/bottom
+         DRAFT — STATIC on mobile (no scroll hijack). Static photo + BEDOES 2115
          ========================================================= */
-      .draft-section { height: 350vh !important; }
-      .draft-sticky { overflow: hidden; }
-      /* Photo full screen width, 488px tall */
+      /* Draft: scroll-hijack enabled like desktop — 300vh tall section */
+      .draft-section { height: 300vh !important; padding: 0 !important; margin-top: 206px !important; }
+      .draft-sticky {
+        position: sticky !important; top: 0 !important; height: 100vh !important;
+        overflow: hidden !important;
+      }
+      /* NEW DRAFT header — absolute at top of sticky viewport */
+      .draft-section > div > div[style*="top: 0"] {
+        position: absolute !important; top: 40px !important; left: 50% !important;
+        transform: translateX(-50%) !important; margin: 0 !important;
+      }
+      .draft-section > div > div[style*="top: 0"] div[style*="width: 39px"] {
+        width: 19px !important; height: 24px !important;
+      }
+      .draft-section > div > div[style*="top: 0"] div[style*="width: 39px"] img {
+        width: 19px !important; height: 24px !important;
+      }
+      .draft-section > div > div[style*="top: 0"] p { font-size: 40px !important; }
+      .draft-section > div > div[style*="top: 0"] div[style*="width: 280px"] { width: 280px !important; }
+      /* Decorative background arc: hidden on mobile (too big) */
+      .draft-section img[src*="draft-arcs-bg"] { display: none !important; }
+      /* Mobile draft photo arcs — overlaid on photo, centered vertically in sticky viewport */
+      .draft-photo-arc-left, .draft-photo-arc-right {
+        display: block !important;
+        position: absolute !important;
+        top: 50% !important; transform: translateY(-50%) !important;
+        width: 94px !important; height: 400px !important;
+        pointer-events: none !important;
+        z-index: 15 !important;
+      }
+      .draft-photo-arc-left { left: 16px !important; }
+      .draft-photo-arc-right { right: 16px !important; transform: translateY(-50%) scaleX(-1) !important; }
+      /* Star arcs on sides of draft: 94x400, top=1532 in Figma = relative 177 from draft start 1356
+         Draft section padding-top = 206. Section content starts at y=0 = page y=1356.
+         Arcs at Figma y=1532 = 177 relative to content start = 383 from section top */
+      /* Photo wrap — absolute centered in sticky viewport, full width */
       .draft-photos {
-        width: 100vw !important;
-        height: 488px !important;
-        left: 0 !important;
-        transform: translate(0, -50%) !important;
+        position: absolute !important;
+        width: 100vw !important; height: 488px !important;
+        left: 0 !important; right: 0 !important;
+        top: 50% !important; transform: translateY(-50%) !important;
+        margin: 0 !important;
       }
-      /* Names list clipped to photo bounds */
+      .draft-photos img {
+        position: absolute !important; inset: 0 !important;
+        width: 100% !important; height: 100% !important;
+        object-fit: cover !important; opacity: 0 !important;
+        mix-blend-mode: multiply !important;
+        transition: opacity 0.5s ease !important;
+      }
+      .draft-photos img.active { opacity: 1 !important; }
+      /* Name overlay: 244px tall (middle 50% of 488 photo), feathered top/bottom */
       .draft-list-wrapper {
-        width: 100vw !important;
-        height: 488px !important;
-        left: 0 !important;
-        transform: translate(0, -50%) !important;
+        position: absolute !important;
+        left: 0 !important; right: 0 !important;
+        top: 50% !important; bottom: auto !important;
+        transform: translateY(-50%) !important;
+        width: 100vw !important; height: 244px !important;
+        display: flex !important; align-items: center !important; justify-content: center !important;
+        pointer-events: none !important;
+        z-index: 25 !important;
+        clip-path: none !important;
+        overflow: hidden !important;
+        -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%) !important;
+                mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%) !important;
       }
-      .draft-name { font-size: 24px !important; }
-      .draft-name.active { font-size: 36px !important; }
-      .draft-name-tba .tba-label { font-size: 18px !important; }
-      .draft-name-tba.active .tba-label { font-size: 24px !important; }
-      .draft-name-tba .tba-bar { width: 160px !important; height: 22px !important; }
-      .draft-name-tba.active .tba-bar { width: 200px !important; height: 28px !important; }
-      /* Star arcs SVG — correct proportions on mobile, yellow color retained */
-      .draft-section img[src*="draft-arcs-bg"] {
-        width: 390px !important; height: 560px !important;
+      /* All names visible on mobile, list shifts via JS so active is centered on photo */
+      .draft-list {
+        display: flex !important; flex-direction: column !important;
+        align-items: center !important; gap: 8px !important;
       }
-      /* NEW DRAFT header on mobile */
-      .draft-section > div > div[style*="top: 0"] { top: 40px !important; }
-      .draft-section > div > div[style*="top: 0"] p { font-size: 24px !important; }
-      .draft-section > div > div[style*="top: 0"] img { width: 20px !important; height: 24px !important; }
-      .draft-section > div > div[style*="top: 0"] div[style*="width: 280px"] { width: 200px !important; }
+      .draft-name {
+        display: block !important;
+        font-size: 28px !important; line-height: 1 !important;
+        color: transparent !important;
+        -webkit-text-stroke: 1px #fff !important;
+        mix-blend-mode: normal !important;
+        white-space: nowrap !important;
+        opacity: 0.9 !important;
+      }
+      .draft-name.active {
+        font-size: 40px !important; line-height: 1.04 !important;
+        color: #fff !important; -webkit-text-stroke: 0 !important;
+        opacity: 1 !important;
+      }
+      .draft-name-tba { display: flex !important; align-items: center !important; gap: 10px !important; }
+      .draft-name-tba .tba-label {
+        font-size: 22px !important; -webkit-text-stroke: 1px #fff !important;
+        color: transparent !important;
+      }
+      .draft-name-tba.active .tba-label {
+        font-size: 32px !important; -webkit-text-stroke: 0 !important; color: #fff !important;
+      }
+      .draft-name-tba .tba-bar {
+        width: 160px !important; height: 22px !important;
+        border: 1px solid #fff !important; background: transparent !important;
+      }
+      .draft-name-tba.active .tba-bar {
+        width: 200px !important; height: 32px !important;
+        background: #fff !important; border: none !important;
+      }
 
       /* =========================================================
-         Q&A — mobile: clean single column, smaller font, no weird rectangles
+         Q&A — Figma y=2131, w=358, header 40px DARK, items 20px DARK
+         Questions: numbered list "1." prefix, text 20px, + icon 46x46
          ========================================================= */
-      #qa { padding: 80px 16px 60px !important; }
-      #qa > div { padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
+      #qa { padding: 160px 16px 0 !important; }
+      #qa > div { padding: 0 !important; max-width: 358px !important; margin: 0 !important; }
       #qa > div > div:first-child { margin-bottom: 24px !important; }
-      #qa > div > div:first-child p[style*="font-size: 40px"] { font-size: 14px !important; }
-      #qa .qa-item > div {
-        display: flex !important;
-        gap: 12px !important;
-        padding: 12px 0 !important;
-        align-items: center !important;
+      #qa > div > div:first-child p[style*="font-size: 40px"] {
+        font-size: 40px !important; line-height: 0.96 !important; color: #141414 !important;
       }
-      #qa .qa-item > div > div {
+      #qa > div > div:first-child .sep-line { margin-top: 8px !important; }
+      #qa .qa-item { border-bottom: 2px solid #141414 !important; }
+      #qa .qa-item > div:first-of-type {
+        display: flex !important;
+        gap: 16px !important;
+        padding: 24px 0 !important;
+        align-items: flex-start !important;
+      }
+      #qa .qa-item > div:first-of-type > div {
         flex: 1 !important;
         display: flex !important;
-        gap: 8px !important;
+        gap: 6px !important;
         align-items: flex-start !important;
       }
       #qa .qa-item span[style*="width: 60px"] {
-        width: auto !important;
-        font-size: 14px !important;
-        line-height: 1.3 !important;
+        width: auto !important; min-width: 18px !important;
+        font-size: 20px !important; line-height: 0.96 !important;
+        color: #141414 !important;
       }
       #qa .qa-item p[style*="font-size: 40px"] {
-        font-size: 14px !important;
-        line-height: 1.3 !important;
+        font-size: 20px !important; line-height: 0.96 !important;
+        color: #141414 !important;
       }
       #qa .qa-item .qa-toggle {
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
-        font-size: 28px !important;
-        border: none !important;
-        background: transparent !important;
+        width: 46px !important; height: 46px !important;
+        min-width: 46px !important; font-size: 36px !important;
+        border: none !important; background: transparent !important;
+        color: #141414 !important;
       }
+      /* Hide internal sep-line since border-bottom handles it */
+      #qa .qa-item .sep-line { display: none !important; }
       #qa .qa-answer > div {
         display: block !important;
-        padding: 8px 0 16px !important;
+        padding: 0 0 20px 30px !important;
       }
       #qa .qa-answer > div > div[style*="width: 592px"][style*="shrink: 0"] {
         display: none !important;
@@ -441,41 +553,80 @@
       #qa .qa-answer p,
       #qa .qa-answer > div > div {
         width: 100% !important;
-        font-size: 14px !important;
-        line-height: 1.4 !important;
+        font-size: 16px !important; line-height: 1.2 !important;
+        color: #141414 !important;
       }
-      #qa .qa-answer ul li { font-size: 12px !important; }
+      #qa .qa-answer ul li { font-size: 14px !important; color: #141414 !important; }
 
       /* =========================================================
-         PARTNERS / CONTACT — stacked single column
+         PARTNERS — w=358 left-aligned, label 20px, line, logos row
          ========================================================= */
-      #partners, #contact { padding: 0 16px 60px !important; }
-      #partners > div, #contact > div {
+      #partners { padding: 80px 16px 0 !important; }
+      #partners > div {
         grid-template-columns: 1fr !important;
-        gap: 60px !important; padding: 0 !important; max-width: 358px !important; margin: 0 auto !important;
+        gap: 80px !important; padding: 0 !important; max-width: 358px !important; margin: 0 !important;
       }
-      #partners p, #contact p { font-size: 14px !important; }
-      #partners .sep-line, #contact .sep-line { margin-bottom: 24px !important; }
-      #partners > div > div > div > div { height: auto !important; padding: 0 !important; }
-      #partners img[src*="partner-1"] { height: 40px !important; }
-      #partners img[src*="partner-2"] { height: 60px !important; }
-      #partners img[src*="sponsor-oshee-big"] { height: 40px !important; }
-      #contact a { font-size: 14px !important; padding: 20px 16px !important; width: 100% !important; }
-      .social-icon { width: 54px !important; height: 54px !important; }
+      #partners p[style*="font-size: 40px"] {
+        font-size: 20px !important; line-height: 0.96 !important; color: #141414 !important;
+        text-align: left !important;
+      }
+      #partners .sep-line { margin-top: 12px !important; margin-bottom: 42px !important; width: 100% !important; }
+      #partners > div > div > div[style*="display: flex"] {
+        display: flex !important; gap: 16px !important; align-items: center !important;
+      }
+      #partners > div > div > div > div { height: auto !important; padding: 0 32px !important; display: flex !important; align-items: center !important; }
+      #partners img[src*="partner-1"] { height: 40px !important; width: auto !important; }
+      #partners img[src*="partner-2"] { height: 60px !important; width: auto !important; }
+      #partners img[src*="sponsor-oshee-big"] { height: 92px !important; width: 231px !important; }
+      #partners > div > div:last-child > div[style*="height: 168px"] { height: 92px !important; padding: 0 !important; }
 
       /* =========================================================
-         FOOTER
+         CONTACT — w=358 left-aligned
          ========================================================= */
-      footer { padding: 40px 16px !important; }
+      #contact { padding: 80px 16px 0 !important; }
+      #contact > div {
+        grid-template-columns: 1fr !important;
+        gap: 80px !important; padding: 0 !important; max-width: 358px !important; margin: 0 !important;
+      }
+      #contact p[style*="font-size: 40px"] {
+        font-size: 20px !important; line-height: 0.96 !important; color: #141414 !important;
+        text-align: left !important;
+      }
+      #contact .sep-line { margin-top: 12px !important; margin-bottom: 42px !important; width: 100% !important; }
+      /* Kontakt button — full width dark outline, text 20px */
+      #contact a.btn-outline { font-size: 20px !important; padding: 20px !important; width: 100% !important; }
+      /* Social icons 54x54 gap 47 */
+      .social-icon { width: 54px !important; height: 54px !important; }
+      #contact > div > div:last-child > div[style*="display: flex"] {
+        gap: 47px !important; justify-content: flex-start !important;
+      }
+
+      /* =========================================================
+         FOOTER — ASF logo 54x148 LEFT + legal links column RIGHT (gap 186)
+         ========================================================= */
+      footer { padding: 80px 16px 40px !important; }
       footer > div {
-        flex-direction: column !important; gap: 32px !important;
-        align-items: flex-start !important; padding: 0 !important; max-width: 358px !important; margin: 0 auto !important;
+        flex-direction: row !important;
+        gap: 186px !important;
+        align-items: flex-start !important;
+        padding: 0 !important;
+        max-width: 358px !important;
+        margin: 0 !important;
+        justify-content: flex-start !important;
       }
-      footer img { height: 66px !important; }
+      footer > div > div:first-child { height: 148px !important; width: 54px !important; }
+      footer img { height: 148px !important; width: 54px !important; }
       footer > div > div:last-child {
-        flex-direction: column !important; gap: 12px !important;
+        flex-direction: column !important; gap: 24px !important;
+        align-items: flex-start !important; font-size: 20px !important;
       }
-      footer a { font-size: 14px !important; }
+      footer a {
+        font-size: 20px !important;
+        line-height: 0.96 !important;
+        white-space: normal !important;
+        width: 120px !important;
+        display: block !important;
+      }
     }
   </style>
 </head>
@@ -575,7 +726,7 @@
           <!-- Main title: yellow (#eed410) -->
           <div style="text-align: center; color: #eed410;">
             <p style="font-size: 104px; line-height: 0.8; text-transform: uppercase;">OSHEE</p>
-            <p style="font-size: 104px; line-height: 0.8; text-transform: uppercase;">ALL STAR FESTIVAL</p>
+            <p style="font-size: 104px; line-height: 0.8; text-transform: uppercase;">ALL STAR <br class="mobile-br">FESTIVAL</p>
           </div>
           <!-- Subtitle: dark (#141414), serif Cormorant -->
           <p class="font-serif" style="font-size: 40px; line-height: 1.04; text-transform: uppercase; max-width: 901px; text-align: center; color: #141414;">
@@ -609,6 +760,10 @@
             <img src="brand_assets/artist-bedoes.png" alt="Bedoes 2115" class="active" />
             <img src="brand_assets/artist-malik.png" alt="Malik Montana" />
           </div>
+
+          <!-- Mobile-only: star arcs overlaid on draft photo (Figma node 45:801) -->
+          <img class="draft-photo-arc-left" src="brand_assets/draft-arc-left-mobile.svg" alt="" />
+          <img class="draft-photo-arc-right" src="brand_assets/draft-arc-left-mobile.svg" alt="" />
 
           <!-- Vertical names list — all 9 names always visible, list shifts up per slide -->
           <div class="draft-list-wrapper">
@@ -832,7 +987,7 @@
     const draftPhotos = document.querySelectorAll('#draftPhotos img');
     const totalSlides = draftNames.length; // 9
     let currentDraftIdx = -1;
-    const SHIFT_PER_SLIDE = 50; // px to shift list up per slide
+    const SHIFT_PER_SLIDE = window.innerWidth <= 768 ? 38 : 50; // mobile has smaller items
 
     function setDraftSlide(idx) {
       if (idx === currentDraftIdx) return;
