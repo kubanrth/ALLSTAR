@@ -22,10 +22,7 @@
       font-family: 'KTFRublena', sans-serif;
       background: #141414;
       color: #eed410;
-      min-width: 1440px;
-    }
-    @media (max-width: 768px) {
-      body { min-width: 0 !important; overflow-x: hidden; }
+      overflow-x: hidden;
     }
     ::-webkit-scrollbar { width: 0; background: transparent; }
     html { scroll-behavior: auto; }
@@ -337,6 +334,19 @@
       menuPanel.classList.contains('open') ? closeMenu() : openMenu();
     });
     menuOverlay.addEventListener('click', closeMenu);
+
+    // Desktop: zoom proportionally if window narrower than design width 1440
+    function scaleDesktop() {
+      if (window.innerWidth <= 768) {
+        document.documentElement.style.zoom = '';
+        return;
+      }
+      const designW = 1440;
+      const scale = Math.min(1, window.innerWidth / designW);
+      document.documentElement.style.zoom = scale;
+    }
+    scaleDesktop();
+    window.addEventListener('resize', scaleDesktop);
   </script>
 </body>
 </html>

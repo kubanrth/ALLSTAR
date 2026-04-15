@@ -27,22 +27,15 @@
     body {
       font-family: 'KTFRublena', sans-serif;
       background: #141414;
-      min-width: 1440px;
       -webkit-font-smoothing: antialiased;
-    }
-    @media (max-width: 768px) {
-      body { min-width: 0 !important; overflow-x: hidden; }
+      overflow-x: hidden;
     }
 
     /* ===== PAGE WRAPPER with Figma background ===== */
     .page-wrapper {
       position: relative;
       width: 100%;
-      min-width: 1440px;
       background: #eed410; /* fallback */
-    }
-    @media (max-width: 768px) {
-      .page-wrapper { min-width: 0 !important; }
     }
     .page-bg {
       position: absolute;
@@ -995,6 +988,19 @@
       const fl = document.querySelector('footer img');
       if (fl) fl.src = 'brand_assets/footer-logo-mobile.svg';
     }
+
+    // Desktop: zoom proportionally if window narrower than design width 1440
+    function scaleDesktop() {
+      if (window.innerWidth <= 768) {
+        document.documentElement.style.zoom = '';
+        return;
+      }
+      const designW = 1440;
+      const scale = Math.min(1, window.innerWidth / designW);
+      document.documentElement.style.zoom = scale;
+    }
+    scaleDesktop();
+    window.addEventListener('resize', scaleDesktop);
 
     // Q&A
     function toggleQA(el) {
