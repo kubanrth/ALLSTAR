@@ -424,14 +424,10 @@
         align-items: center !important; gap: 12px !important;
         margin: 0 0 40px 0 !important;
       }
-      .draft-section > .draft-header > div[style*="width: 39px"] {
-        width: 19px !important; height: 24px !important;
-      }
-      .draft-section > .draft-header > div[style*="width: 39px"] img {
-        width: 19px !important; height: 24px !important;
-      }
-      .draft-section > .draft-header p { font-size: 40px !important; }
-      .draft-section > .draft-header div[style*="width: 280px"] { width: 280px !important; }
+      .draft-section > .draft-header > div img { width: 19px !important; height: 24px !important; }
+      .draft-section > .draft-header > div { gap: 16px !important; }
+      .draft-section > .draft-header p { font-size: 32px !important; }
+      .draft-section > .draft-header .sep-line { width: 240px !important; }
       /* Sticky — 488px (photo height), centered in viewport */
       .draft-sticky {
         position: sticky !important;
@@ -755,15 +751,14 @@
 
       <!-- ===== DRAFT GALLERY (sticky, smooth scroll mapping, 9 artists) ===== -->
       <section class="draft-section" id="draft" style="height: 350vh;">
-        <!-- LINEUP header — OUTSIDE sticky, scrolls past naturally -->
-        <div class="draft-header" style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 80px;">
-          <div style="width: 39px; height: 48px;">
-            <img src="brand_assets/star-small.svg" alt="" style="width: 39px; height: 48px; filter: brightness(0);" />
-          </div>
-          <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <!-- LINEUP header — OUTSIDE sticky. Row: star · LINEUP · star, line below -->
+        <div class="draft-header" style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 80px;">
+          <div style="display: flex; align-items: center; gap: 24px;">
+            <img src="brand_assets/star-small.svg" alt="" style="width: 32px; height: 40px; filter: brightness(0);" />
             <p style="color: #141414; font-size: 40px; text-transform: uppercase; line-height: 0.96;">Lineup</p>
-            <div class="sep-line" style="width: 280px;"></div>
+            <img src="brand_assets/star-small.svg" alt="" style="width: 32px; height: 40px; filter: brightness(0);" />
           </div>
+          <div class="sep-line" style="width: 280px;"></div>
         </div>
         <div class="draft-sticky">
           <!-- Star arcs background — smaller per request -->
