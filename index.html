@@ -27,8 +27,11 @@
     body {
       font-family: 'KTFRublena', sans-serif;
       background: #141414;
-      overflow-x: hidden;
+      min-width: 1440px;
       -webkit-font-smoothing: antialiased;
+    }
+    @media (max-width: 768px) {
+      body { min-width: 0 !important; overflow-x: hidden; }
     }
 
     /* ===== PAGE WRAPPER with Figma background ===== */
@@ -99,7 +102,7 @@
 
     /* ===== DRAFT GALLERY (vertical list) ===== */
     .draft-section { position: relative; }
-    .draft-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+    .draft-sticky { position: sticky; top: 0; height: 100vh; min-height: 800px; overflow: hidden; }
 
     /* Photos — desaturated + multiply on yellow bg = duotone yellow effect (jak Figma) */
     .draft-photos {
