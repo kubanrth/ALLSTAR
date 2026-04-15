@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 1425" preserveAspectRatio="xMidYMid slice">
+  <rect width="950" height="1425" fill="#2a2a1a"/>
+  <g fill="#1a1a0a">
+    <!-- head -->
+    <circle cx="475" cy="440" r="170"/>
+    <!-- neck -->
+    <rect x="420" y="580" width="110" height="80"/>
+    <!-- shoulders + torso -->
+    <path d="M 180 740 Q 180 680 280 660 L 670 660 Q 770 680 770 740 L 770 1425 L 180 1425 Z"/>
+  </g>
+</svg>

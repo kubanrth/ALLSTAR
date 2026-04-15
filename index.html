@@ -70,7 +70,6 @@
       height: 80px;
       z-index: 50;
       background: #eed410;
-      mix-blend-mode: difference;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -767,12 +766,17 @@
           <!-- Star arcs background — smaller per request -->
           <img src="brand_assets/draft-arcs-bg.svg" alt="" style="position: absolute; top: 140px; left: 50%; transform: translateX(-50%); width: 980px; height: 600px; pointer-events: none; z-index: 1;" />
 
-          <!-- Photo crossfade — order: SOBEL, BEDOES, BAMBI, MALIK -->
+          <!-- Photo crossfade — order: SOBEL, BEDOES, BAMBI, MALIK, TBA×5 (silhouette placeholder) -->
           <div class="draft-photos" id="draftPhotos">
             <img src="brand_assets/artist-sobel.png" alt="Sobel" class="active" />
             <img src="brand_assets/artist-bedoes.png" alt="Bedoes 2115" />
             <img src="brand_assets/artist-bambi.png" alt="Bambi" />
             <img src="brand_assets/artist-malik.png" alt="Malik Montana" />
+            <img src="brand_assets/artist-tba.svg" alt="TBA" />
+            <img src="brand_assets/artist-tba.svg" alt="TBA" />
+            <img src="brand_assets/artist-tba.svg" alt="TBA" />
+            <img src="brand_assets/artist-tba.svg" alt="TBA" />
+            <img src="brand_assets/artist-tba.svg" alt="TBA" />
           </div>
 
           <!-- Mobile-only: star arcs overlaid on draft photo (Figma node 45:801) -->
@@ -1014,7 +1018,7 @@
       // All names visible — toggle active
       draftNames.forEach((n, i) => n.classList.toggle('active', i === currentDraftIdx));
       // Photo: only first 2 have photos (BEDOES, MALIK), keep last shown for others
-      draftPhotos.forEach((p, i) => p.classList.toggle('active', i === Math.min(currentDraftIdx, draftPhotos.length - 1)));
+      draftPhotos.forEach((p, i) => p.classList.toggle('active', i === currentDraftIdx));
       // Translate list so active item is at vertical center
       // Slide 0: translate +CENTER_OFFSET (push down so item 0 at center)
       // Slide totalSlides-1: translate -CENTER_OFFSET (push up so last item at center)
