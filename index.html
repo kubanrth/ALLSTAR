@@ -1027,22 +1027,22 @@
     function updateDraft() {
       const sticky = draftSection.querySelector('.draft-sticky');
       if (!sticky) return;
-      const rect = draftSection.getBoundingClientRect();
-      const stickyRect = sticky.getBoundingClientRect();
       const viewportH = window.innerHeight;
       const stickyH = sticky.offsetHeight;
-      // Sticky engages when stickyRect.top equals the CSS top value (centering offset)
       const stickyTopOffset = (viewportH - stickyH) / 2;
-      // Advance progress ONLY while sticky is locked (i.e. stickyRect.top <= stickyTopOffset)
-      if (stickyRect.top > stickyTopOffset + 2) {
-        setDraftSlide(0);
-        return;
-      }
-      // scroll distance while sticky is engaged
-      const scrollInSticky = stickyTopOffset - stickyRect.top;
-      const scrollRange = rect.height - (stickyTopOffset + stickyH);
-      if (scrollRange <= 0) return;
-      const progress = Math.max(0, Math.min(1, scrollInSticky / scrollRange));
+      const sectionTop = draftSection.offsetTop;
+      const stickyOffsetInSection = sticky.offsetTop;
+      // Scroll position where sticky engages (its top reaches the CSS top offset)
+      const lockStart = sectionTop + stickyOffsetInSection - stickyTopOffset;
+      // Scroll position where sticky releases (bottom of sticky reaches bottom of section)
+      const sectionHeight = draftSection.offsetHeight;
+      const lockEnd = sectionTop + sectionHeight - stickyH - stickyTopOffset;
+      const range = lockEnd - lockStart;
+      if (range <= 0) return;
+      const scrollY = window.scrollY;
+      if (scrollY < lockStart) { setDraftSlide(0); return; }
+      if (scrollY > lockEnd) { setDraftSlide(totalSlides - 1); return; }
+      const progress = (scrollY - lockStart) / range;
       const idx = Math.min(totalSlides - 1, Math.round(progress * (totalSlides - 1)));
       setDraftSlide(idx);
     }
