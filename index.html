@@ -27,8 +27,11 @@
     body {
       font-family: 'KTFRublena', sans-serif;
       background: #141414;
+      min-width: 1440px;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+    }
+    @media (max-width: 768px) {
+      body { min-width: 0 !important; overflow-x: hidden; }
     }
 
     /* ===== PAGE WRAPPER with Figma background ===== */
@@ -989,27 +992,6 @@
       if (fl) fl.src = 'brand_assets/footer-logo-mobile.svg';
     }
 
-    // Desktop: scale page-wrapper proportionally if window narrower than design width 1440
-    function scaleDesktop() {
-      const w = document.querySelector('.page-wrapper');
-      if (!w) return;
-      if (window.innerWidth <= 768) {
-        w.style.transform = '';
-        w.style.transformOrigin = '';
-        w.style.width = '';
-        document.body.style.height = '';
-        return;
-      }
-      const designW = 1440;
-      const scale = Math.min(1, window.innerWidth / designW);
-      w.style.width = designW + 'px';
-      w.style.transformOrigin = 'top left';
-      w.style.transform = `scale(${scale})`;
-      document.body.style.height = (w.offsetHeight * scale) + 'px';
-    }
-    scaleDesktop();
-    window.addEventListener('resize', scaleDesktop);
-    window.addEventListener('load', scaleDesktop);
 
     // Q&A
     function toggleQA(el) {

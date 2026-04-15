@@ -22,7 +22,10 @@
       font-family: 'KTFRublena', sans-serif;
       background: #141414;
       color: #eed410;
-      overflow-x: hidden;
+      min-width: 1440px;
+    }
+    @media (max-width: 768px) {
+      body { min-width: 0 !important; overflow-x: hidden; }
     }
     ::-webkit-scrollbar { width: 0; background: transparent; }
     html { scroll-behavior: auto; }
@@ -335,27 +338,6 @@
     });
     menuOverlay.addEventListener('click', closeMenu);
 
-    // Desktop: scale main proportionally if window narrower than design width 1440
-    function scaleDesktop() {
-      const w = document.querySelector('main');
-      if (!w) return;
-      if (window.innerWidth <= 768) {
-        w.style.transform = '';
-        w.style.transformOrigin = '';
-        w.style.width = '';
-        document.body.style.height = '';
-        return;
-      }
-      const designW = 1440;
-      const scale = Math.min(1, window.innerWidth / designW);
-      w.style.width = designW + 'px';
-      w.style.transformOrigin = 'top left';
-      w.style.transform = `scale(${scale})`;
-      document.body.style.height = (w.offsetHeight * scale) + 'px';
-    }
-    scaleDesktop();
-    window.addEventListener('resize', scaleDesktop);
-    window.addEventListener('load', scaleDesktop);
   </script>
 </body>
 </html>
