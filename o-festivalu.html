@@ -22,7 +22,10 @@
       font-family: 'KTFRublena', sans-serif;
       background: #141414;
       color: #eed410;
-      overflow-x: hidden;
+      min-width: 1440px;
+    }
+    @media (max-width: 768px) {
+      body { min-width: 0 !important; overflow-x: hidden; }
     }
     ::-webkit-scrollbar { width: 0; background: transparent; }
     html { scroll-behavior: auto; }

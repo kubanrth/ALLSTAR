@@ -35,7 +35,11 @@
     .page-wrapper {
       position: relative;
       width: 100%;
+      min-width: 1440px;
       background: #eed410; /* fallback */
+    }
+    @media (max-width: 768px) {
+      .page-wrapper { min-width: 0 !important; }
     }
     .page-bg {
       position: absolute;
