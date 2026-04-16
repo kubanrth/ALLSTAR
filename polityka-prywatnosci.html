@@ -8,37 +8,244 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @font-face { font-family: 'KTFRublena'; src: url('brand_assets/KTFRublena-Black.woff') format('woff'); font-weight: 900; font-display: swap; }
-    .font-serif { font-family: "ivypresto-text", serif; font-weight: 300; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'KTFRublena', sans-serif; background: #101010; color: #eed410; min-width: 1440px; }
-    @media (max-width: 768px) { body { min-width: 0 !important; overflow-x: hidden; } }
-    ::-webkit-scrollbar { width: 0; background: transparent; }
-    .ticket-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; z-index: 50; background: #eed410; display: flex; align-items: center; justify-content: center; gap: 24px; }
-    .menu-panel { position: fixed; top: 0; right: 0; width: 640px; max-width: 85vw; height: 100vh; background: #141414; z-index: 100; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; justify-content: center; padding: 80px; }
-    .menu-panel.open { transform: translateX(0); }
-    .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
-    .menu-overlay.open { opacity: 1; pointer-events: auto; }
-    .btn-outline { border: 2px solid currentColor; padding: 20px 56px; text-transform: uppercase; font-size: 20px; letter-spacing: 0.02em; line-height: 1.09; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; background: transparent; color: inherit; font-family: 'KTFRublena', sans-serif; transition: background 0.3s ease; text-decoration: none; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'KTFRublena', sans-serif;
+      background: #101010;
+      color: #eed410;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::-webkit-scrollbar { width: 6px; background: #101010; }
+    ::-webkit-scrollbar-thumb { background: #eed410; border-radius: 3px; }
+
+    /* ===== LAYOUT ===== */
+    .legal-hero {
+      position: relative;
+      padding: 160px 48px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .legal-hero::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 600px; height: 600px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(238,212,16,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .legal-hero h1 {
+      font-size: 72px;
+      line-height: 0.85;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .legal-hero .subtitle {
+      font-family: "ivypresto-text", serif;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 1.04;
+      text-transform: uppercase;
+      color: rgba(238,212,16,0.5);
+      margin-top: 24px;
+      letter-spacing: 0.05em;
+    }
+    .hero-sep {
+      width: 80px; height: 2px;
+      background: #eed410;
+      margin: 40px auto 0;
+    }
+
+    /* ===== NAV (table of contents) ===== */
+    .toc {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 48px 60px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      justify-content: center;
+    }
+    .toc a {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(238,212,16,0.4);
+      text-decoration: none;
+      padding: 6px 16px;
+      border: 1px solid rgba(238,212,16,0.12);
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .toc a:hover { color: #eed410; border-color: rgba(238,212,16,0.4); }
+
+    /* ===== CONTENT ===== */
+    .legal-content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 48px 200px;
+    }
+    .legal-section {
+      position: relative;
+      padding: 56px 0;
+      border-top: 1px solid rgba(238,212,16,0.1);
+    }
+    .legal-section:last-of-type {
+      border-bottom: 1px solid rgba(238,212,16,0.1);
+    }
+    .section-number {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(238,212,16,0.3);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .legal-section h2 {
+      font-size: 32px;
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: #eed410;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+    .legal-section p,
+    .legal-section li {
+      font-family: "ivypresto-text", serif;
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(238,212,16,0.7);
+      margin-bottom: 16px;
+    }
+    .legal-section ul {
+      padding-left: 0;
+      margin-bottom: 20px;
+      list-style: none;
+    }
+    .legal-section li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+    }
+    .legal-section li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: #eed410;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .legal-section strong {
+      font-family: 'KTFRublena', sans-serif;
+      font-weight: 900;
+      color: #eed410;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-row {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 48px 40px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #eed410;
+      text-decoration: none;
+      padding: 16px 0;
+      transition: opacity 0.3s ease;
+    }
+    .back-link:hover { opacity: 0.6; }
+    .back-link svg { transition: transform 0.3s ease; }
+    .back-link:hover svg { transform: translateX(-4px); }
+
+    /* ===== TICKET BAR ===== */
+    .ticket-bar {
+      position: fixed; bottom: 0; left: 0;
+      width: 100%; height: 80px; z-index: 50;
+      background: #eed410;
+      display: flex; align-items: center; justify-content: center; gap: 24px;
+    }
+    .btn-outline {
+      border: 2px solid currentColor; padding: 20px 56px;
+      text-transform: uppercase; font-size: 20px;
+      letter-spacing: 0.02em; line-height: 1.09;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; background: transparent; color: inherit;
+      font-family: 'KTFRublena', sans-serif;
+      transition: background 0.3s ease; text-decoration: none;
+    }
     .btn-outline:hover { background: currentColor; }
     .btn-outline:hover span { filter: invert(1); }
-    .social-icon { width: 70px; height: 70px; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease; cursor: pointer; text-decoration: none; }
+    .btn-outline:focus-visible { outline: 2px solid #eed410; outline-offset: 4px; }
+    .btn-outline:active { transform: scale(0.97); }
+
+    /* ===== SOCIAL / MENU ===== */
+    .social-icon {
+      width: 70px; height: 70px; border: 2px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s ease; cursor: pointer; text-decoration: none;
+    }
     .social-icon:hover { background: currentColor; }
     .social-icon:hover img { filter: invert(1) !important; }
-    .hamburger { width: 70px; height: 70px; background: #141414; border: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; position: fixed; top: 33px; right: 80px; z-index: 110; transition: background 0.3s ease; }
-    .hamburger span { display: block; width: 32px; height: 2px; background: #eed410; transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease; }
+    .menu-panel {
+      position: fixed; top: 0; right: 0;
+      width: 640px; max-width: 85vw; height: 100vh;
+      background: #141414; z-index: 100;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column; justify-content: center; padding: 80px;
+    }
+    .menu-panel.open { transform: translateX(0); }
+    .menu-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+    }
+    .menu-overlay.open { opacity: 1; pointer-events: auto; }
+    .hamburger {
+      width: 70px; height: 70px; background: #141414; border: none;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; cursor: pointer; position: fixed; top: 33px; right: 80px; z-index: 110;
+      transition: background 0.3s ease;
+    }
+    .hamburger span {
+      display: block; width: 32px; height: 2px; background: #eed410;
+      transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+    }
     .hamburger.open { background: #eed410; }
     .hamburger.open span { background: #141414; }
     .hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
-    h1 { font-size: 48px; line-height: 0.9; text-transform: uppercase; margin-bottom: 48px; }
-    h2 { font-size: 28px; line-height: 1; text-transform: uppercase; margin: 48px 0 24px; }
-    p, li { font-family: "ivypresto-text", serif; font-weight: 300; font-size: 18px; line-height: 1.6; margin-bottom: 16px; }
-    ul { padding-left: 24px; margin-bottom: 16px; }
-    strong { font-family: 'KTFRublena', sans-serif; }
-    a.back-link { display: inline-block; margin-top: 48px; font-size: 20px; text-transform: uppercase; color: #eed410; text-decoration: none; border-bottom: 2px solid #eed410; padding-bottom: 4px; }
-    a.back-link:hover { opacity: 0.7; }
+
+    /* ===== DECORATIVE STAR ===== */
+    .deco-star {
+      position: fixed;
+      top: 40px; left: 48px;
+      z-index: 60;
+      opacity: 0.15;
+    }
+
+    /* ===== MOBILE ===== */
     @media (max-width: 768px) {
+      .legal-hero { padding: 120px 20px 48px; }
+      .legal-hero h1 { font-size: 36px; }
+      .legal-hero .subtitle { font-size: 16px; }
+      .toc { padding: 24px 20px 40px; gap: 8px 12px; }
+      .toc a { font-size: 12px; padding: 5px 10px; }
+      .legal-content { padding: 0 20px 160px; }
+      .legal-section { padding: 40px 0; }
+      .legal-section h2 { font-size: 24px; margin-bottom: 24px; }
+      .legal-section p, .legal-section li { font-size: 16px; line-height: 1.65; }
+      .back-row { padding: 0 20px 24px; }
       .hamburger { width: 46px !important; height: 46px !important; top: 24px !important; right: 16px !important; gap: 4px !important; }
       .hamburger span { width: 30px !important; height: 2px !important; }
       .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg) !important; }
@@ -49,14 +256,29 @@
       .ticket-bar > span:nth-child(1) { font-size: 16px !important; line-height: 1 !important; white-space: normal !important; max-width: 140px !important; }
       .ticket-bar > span:nth-child(2) { font-size: 32px !important; line-height: 1 !important; }
       .ticket-bar a.btn-outline { padding: 12px 16px !important; font-size: 14px !important; }
-      main { padding: 100px 16px 120px !important; }
-      h1 { font-size: 32px !important; }
-      h2 { font-size: 22px !important; }
-      p, li { font-size: 16px !important; }
+      .deco-star { top: 24px; left: 16px; }
+      .deco-star img { width: 28px; height: 28px; }
+    }
+
+    /* ===== FADE-IN ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
+  <!-- Deco star -->
+  <div class="deco-star">
+    <img src="brand_assets/star-small.svg" alt="" style="width: 40px; height: 40px; filter: invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" />
+  </div>
+
+  <!-- Hamburger -->
   <button class="hamburger" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="menu-overlay" id="menuOverlay"></div>
   <nav class="menu-panel" id="menuPanel">
@@ -76,68 +298,113 @@
     </div>
   </nav>
 
-  <main style="max-width: 900px; margin: 0 auto; padding: 140px 48px 180px;">
-    <h1>Zasady ochrony prywatności i&nbsp;plików cookies</h1>
-    <p>Wydarzenie: OSHEE ALL STAR FESTIVAL</p>
-    <p>Niniejszy dokument opisuje procedury gromadzenia, przetwarzania oraz zabezpieczania danych osobowych użytkowników serwisu oraz osób uczestniczących w&nbsp;OSHEE ALL STAR FESTIVAL, który odbędzie się w&nbsp;dniach 27-28 czerwca 2026 roku na terenie Stadionu Legii Warszawa.</p>
+  <!-- HERO -->
+  <header class="legal-hero">
+    <h1>Polityka<br>prywatności</h1>
+    <p class="subtitle">OSHEE All Star Festival — 27–28.06.2026</p>
+    <div class="hero-sep"></div>
+  </header>
 
-    <h2>§1. Kto jest administratorem danych?</h2>
-    <p>Podmiotem decydującym o&nbsp;celach i&nbsp;metodach przetwarzania Twoich danych osobowych jest WWWave Spółka z&nbsp;ograniczoną odpowiedzialnością z&nbsp;siedzibą w&nbsp;Warszawie (00-449), przy ul. Łazienkowskiej 3. Spółka jest zarejestrowana w&nbsp;rejestrze przedsiębiorców KRS pod numerem 0000996537 (Sąd Rejonowy dla m.st. Warszawy, XII Wydział Gospodarczy), NIP: 7011109655, REGON: 523366101 (zwana dalej: „Administratorem").</p>
-    <p>W sprawach związanych z&nbsp;ochroną prywatności prosimy o&nbsp;kontakt pod adresem: kontakt@allstarfestival.pl.</p>
+  <!-- TABLE OF CONTENTS -->
+  <nav class="toc">
+    <a href="#s1">§1 Administrator</a>
+    <a href="#s2">§2 Podstawy</a>
+    <a href="#s3">§3 Retencja</a>
+    <a href="#s4">§4 Odbiorcy</a>
+    <a href="#s5">§5 Uprawnienia</a>
+    <a href="#s6">§6 Cookies</a>
+    <a href="#s7">§7 Uwagi końcowe</a>
+  </nav>
 
-    <h2>§2. Dlaczego i&nbsp;na jakiej podstawie przetwarzamy dane?</h2>
-    <p>Przetwarzanie odbywa się zgodnie z&nbsp;wymogami RODO w&nbsp;następujących obszarach:</p>
-    <ul>
-      <li><strong>Obsługa i&nbsp;finalizacja uczestnictwa</strong> (art. 6 ust. 1 lit. b RODO): Niezbędne do realizacji umowy, w&nbsp;tym sprzedaży biletów, weryfikacji uprawnień do wejścia oraz sprawnego przeprowadzenia festiwalu na Stadionie Legii.</li>
-      <li><strong>Komunikacja z&nbsp;użytkownikami</strong> (art. 6 ust. 1 lit. f RODO): Realizacja naszego prawnie uzasadnionego interesu poprzez odpowiadanie na e-maile i&nbsp;zapytania dotyczące wydarzenia.</li>
-      <li><strong>Działania informacyjne i&nbsp;Newsletter</strong> (art. 6 ust. 1 lit. a RODO): Wysyłka powiadomień o&nbsp;artystach, harmonogramie i&nbsp;akcjach promocyjnych marki OSHEE ALL STAR FESTIVAL – wyłącznie po uzyskaniu Twojej wyraźnej zgody.</li>
-      <li><strong>Ochrona osób i&nbsp;mienia oraz promocja</strong> (art. 6 ust. 1 lit. f RODO): Wykorzystanie monitoringu wizyjnego oraz dokumentacji fotograficznej/wideo z&nbsp;imprezy w&nbsp;celu zapewnienia bezpieczeństwa oraz relacjonowania przebiegu festiwalu.</li>
-      <li><strong>Obowiązki ustawowe</strong> (art. 6 ust. 1 lit. c RODO): Spełnienie wymogów wynikających z&nbsp;przepisów skarbowych, księgowych oraz ustawy o&nbsp;bezpieczeństwie imprez masowych.</li>
-    </ul>
+  <!-- BACK -->
+  <div class="back-row">
+    <a href="index.html" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4L6 10L12 16" stroke="#eed410" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Powrót
+    </a>
+  </div>
 
-    <h2>§3. Czas retencji (przechowywania) danych</h2>
-    <ul>
-      <li><strong>Dane o&nbsp;charakterze finansowo-księgowym:</strong> Będą archiwizowane przez 5 lat, licząc od końca roku, w&nbsp;którym odbył się OSHEE ALL STAR FESTIVAL (zgodnie z&nbsp;ordynacją podatkową).</li>
-      <li><strong>Dane do celów marketingowych:</strong> Przechowujemy do momentu wycofania przez Ciebie zgody (wypisania się z&nbsp;listy subskrybentów).</li>
-      <li><strong>Dane z&nbsp;formularzy kontaktowych:</strong> Będą przetwarzane przez czas trwania dialogu, a&nbsp;następnie archiwizowane przez okres do 24 miesięcy.</li>
-    </ul>
+  <!-- CONTENT -->
+  <main class="legal-content">
 
-    <h2>§4. Kategorie odbiorców danych</h2>
-    <p>W celu sprawnej organizacji festiwalu, Administrator może powierzyć Twoje dane:</p>
-    <ul>
-      <li>Dostawcom systemów do sprzedaży biletów i&nbsp;operatorom płatności online.</li>
-      <li>Zarządcy Stadionu Legii Warszawa w&nbsp;zakresie obsługi logistycznej.</li>
-      <li>Firmom ochroniarskim, zabezpieczeniu medycznemu oraz służbom porządkowym.</li>
-      <li>Partnerom dostarczającym rozwiązania IT (hosting, narzędzia do masowej wysyłki maili).</li>
-      <li>Głównemu sponsorowi (OSHEE) – tylko w&nbsp;przypadku wyrażenia oddzielnej zgody na cele marketingowe.</li>
-    </ul>
+    <section class="legal-section fade-up" id="s1">
+      <span class="section-number">§1</span>
+      <h2>Kto jest administratorem danych?</h2>
+      <p>Podmiotem decydującym o&nbsp;celach i&nbsp;metodach przetwarzania Twoich danych osobowych jest WWWave Spółka z&nbsp;ograniczoną odpowiedzialnością z&nbsp;siedzibą w&nbsp;Warszawie (00-449), przy ul. Łazienkowskiej 3. Spółka jest zarejestrowana w&nbsp;rejestrze przedsiębiorców KRS pod numerem 0000996537 (Sąd Rejonowy dla m.st. Warszawy, XII Wydział Gospodarczy), NIP: 7011109655, REGON: 523366101 (zwana dalej: „Administratorem").</p>
+      <p>W sprawach związanych z&nbsp;ochroną prywatności prosimy o&nbsp;kontakt pod adresem: kontakt@allstarfestival.pl.</p>
+    </section>
 
-    <h2>§5. Uprawnienia osób, których dane dotyczą</h2>
-    <p>Zgodnie z&nbsp;przepisami, każdemu użytkownikowi przysługuje prawo do:</p>
-    <ul>
-      <li>Wglądu w&nbsp;swoje dane oraz ich aktualizacji.</li>
-      <li>Wnioskowania o&nbsp;usunięcie danych („prawo do zapomnienia") lub ograniczenie ich obróbki.</li>
-      <li>Złożenia sprzeciwu wobec przetwarzania opartego na uzasadnionym interesie Administratora.</li>
-      <li>Przeniesienia danych do innego podmiotu.</li>
-      <li>Cofnięcia zgody na marketing w&nbsp;dowolnej chwili.</li>
-      <li>Złożenia oficjalnej skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
-    </ul>
+    <section class="legal-section fade-up" id="s2">
+      <span class="section-number">§2</span>
+      <h2>Dlaczego i&nbsp;na jakiej podstawie przetwarzamy dane?</h2>
+      <p>Przetwarzanie odbywa się zgodnie z&nbsp;wymogami RODO w&nbsp;następujących obszarach:</p>
+      <ul>
+        <li><strong>Obsługa i&nbsp;finalizacja uczestnictwa</strong> (art. 6 ust. 1 lit. b RODO): Niezbędne do realizacji umowy, w&nbsp;tym sprzedaży biletów, weryfikacji uprawnień do wejścia oraz sprawnego przeprowadzenia festiwalu na Stadionie Legii.</li>
+        <li><strong>Komunikacja z&nbsp;użytkownikami</strong> (art. 6 ust. 1 lit. f RODO): Realizacja naszego prawnie uzasadnionego interesu poprzez odpowiadanie na e-maile i&nbsp;zapytania dotyczące wydarzenia.</li>
+        <li><strong>Działania informacyjne i&nbsp;Newsletter</strong> (art. 6 ust. 1 lit. a RODO): Wysyłka powiadomień o&nbsp;artystach, harmonogramie i&nbsp;akcjach promocyjnych marki OSHEE ALL STAR FESTIVAL – wyłącznie po uzyskaniu Twojej wyraźnej zgody.</li>
+        <li><strong>Ochrona osób i&nbsp;mienia oraz promocja</strong> (art. 6 ust. 1 lit. f RODO): Wykorzystanie monitoringu wizyjnego oraz dokumentacji fotograficznej/wideo z&nbsp;imprezy w&nbsp;celu zapewnienia bezpieczeństwa oraz relacjonowania przebiegu festiwalu.</li>
+        <li><strong>Obowiązki ustawowe</strong> (art. 6 ust. 1 lit. c RODO): Spełnienie wymogów wynikających z&nbsp;przepisów skarbowych, księgowych oraz ustawy o&nbsp;bezpieczeństwie imprez masowych.</li>
+      </ul>
+    </section>
 
-    <h2>§6. Technologia cookies i&nbsp;monitorowanie ruchu</h2>
-    <ul>
-      <li>Nasza witryna wykorzystuje pliki cookies do celów statystycznych, funkcjonalnych oraz poprawy komfortu nawigacji.</li>
-      <li>Stosujemy narzędzia analityczne i&nbsp;reklamowe (np. od Google i&nbsp;Meta), które pomagają nam optymalizować komunikację i&nbsp;dopasowywać treści promocyjne do Twoich preferencji.</li>
-      <li>Użytkownik ma pełną kontrolę nad plikami cookies poprzez ustawienia swojej przeglądarki (możliwość blokowania i&nbsp;usuwania).</li>
-    </ul>
+    <section class="legal-section fade-up" id="s3">
+      <span class="section-number">§3</span>
+      <h2>Czas retencji danych</h2>
+      <ul>
+        <li><strong>Dane o&nbsp;charakterze finansowo-księgowym:</strong> Będą archiwizowane przez 5 lat, licząc od końca roku, w&nbsp;którym odbył się OSHEE ALL STAR FESTIVAL (zgodnie z&nbsp;ordynacją podatkową).</li>
+        <li><strong>Dane do celów marketingowych:</strong> Przechowujemy do momentu wycofania przez Ciebie zgody (wypisania się z&nbsp;listy subskrybentów).</li>
+        <li><strong>Dane z&nbsp;formularzy kontaktowych:</strong> Będą przetwarzane przez czas trwania dialogu, a&nbsp;następnie archiwizowane przez okres do 24 miesięcy.</li>
+      </ul>
+    </section>
 
-    <h2>§7. Uwagi końcowe</h2>
-    <p>Podanie danych osobowych jest dobrowolne, jednak ich brak może skutkować niemożnością zakupu wejściówki lub uczestnictwa w&nbsp;wydarzeniu.</p>
-    <p>Administrator zastrzega sobie prawo do modyfikacji niniejszej Polityki. Nowa treść będzie każdorazowo publikowana w&nbsp;tym miejscu.</p>
-    <p>Aktualizacja dokumentu: 02.04.2026 r.</p>
+    <section class="legal-section fade-up" id="s4">
+      <span class="section-number">§4</span>
+      <h2>Kategorie odbiorców danych</h2>
+      <p>W celu sprawnej organizacji festiwalu, Administrator może powierzyć Twoje dane:</p>
+      <ul>
+        <li>Dostawcom systemów do sprzedaży biletów i&nbsp;operatorom płatności online.</li>
+        <li>Zarządcy Stadionu Legii Warszawa w&nbsp;zakresie obsługi logistycznej.</li>
+        <li>Firmom ochroniarskim, zabezpieczeniu medycznemu oraz służbom porządkowym.</li>
+        <li>Partnerom dostarczającym rozwiązania IT (hosting, narzędzia do masowej wysyłki maili).</li>
+        <li>Głównemu sponsorowi (OSHEE) – tylko w&nbsp;przypadku wyrażenia oddzielnej zgody na cele marketingowe.</li>
+      </ul>
+    </section>
 
-    <a href="index.html" class="back-link">Powrót</a>
+    <section class="legal-section fade-up" id="s5">
+      <span class="section-number">§5</span>
+      <h2>Uprawnienia osób, których dane dotyczą</h2>
+      <p>Zgodnie z&nbsp;przepisami, każdemu użytkownikowi przysługuje prawo do:</p>
+      <ul>
+        <li>Wglądu w&nbsp;swoje dane oraz ich aktualizacji.</li>
+        <li>Wnioskowania o&nbsp;usunięcie danych („prawo do zapomnienia") lub ograniczenie ich obróbki.</li>
+        <li>Złożenia sprzeciwu wobec przetwarzania opartego na uzasadnionym interesie Administratora.</li>
+        <li>Przeniesienia danych do innego podmiotu.</li>
+        <li>Cofnięcia zgody na marketing w&nbsp;dowolnej chwili.</li>
+        <li>Złożenia oficjalnej skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section fade-up" id="s6">
+      <span class="section-number">§6</span>
+      <h2>Technologia cookies i&nbsp;monitorowanie ruchu</h2>
+      <ul>
+        <li>Nasza witryna wykorzystuje pliki cookies do celów statystycznych, funkcjonalnych oraz poprawy komfortu nawigacji.</li>
+        <li>Stosujemy narzędzia analityczne i&nbsp;reklamowe (np. od Google i&nbsp;Meta), które pomagają nam optymalizować komunikację i&nbsp;dopasowywać treści promocyjne do Twoich preferencji.</li>
+        <li>Użytkownik ma pełną kontrolę nad plikami cookies poprzez ustawienia swojej przeglądarki (możliwość blokowania i&nbsp;usuwania).</li>
+      </ul>
+    </section>
+
+    <section class="legal-section fade-up" id="s7">
+      <span class="section-number">§7</span>
+      <h2>Uwagi końcowe</h2>
+      <p>Podanie danych osobowych jest dobrowolne, jednak ich brak może skutkować niemożnością zakupu wejściówki lub uczestnictwa w&nbsp;wydarzeniu.</p>
+      <p>Administrator zastrzega sobie prawo do modyfikacji niniejszej Polityki. Nowa treść będzie każdorazowo publikowana w&nbsp;tym miejscu.</p>
+      <p style="color: rgba(238,212,16,0.35); margin-top: 32px; font-size: 16px;">Aktualizacja dokumentu: 02.04.2026 r.</p>
+    </section>
+
   </main>
 
+  <!-- TICKET BAR -->
   <div class="ticket-bar">
     <span style="color:#141414;font-size:40px;text-transform:uppercase;line-height:1.09;white-space:nowrap;">Kup bilet i&nbsp;dołącz do</span>
     <span style="color:#141414;font-size:64px;text-transform:uppercase;line-height:1.09;white-space:nowrap;">drużyny</span>
@@ -145,11 +412,18 @@
   </div>
 
   <script>
+    // Menu
     const menuBtn=document.getElementById('menuBtn'),menuPanel=document.getElementById('menuPanel'),menuOverlay=document.getElementById('menuOverlay');
     function openMenu(){menuBtn.classList.add('open');menuPanel.classList.add('open');menuOverlay.classList.add('open');document.body.style.overflow='hidden';}
     function closeMenu(){menuBtn.classList.remove('open');menuPanel.classList.remove('open');menuOverlay.classList.remove('open');document.body.style.overflow='';}
     menuBtn.addEventListener('click',()=>menuPanel.classList.contains('open')?closeMenu():openMenu());
     menuOverlay.addEventListener('click',closeMenu);
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
