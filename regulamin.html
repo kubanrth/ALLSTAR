@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regulamin — OSHEE All Star Festival 2026</title>
+  <link rel="stylesheet" href="https://use.typekit.net/pik2asb.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face { font-family: 'KTFRublena'; src: url('brand_assets/KTFRublena-Black.woff') format('woff'); font-weight: 900; font-display: swap; }
+    .font-serif { font-family: "ivypresto-text", serif; font-weight: 300; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'KTFRublena', sans-serif; background: #101010; color: #eed410; min-width: 1440px; }
+    @media (max-width: 768px) { body { min-width: 0 !important; overflow-x: hidden; } }
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+    .ticket-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; z-index: 50; background: #eed410; display: flex; align-items: center; justify-content: center; gap: 24px; }
+    .menu-panel { position: fixed; top: 0; right: 0; width: 640px; max-width: 85vw; height: 100vh; background: #141414; z-index: 100; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; justify-content: center; padding: 80px; }
+    .menu-panel.open { transform: translateX(0); }
+    .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .menu-overlay.open { opacity: 1; pointer-events: auto; }
+    .btn-outline { border: 2px solid currentColor; padding: 20px 56px; text-transform: uppercase; font-size: 20px; letter-spacing: 0.02em; line-height: 1.09; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; background: transparent; color: inherit; font-family: 'KTFRublena', sans-serif; transition: background 0.3s ease; text-decoration: none; }
+    .btn-outline:hover { background: currentColor; }
+    .btn-outline:hover span { filter: invert(1); }
+    .social-icon { width: 70px; height: 70px; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease; cursor: pointer; text-decoration: none; }
+    .social-icon:hover { background: currentColor; }
+    .social-icon:hover img { filter: invert(1) !important; }
+    .hamburger { width: 70px; height: 70px; background: #141414; border: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; position: fixed; top: 33px; right: 80px; z-index: 110; transition: background 0.3s ease; }
+    .hamburger span { display: block; width: 32px; height: 2px; background: #eed410; transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease; }
+    .hamburger.open { background: #eed410; }
+    .hamburger.open span { background: #141414; }
+    .hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+    h1 { font-size: 48px; line-height: 0.9; text-transform: uppercase; margin-bottom: 48px; }
+    h2 { font-size: 28px; line-height: 1; text-transform: uppercase; margin: 48px 0 24px; }
+    p, li { font-family: "ivypresto-text", serif; font-weight: 300; font-size: 18px; line-height: 1.6; margin-bottom: 16px; }
+    ul { padding-left: 24px; margin-bottom: 16px; }
+    strong { font-family: 'KTFRublena', sans-serif; }
+    a.back-link { display: inline-block; margin-top: 48px; font-size: 20px; text-transform: uppercase; color: #eed410; text-decoration: none; border-bottom: 2px solid #eed410; padding-bottom: 4px; }
+    a.back-link:hover { opacity: 0.7; }
+    @media (max-width: 768px) {
+      .hamburger { width: 46px !important; height: 46px !important; top: 24px !important; right: 16px !important; gap: 4px !important; }
+      .hamburger span { width: 30px !important; height: 2px !important; }
+      .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg) !important; }
+      .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg) !important; }
+      .menu-panel { width: 100% !important; max-width: 100% !important; padding: 80px 24px !important; }
+      .menu-panel > div > div:nth-child(2) a { font-size: 32px !important; }
+      .ticket-bar { height: 80px !important; gap: 8px !important; padding: 13px 16px !important; }
+      .ticket-bar > span:nth-child(1) { font-size: 16px !important; line-height: 1 !important; white-space: normal !important; max-width: 140px !important; }
+      .ticket-bar > span:nth-child(2) { font-size: 32px !important; line-height: 1 !important; }
+      .ticket-bar a.btn-outline { padding: 12px 16px !important; font-size: 14px !important; }
+      main { padding: 100px 16px 120px !important; }
+      h1 { font-size: 32px !important; }
+      h2 { font-size: 22px !important; }
+      p, li { font-size: 16px !important; }
+    }
+  </style>
+</head>
+<body>
+  <button class="hamburger" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="menu-panel" id="menuPanel">
+    <div class="flex flex-col gap-20">
+      <img src="brand_assets/sponsor-oshee-icon.svg" alt="Oshee" class="w-[65px] h-[80px] object-contain" />
+      <div class="flex flex-col gap-4">
+        <a href="index.html#draft" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Lineup</a>
+        <a href="o-festivalu.html" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">O Festivalu</a>
+        <a href="bilety.html" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Bilety</a>
+        <a href="index.html#contact" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Kontakt</a>
+      </div>
+      <div class="flex gap-4">
+        <a href="https://www.instagram.com/oshee.allstarfestival?igsh=MWZpNGVheHZ4ZXRsZw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="social-icon text-[#eed410]"><img src="brand_assets/social-ig.svg" alt="Instagram" style="width:24px;height:24px;filter:invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="https://www.tiktok.com/@oshee.allstarfestival" target="_blank" rel="noopener" class="social-icon text-[#eed410]"><img src="brand_assets/social-tiktok.svg" alt="TikTok" style="width:21px;height:24px;filter:invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="https://www.facebook.com/people/OSHEE-ALL-STAR-Festival/61576516577359/" target="_blank" rel="noopener" class="social-icon text-[#eed410]"><img src="brand_assets/social-fb.svg" alt="Facebook" style="width:24px;height:24px;filter:invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+      </div>
+    </div>
+  </nav>
+
+  <main style="max-width: 900px; margin: 0 auto; padding: 140px 48px 180px;">
+    <h1>Regulamin wydarzenia: OSHEE All Star Festival 2026</h1>
+
+    <h2>§1. Postanowienia ogólne</h2>
+    <p>Niniejszy regulamin (dalej: „Regulamin") określa zasady uczestnictwa, zasady zachowania oraz warunki bezpieczeństwa podczas imprezy pod nazwą OSHEE ALL STAR FESTIVAL (dalej: „Wydarzenie").</p>
+    <p>Organizatorem Wydarzenia jest WWWave Spółka z&nbsp;ograniczoną odpowiedzialnością z&nbsp;siedzibą w&nbsp;Warszawie (00-449) przy ul. Łazienkowskiej 3, KRS: 0000996537, NIP: 7011109655 (dalej: „Organizator").</p>
+    <p>Wydarzenie odbędzie się w&nbsp;dniach 27-28 czerwca 2026 r. na terenie Stadionu Legii Warszawa przy ul. Łazienkowskiej 3 w&nbsp;Warszawie.</p>
+    <p>Każda osoba wchodząca na teren Wydarzenia (dalej: „Uczestnik") akceptuje postanowienia niniejszego Regulaminu.</p>
+
+    <h2>§2. Wstęp i&nbsp;bilety</h2>
+    <p>1. Prawo wstępu na teren wydarzenia mają wyłącznie osoby posiadające ważny bilet wstępu lub identyfikator wydany przez Organizatora.</p>
+    <p>2. Wstęp na festiwal nie ma ograniczeń wiekowych. W&nbsp;festiwalu mogą uczestniczyć także osoby niepełnoletnie, z&nbsp;zachowaniem zasad:</p>
+    <ul>
+      <li>16-18 lat: udział za zgodą rodzica/opiekuna prawnego.</li>
+      <li>Poniżej 16 lat: wejście wyłącznie z&nbsp;dorosłym opiekunem, który również musi posiadać bilet.</li>
+    </ul>
+    <p>3. Bilet upoważnia do przebywania na płycie głównej oraz trybunach i&nbsp;w&nbsp;specjalnie wyznaczonych strefach. Uwaga: w&nbsp;przypadku przepełnienia płyty głównej organizator zastrzega sobie prawo tymczasowego zamknięcia wejścia na płytę główną do odwołania.</p>
+
+    <h2>§3. Zasady bezpieczeństwa i&nbsp;porządku</h2>
+    <p>Uczestnicy są zobowiązani do przestrzegania instrukcji wydawanych przez służby porządkowe i&nbsp;informacyjne Organizatora oraz administratora obiektu.</p>
+    <p>Na teren Wydarzenia surowo zabrania się wnoszenia:</p>
+    <ul>
+      <li>broni, materiałów wybuchowych i&nbsp;pirotechnicznych,</li>
+      <li>napojów alkoholowych oraz środków odurzających,</li>
+      <li>niebezpiecznych przedmiotów (noży, kastetów, szklanych opakowań),</li>
+      <li>profesjonalnego sprzętu rejestrującego audio-video (bez akredytacji).</li>
+    </ul>
+    <p>Służby ochrony mają prawo do przeglądu zawartości bagaży oraz odzieży Uczestników w&nbsp;celu wykrycia przedmiotów niedozwolonych.</p>
+    <p>Organizator ma prawo odmówić wstępu lub wyprosić z&nbsp;terenu imprezy osobę, która:</p>
+    <ul>
+      <li>znajduje się pod widocznym wpływem alkoholu lub innych środków psychoaktywnych,</li>
+      <li>zachowuje się agresywnie lub zakłóca porządek publiczny,</li>
+      <li>nie przestrzega postanowień niniejszego Regulaminu.</li>
+    </ul>
+
+    <h2>§4. Wykorzystanie wizerunku</h2>
+    <p>Uczestnik bierze udział w&nbsp;Wydarzeniu mając świadomość, że przebieg imprezy jest rejestrowany (foto/video).</p>
+    <p>Poprzez wstęp na teren wydarzenia, Uczestnik dobrowolnie wyraża zgodę na nieodpłatne utrwalanie, wykorzystywanie i&nbsp;publikowanie jego wizerunku przez Organizatora oraz Sponsora Tytularnego (OSHEE) w&nbsp;celach dokumentacyjnych, sprawozdawczych oraz promocyjnych związanych z&nbsp;Wydarzeniem.</p>
+
+    <h2>§5. Odpowiedzialność</h2>
+    <p>Organizator nie ponosi odpowiedzialności za mienie Uczestników pozostawione, zagubione lub skradzione na terenie wydarzenia (poza przedmiotami oddanymi do płatnego depozytu, o&nbsp;ile zostanie on zorganizowany).</p>
+    <p>Uczestnicy ponoszą pełną odpowiedzialność materialną za wszelkie zniszczenia i&nbsp;szkody wyrządzone na terenie obiektu lub w&nbsp;mieniu Organizatora.</p>
+    <p>Wydarzenie odbywa się przy nagłośnieniu o&nbsp;wysokim natężeniu dźwięku oraz z&nbsp;wykorzystaniem świateł efektowych (stroboskopowych), co może być uciążliwe dla osób wrażliwych lub cierpiących na określone schorzenia.</p>
+
+    <h2>§6. Reklamacje i&nbsp;postanowienia końcowe</h2>
+    <p>Wszelkie reklamacje dotyczące organizacji Wydarzenia można składać drogą elektroniczną na adres: kontakt@allstarfestival.pl w&nbsp;terminie 14 dni od zakończenia imprezy.</p>
+    <p>Organizator zastrzega sobie prawo do zmiany harmonogramu (programu) Wydarzenia z&nbsp;przyczyn niezależnych (np. odwołanie występu przez artystę, warunki atmosferyczne).</p>
+    <p>W sprawach nieuregulowanych Regulaminem stosuje się przepisy Kodeksu Cywilnego oraz Ustawy o&nbsp;bezpieczeństwie imprez masowych.</p>
+    <p>Regulamin wchodzi w&nbsp;życie z&nbsp;dniem publikacji.</p>
+    <p>Data aktualizacji: 02.04.2026 r.</p>
+
+    <a href="index.html" class="back-link">Powrót</a>
+  </main>
+
+  <div class="ticket-bar">
+    <span style="color:#141414;font-size:40px;text-transform:uppercase;line-height:1.09;white-space:nowrap;">Kup bilet i&nbsp;dołącz do</span>
+    <span style="color:#141414;font-size:64px;text-transform:uppercase;line-height:1.09;white-space:nowrap;">drużyny</span>
+    <a href="bilety.html" class="btn-outline" style="color:#141414;border-color:#141414;white-space:nowrap;margin-left:8px;"><span>kup bilet</span></a>
+  </div>
+
+  <script>
+    const menuBtn=document.getElementById('menuBtn'),menuPanel=document.getElementById('menuPanel'),menuOverlay=document.getElementById('menuOverlay');
+    function openMenu(){menuBtn.classList.add('open');menuPanel.classList.add('open');menuOverlay.classList.add('open');document.body.style.overflow='hidden';}
+    function closeMenu(){menuBtn.classList.remove('open');menuPanel.classList.remove('open');menuOverlay.classList.remove('open');document.body.style.overflow='';}
+    menuBtn.addEventListener('click',()=>menuPanel.classList.contains('open')?closeMenu():openMenu());
+    menuOverlay.addEventListener('click',closeMenu);
+  </script>
+</body>
+</html>

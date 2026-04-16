@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polityka Prywatności — OSHEE All Star Festival 2026</title>
+  <link rel="stylesheet" href="https://use.typekit.net/pik2asb.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face { font-family: 'KTFRublena'; src: url('brand_assets/KTFRublena-Black.woff') format('woff'); font-weight: 900; font-display: swap; }
+    .font-serif { font-family: "ivypresto-text", serif; font-weight: 300; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'KTFRublena', sans-serif; background: #101010; color: #eed410; min-width: 1440px; }
+    @media (max-width: 768px) { body { min-width: 0 !important; overflow-x: hidden; } }
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+    .ticket-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; z-index: 50; background: #eed410; display: flex; align-items: center; justify-content: center; gap: 24px; }
+    .menu-panel { position: fixed; top: 0; right: 0; width: 640px; max-width: 85vw; height: 100vh; background: #141414; z-index: 100; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; justify-content: center; padding: 80px; }
+    .menu-panel.open { transform: translateX(0); }
+    .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .menu-overlay.open { opacity: 1; pointer-events: auto; }
+    .btn-outline { border: 2px solid currentColor; padding: 20px 56px; text-transform: uppercase; font-size: 20px; letter-spacing: 0.02em; line-height: 1.09; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; background: transparent; color: inherit; font-family: 'KTFRublena', sans-serif; transition: background 0.3s ease; text-decoration: none; }
+    .btn-outline:hover { background: currentColor; }
+    .btn-outline:hover span { filter: invert(1); }
+    .social-icon { width: 70px; height: 70px; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease; cursor: pointer; text-decoration: none; }
+    .social-icon:hover { background: currentColor; }
+    .social-icon:hover img { filter: invert(1) !important; }
+    .hamburger { width: 70px; height: 70px; background: #141414; border: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; position: fixed; top: 33px; right: 80px; z-index: 110; transition: background 0.3s ease; }
+    .hamburger span { display: block; width: 32px; height: 2px; background: #eed410; transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease; }
+    .hamburger.open { background: #eed410; }
+    .hamburger.open span { background: #141414; }
+    .hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+    h1 { font-size: 48px; line-height: 0.9; text-transform: uppercase; margin-bottom: 48px; }
+    h2 { font-size: 28px; line-height: 1; text-transform: uppercase; margin: 48px 0 24px; }
+    p, li { font-family: "ivypresto-text", serif; font-weight: 300; font-size: 18px; line-height: 1.6; margin-bottom: 16px; }
+    ul { padding-left: 24px; margin-bottom: 16px; }
+    strong { font-family: 'KTFRublena', sans-serif; }
+    a.back-link { display: inline-block; margin-top: 48px; font-size: 20px; text-transform: uppercase; color: #eed410; text-decoration: none; border-bottom: 2px solid #eed410; padding-bottom: 4px; }
+    a.back-link:hover { opacity: 0.7; }
+    @media (max-width: 768px) {
+      .hamburger { width: 46px !important; height: 46px !important; top: 24px !important; right: 16px !important; gap: 4px !important; }
+      .hamburger span { width: 30px !important; height: 2px !important; }
+      .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg) !important; }
+      .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg) !important; }
+      .menu-panel { width: 100% !important; max-width: 100% !important; padding: 80px 24px !important; }
+      .menu-panel > div > div:nth-child(2) a { font-size: 32px !important; }
+      .ticket-bar { height: 80px !important; gap: 8px !important; padding: 13px 16px !important; }
+      .ticket-bar > span:nth-child(1) { font-size: 16px !important; line-height: 1 !important; white-space: normal !important; max-width: 140px !important; }
+      .ticket-bar > span:nth-child(2) { font-size: 32px !important; line-height: 1 !important; }
+      .ticket-bar a.btn-outline { padding: 12px 16px !important; font-size: 14px !important; }
+      main { padding: 100px 16px 120px !important; }
+      h1 { font-size: 32px !important; }
+      h2 { font-size: 22px !important; }
+      p, li { font-size: 16px !important; }
+    }
+  </style>
+</head>
+<body>
+  <button class="hamburger" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="menu-panel" id="menuPanel">
+    <div class="flex flex-col gap-20">
+      <img src="brand_assets/sponsor-oshee-icon.svg" alt="Oshee" class="w-[65px] h-[80px] object-contain" />
+      <div class="flex flex-col gap-4">
+        <a href="index.html#draft" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Lineup</a>
+        <a href="o-festivalu.html" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">O Festivalu</a>
+        <a href="bilety.html" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Bilety</a>
+        <a href="index.html#contact" class="text-[#eed410] text-[64px] uppercase leading-[0.8] hover:opacity-70 transition-opacity no-underline">Kontakt</a>
+      </div>
+      <div class="flex gap-4">
+        <a href="https://www.instagram.com/oshee.allstarfestival?igsh=MWZpNGVheHZ4ZXRsZw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="social-icon text-[#eed410]"><img src="brand_assets/social-ig.svg" alt="Instagram" style="width:24px;height:24px;filter:invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="https://www.tiktok.com/@oshee.allstarfestival" target="_blank" rel="noopener" class="social-icon text-[#eed410]"><img src="brand_assets/social-tiktok.svg" alt="TikTok" style="width:21px;height:24px;filter:invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+        <a href="https://www.facebook.com/people/OSHEE-ALL-STAR-Festival/61576516577359/" target="_blank" rel="noopener" class="social-icon text-[#eed410]"><img src="brand_assets/social-fb.svg" alt="Facebook" style="width:24px;height:24px;filter:invert(85%) sepia(95%) saturate(445%) hue-rotate(1deg);" /></a>
+      </div>
+    </div>
+  </nav>
+
+  <main style="max-width: 900px; margin: 0 auto; padding: 140px 48px 180px;">
+    <h1>Zasady ochrony prywatności i&nbsp;plików cookies</h1>
+    <p>Wydarzenie: OSHEE ALL STAR FESTIVAL</p>
+    <p>Niniejszy dokument opisuje procedury gromadzenia, przetwarzania oraz zabezpieczania danych osobowych użytkowników serwisu oraz osób uczestniczących w&nbsp;OSHEE ALL STAR FESTIVAL, który odbędzie się w&nbsp;dniach 27-28 czerwca 2026 roku na terenie Stadionu Legii Warszawa.</p>
+
+    <h2>§1. Kto jest administratorem danych?</h2>
+    <p>Podmiotem decydującym o&nbsp;celach i&nbsp;metodach przetwarzania Twoich danych osobowych jest WWWave Spółka z&nbsp;ograniczoną odpowiedzialnością z&nbsp;siedzibą w&nbsp;Warszawie (00-449), przy ul. Łazienkowskiej 3. Spółka jest zarejestrowana w&nbsp;rejestrze przedsiębiorców KRS pod numerem 0000996537 (Sąd Rejonowy dla m.st. Warszawy, XII Wydział Gospodarczy), NIP: 7011109655, REGON: 523366101 (zwana dalej: „Administratorem").</p>
+    <p>W sprawach związanych z&nbsp;ochroną prywatności prosimy o&nbsp;kontakt pod adresem: kontakt@allstarfestival.pl.</p>
+
+    <h2>§2. Dlaczego i&nbsp;na jakiej podstawie przetwarzamy dane?</h2>
+    <p>Przetwarzanie odbywa się zgodnie z&nbsp;wymogami RODO w&nbsp;następujących obszarach:</p>
+    <ul>
+      <li><strong>Obsługa i&nbsp;finalizacja uczestnictwa</strong> (art. 6 ust. 1 lit. b RODO): Niezbędne do realizacji umowy, w&nbsp;tym sprzedaży biletów, weryfikacji uprawnień do wejścia oraz sprawnego przeprowadzenia festiwalu na Stadionie Legii.</li>
+      <li><strong>Komunikacja z&nbsp;użytkownikami</strong> (art. 6 ust. 1 lit. f RODO): Realizacja naszego prawnie uzasadnionego interesu poprzez odpowiadanie na e-maile i&nbsp;zapytania dotyczące wydarzenia.</li>
+      <li><strong>Działania informacyjne i&nbsp;Newsletter</strong> (art. 6 ust. 1 lit. a RODO): Wysyłka powiadomień o&nbsp;artystach, harmonogramie i&nbsp;akcjach promocyjnych marki OSHEE ALL STAR FESTIVAL – wyłącznie po uzyskaniu Twojej wyraźnej zgody.</li>
+      <li><strong>Ochrona osób i&nbsp;mienia oraz promocja</strong> (art. 6 ust. 1 lit. f RODO): Wykorzystanie monitoringu wizyjnego oraz dokumentacji fotograficznej/wideo z&nbsp;imprezy w&nbsp;celu zapewnienia bezpieczeństwa oraz relacjonowania przebiegu festiwalu.</li>
+      <li><strong>Obowiązki ustawowe</strong> (art. 6 ust. 1 lit. c RODO): Spełnienie wymogów wynikających z&nbsp;przepisów skarbowych, księgowych oraz ustawy o&nbsp;bezpieczeństwie imprez masowych.</li>
+    </ul>
+
+    <h2>§3. Czas retencji (przechowywania) danych</h2>
+    <ul>
+      <li><strong>Dane o&nbsp;charakterze finansowo-księgowym:</strong> Będą archiwizowane przez 5 lat, licząc od końca roku, w&nbsp;którym odbył się OSHEE ALL STAR FESTIVAL (zgodnie z&nbsp;ordynacją podatkową).</li>
+      <li><strong>Dane do celów marketingowych:</strong> Przechowujemy do momentu wycofania przez Ciebie zgody (wypisania się z&nbsp;listy subskrybentów).</li>
+      <li><strong>Dane z&nbsp;formularzy kontaktowych:</strong> Będą przetwarzane przez czas trwania dialogu, a&nbsp;następnie archiwizowane przez okres do 24 miesięcy.</li>
+    </ul>
+
+    <h2>§4. Kategorie odbiorców danych</h2>
+    <p>W celu sprawnej organizacji festiwalu, Administrator może powierzyć Twoje dane:</p>
+    <ul>
+      <li>Dostawcom systemów do sprzedaży biletów i&nbsp;operatorom płatności online.</li>
+      <li>Zarządcy Stadionu Legii Warszawa w&nbsp;zakresie obsługi logistycznej.</li>
+      <li>Firmom ochroniarskim, zabezpieczeniu medycznemu oraz służbom porządkowym.</li>
+      <li>Partnerom dostarczającym rozwiązania IT (hosting, narzędzia do masowej wysyłki maili).</li>
+      <li>Głównemu sponsorowi (OSHEE) – tylko w&nbsp;przypadku wyrażenia oddzielnej zgody na cele marketingowe.</li>
+    </ul>
+
+    <h2>§5. Uprawnienia osób, których dane dotyczą</h2>
+    <p>Zgodnie z&nbsp;przepisami, każdemu użytkownikowi przysługuje prawo do:</p>
+    <ul>
+      <li>Wglądu w&nbsp;swoje dane oraz ich aktualizacji.</li>
+      <li>Wnioskowania o&nbsp;usunięcie danych („prawo do zapomnienia") lub ograniczenie ich obróbki.</li>
+      <li>Złożenia sprzeciwu wobec przetwarzania opartego na uzasadnionym interesie Administratora.</li>
+      <li>Przeniesienia danych do innego podmiotu.</li>
+      <li>Cofnięcia zgody na marketing w&nbsp;dowolnej chwili.</li>
+      <li>Złożenia oficjalnej skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
+    </ul>
+
+    <h2>§6. Technologia cookies i&nbsp;monitorowanie ruchu</h2>
+    <ul>
+      <li>Nasza witryna wykorzystuje pliki cookies do celów statystycznych, funkcjonalnych oraz poprawy komfortu nawigacji.</li>
+      <li>Stosujemy narzędzia analityczne i&nbsp;reklamowe (np. od Google i&nbsp;Meta), które pomagają nam optymalizować komunikację i&nbsp;dopasowywać treści promocyjne do Twoich preferencji.</li>
+      <li>Użytkownik ma pełną kontrolę nad plikami cookies poprzez ustawienia swojej przeglądarki (możliwość blokowania i&nbsp;usuwania).</li>
+    </ul>
+
+    <h2>§7. Uwagi końcowe</h2>
+    <p>Podanie danych osobowych jest dobrowolne, jednak ich brak może skutkować niemożnością zakupu wejściówki lub uczestnictwa w&nbsp;wydarzeniu.</p>
+    <p>Administrator zastrzega sobie prawo do modyfikacji niniejszej Polityki. Nowa treść będzie każdorazowo publikowana w&nbsp;tym miejscu.</p>
+    <p>Aktualizacja dokumentu: 02.04.2026 r.</p>
+
+    <a href="index.html" class="back-link">Powrót</a>
+  </main>
+
+  <div class="ticket-bar">
+    <span style="color:#141414;font-size:40px;text-transform:uppercase;line-height:1.09;white-space:nowrap;">Kup bilet i&nbsp;dołącz do</span>
+    <span style="color:#141414;font-size:64px;text-transform:uppercase;line-height:1.09;white-space:nowrap;">drużyny</span>
+    <a href="bilety.html" class="btn-outline" style="color:#141414;border-color:#141414;white-space:nowrap;margin-left:8px;"><span>kup bilet</span></a>
+  </div>
+
+  <script>
+    const menuBtn=document.getElementById('menuBtn'),menuPanel=document.getElementById('menuPanel'),menuOverlay=document.getElementById('menuOverlay');
+    function openMenu(){menuBtn.classList.add('open');menuPanel.classList.add('open');menuOverlay.classList.add('open');document.body.style.overflow='hidden';}
+    function closeMenu(){menuBtn.classList.remove('open');menuPanel.classList.remove('open');menuOverlay.classList.remove('open');document.body.style.overflow='';}
+    menuBtn.addEventListener('click',()=>menuPanel.classList.contains('open')?closeMenu():openMenu());
+    menuOverlay.addEventListener('click',closeMenu);
+  </script>
+</body>
+</html>
