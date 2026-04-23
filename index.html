@@ -488,9 +488,11 @@
         opacity: 0.9 !important;
       }
       .draft-name.active {
-        font-size: 56px !important; line-height: 1.04 !important;
+        font-size: 48px !important; line-height: 1.04 !important;
         color: #fff !important; -webkit-text-stroke: 0 !important;
         opacity: 1 !important;
+        max-width: 100vw !important;
+        padding: 0 12px !important;
       }
       .draft-name-tba { display: flex !important; align-items: center !important; gap: 10px !important; }
       .draft-name-tba .tba-label {
@@ -1128,21 +1130,9 @@
       setDraftSlide(idx);
     }
     window.addEventListener('scroll', updateDraft, { passive: true });
+    window.addEventListener('resize', () => { cachedStickyOffsetTop = null; updateDraft(); });
+    window.addEventListener('load', () => { cachedStickyOffsetTop = null; updateDraft(); });
     updateDraft();
-
-    updateDraft();
-
-    // Click on dots to jump to slide
-    Array.from(draftDots).forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        const rect = draftSection.getBoundingClientRect();
-        const sectionTopAbs = window.scrollY + rect.top;
-        const scrollRange = rect.height - window.innerHeight;
-        const slideProgress = i / (totalSlides - 1);
-        window.scrollTo({ top: sectionTopAbs + slideProgress * scrollRange * 0.9, behavior: 'smooth' });
-      });
-    });
-
   </script>
 </body>
 </html>
