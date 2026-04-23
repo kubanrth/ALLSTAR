@@ -338,6 +338,13 @@
     .qa-tier--soldout { opacity: 0.42; }
     .qa-tier--soldout .qa-tier-status { background: #141414; color: #eed410; border-color: #141414; }
     .qa-tier--available .qa-tier-status { background: #141414; color: #eed410; }
+    a.qa-tier-status {
+      text-decoration: none; display: inline-block;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    a.qa-tier-status:hover { background: #eed410; color: #141414; border-color: #141414; transform: translateY(-1px); }
+    a.qa-tier-status:focus-visible { outline: 2px solid #141414; outline-offset: 3px; }
+    a.qa-tier-status:active { transform: translateY(0) scale(0.97); }
     .qa-tier--upcoming .qa-tier-status {
       text-transform: none; font-family: 'Forum', serif; font-size: 13px; letter-spacing: 0;
       border-color: rgba(20,20,20,0.35); color: rgba(20,20,20,0.7);
@@ -1037,7 +1044,7 @@
                     <div class="qa-tier qa-tier--available">
                       <span class="qa-tier-star">★</span>
                       <span class="qa-tier-name">Fan Pass<span class="qa-tier-price">349&nbsp;PLN</span></span>
-                      <span class="qa-tier-status">Dostępne</span>
+                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
                     </div>
                     <div class="qa-tier qa-tier--upcoming">
                       <span class="qa-tier-star">★</span>
@@ -1059,7 +1066,7 @@
                     <div class="qa-tier qa-tier--available">
                       <span class="qa-tier-star">★</span>
                       <span class="qa-tier-name">VIP Access (Drop 1)<span class="qa-tier-price">799&nbsp;PLN</span></span>
-                      <span class="qa-tier-status">Dostępne</span>
+                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
                     </div>
                     <div class="qa-tier qa-tier--upcoming">
                       <span class="qa-tier-star">★</span>
