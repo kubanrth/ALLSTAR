@@ -208,15 +208,167 @@
     /* Draft photo arcs (mobile-only) */
     .draft-photo-arc-left, .draft-photo-arc-right { display: none; }
 
-    /* ===== Q&A ===== */
-    .qa-item { cursor: pointer; }
-    .qa-answer {
-      height: 0; overflow: hidden;
-      transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    /* ===== FAQ (redesigned) ===== */
+    #qa { padding: 40px 0 160px; color: #141414; isolation: isolate; position: relative; }
+    .qa-container { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+
+    .qa-header { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 56px; }
+    .qa-kicker {
+      font-family: 'Forum', serif; font-size: 20px; line-height: 1;
+      text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.65;
+      margin-bottom: 16px;
     }
-    .qa-item.open .qa-answer { height: auto; }
-    .qa-toggle { transition: transform 0.3s ease; }
-    .qa-item.open .qa-toggle { transform: rotate(45deg); }
+    .qa-title {
+      font-family: 'KTFRublena', sans-serif; font-size: 120px; line-height: 0.85;
+      text-transform: uppercase; letter-spacing: -0.01em;
+    }
+    .qa-header-rule { width: 100%; height: 2px; background: #141414; margin-top: 24px; }
+
+    .qa-list { display: flex; flex-direction: column; }
+    .qa-item {
+      cursor: pointer; position: relative; overflow: hidden;
+      border-bottom: 2px solid #141414;
+      transition: background 0.3s ease;
+    }
+    .qa-item::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 4px; background: #141414;
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .qa-item.open::before { transform: scaleY(1); }
+
+    .qa-row {
+      display: grid; grid-template-columns: 120px 1fr auto;
+      gap: 40px; align-items: center;
+      padding: 36px 24px 36px 32px;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), padding-left 0.45s ease;
+    }
+    .qa-item:hover .qa-row { transform: translateX(6px); }
+    .qa-item.open .qa-row { padding-left: 40px; }
+
+    .qa-num {
+      font-family: 'KTFRublena', sans-serif;
+      font-size: 72px; line-height: 0.9; letter-spacing: -0.03em;
+      color: transparent; -webkit-text-stroke: 2px #141414;
+      transition: color 0.4s ease, -webkit-text-stroke-width 0.4s ease, transform 0.4s ease;
+      user-select: none;
+    }
+    .qa-item:hover .qa-num { color: rgba(20,20,20,0.12); }
+    .qa-item.open .qa-num {
+      color: #141414; -webkit-text-stroke-width: 0;
+      transform: scale(1.04);
+    }
+
+    .qa-question {
+      font-family: 'KTFRublena', sans-serif;
+      font-size: 32px; line-height: 1.05;
+      text-transform: uppercase; letter-spacing: 0.01em;
+    }
+
+    .qa-toggle {
+      width: 56px; height: 56px;
+      border: 2px solid #141414; background: transparent;
+      cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; transition: background 0.3s ease;
+      font-family: 'KTFRublena', sans-serif;
+    }
+    .qa-toggle:hover { background: #141414; }
+    .qa-toggle-bar {
+      position: absolute; background: #141414;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    }
+    .qa-toggle-bar-h { width: 18px; height: 2px; }
+    .qa-toggle-bar-v { width: 2px; height: 18px; }
+    .qa-toggle:hover .qa-toggle-bar { background: #eed410; }
+    .qa-item.open .qa-toggle-bar-v { transform: rotate(90deg); }
+
+    .qa-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .qa-item.open .qa-answer { max-height: 3200px; transition: max-height 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+    .qa-answer-inner { padding: 0 32px 48px 192px; max-width: 980px; }
+
+    .qa-body {
+      font-family: 'Forum', serif;
+      font-size: 19px; line-height: 1.55; color: #141414;
+    }
+    .qa-body + .qa-body { margin-top: 14px; }
+    .qa-strong {
+      font-family: 'KTFRublena', sans-serif; font-style: normal;
+      font-weight: normal; text-transform: uppercase; letter-spacing: 0.02em;
+    }
+    .qa-link {
+      color: #141414; text-decoration: underline; text-underline-offset: 4px;
+      padding: 0 2px; transition: color 0.2s ease, background 0.2s ease;
+    }
+    .qa-link:hover { background: #141414; color: #eed410; text-decoration: none; }
+
+    .qa-subhead {
+      font-family: 'KTFRublena', sans-serif;
+      font-size: 22px; line-height: 1; text-transform: uppercase;
+      letter-spacing: 0.03em; margin-top: 36px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .qa-subhead::before { content: ''; display: block; width: 36px; height: 2px; background: #141414; }
+    .qa-subhead + .qa-body { margin-top: 14px; }
+
+    .qa-tier-list { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
+    .qa-tier {
+      display: grid; grid-template-columns: 20px 1fr auto;
+      gap: 18px; align-items: center;
+      padding: 14px 20px;
+      border: 1px solid rgba(20,20,20,0.22);
+      background: rgba(20,20,20,0.02);
+      font-family: 'KTFRublena', sans-serif;
+      font-size: 16px; line-height: 1;
+      text-transform: uppercase; letter-spacing: 0.03em;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+    .qa-tier:hover { border-color: #141414; background: rgba(20,20,20,0.08); transform: translateX(3px); }
+    .qa-tier-star { font-size: 16px; line-height: 1; opacity: 0.7; }
+    .qa-tier-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .qa-tier-name .qa-tier-price { opacity: 0.72; margin-left: 10px; letter-spacing: 0.01em; }
+    .qa-tier-status {
+      font-size: 12px; line-height: 1; letter-spacing: 0.06em;
+      padding: 6px 12px; border: 1px solid #141414; white-space: nowrap;
+    }
+    .qa-tier--soldout { opacity: 0.42; }
+    .qa-tier--soldout .qa-tier-status { background: #141414; color: #eed410; border-color: #141414; }
+    .qa-tier--available .qa-tier-status { background: #141414; color: #eed410; }
+    .qa-tier--upcoming .qa-tier-status {
+      text-transform: none; font-family: 'Forum', serif; font-size: 13px; letter-spacing: 0;
+      border-color: rgba(20,20,20,0.35); color: rgba(20,20,20,0.7);
+    }
+
+    .qa-agebox { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+    .qa-agebox-row {
+      display: grid; grid-template-columns: 160px 1fr; gap: 20px;
+      padding: 14px 20px; border-left: 3px solid #141414;
+      font-family: 'Forum', serif; font-size: 18px; line-height: 1.45;
+    }
+    .qa-agebox-row strong {
+      font-family: 'KTFRublena', sans-serif; font-weight: normal;
+      text-transform: uppercase; letter-spacing: 0.02em; font-size: 16px;
+      align-self: center;
+    }
+
+    .qa-note {
+      margin-top: 32px; padding: 18px 24px;
+      background: #141414; color: #eed410;
+      font-family: 'Forum', serif; font-size: 15px; line-height: 1.5;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .qa-note-label {
+      font-family: 'KTFRublena', sans-serif; text-transform: uppercase;
+      letter-spacing: 0.08em; font-size: 13px; line-height: 1;
+      padding: 4px 8px; background: #eed410; color: #141414;
+      align-self: center; white-space: nowrap;
+    }
+
+    /* ===== /FAQ ===== */
 
     /* ===== SHARED ===== */
     .sep-line { width: 100%; height: 2px; background: #141414; }
@@ -511,61 +663,53 @@
         background: #fff !important; border: none !important;
       }
 
-      /* =========================================================
-         Q&A — Figma y=2131, w=358, header 40px DARK, items 20px DARK
-         Questions: numbered list "1." prefix, text 20px, + icon 46x46
-         ========================================================= */
-      #qa { padding: 40px 16px 0 !important; }
-      #qa > div { padding: 0 !important; max-width: 358px !important; margin: 0 auto !important; }
-      #qa > div > div:first-child { margin-bottom: 24px !important; }
-      #qa > div > div:first-child p[style*="font-size: 40px"] {
-        font-size: 40px !important; line-height: 0.96 !important; color: #141414 !important;
+      /* ===== FAQ — mobile ===== */
+      #qa { padding: 60px 16px 40px !important; }
+      .qa-container { padding: 0 !important; max-width: 358px !important; margin: 0 auto !important; }
+      .qa-kicker { font-size: 13px !important; margin-bottom: 10px !important; }
+      .qa-title { font-size: 64px !important; line-height: 0.85 !important; }
+      .qa-header { margin-bottom: 28px !important; }
+      .qa-header-rule { margin-top: 16px !important; }
+
+      .qa-item::before { width: 3px !important; }
+      .qa-item:hover .qa-row { transform: none !important; }
+      .qa-item.open .qa-row { padding-left: 18px !important; }
+      .qa-row {
+        grid-template-columns: 44px 1fr auto !important;
+        gap: 14px !important;
+        padding: 22px 10px 22px 14px !important;
       }
-      #qa > div > div:first-child .sep-line { margin-top: 8px !important; }
-      #qa .qa-item { border-bottom: 2px solid #141414 !important; }
-      #qa .qa-item > div:first-of-type {
-        display: flex !important;
-        gap: 16px !important;
-        padding: 24px 0 !important;
-        align-items: flex-start !important;
+      .qa-num {
+        font-size: 32px !important;
+        -webkit-text-stroke-width: 1.5px !important;
       }
-      #qa .qa-item > div:first-of-type > div {
-        flex: 1 !important;
-        display: flex !important;
-        gap: 6px !important;
-        align-items: flex-start !important;
+      .qa-item.open .qa-num { transform: none !important; -webkit-text-stroke-width: 0 !important; }
+      .qa-question { font-size: 17px !important; line-height: 1.1 !important; }
+      .qa-toggle { width: 40px !important; height: 40px !important; }
+      .qa-toggle-bar-h { width: 14px !important; }
+      .qa-toggle-bar-v { height: 14px !important; }
+
+      .qa-answer-inner { padding: 0 14px 32px 74px !important; }
+      .qa-body { font-size: 15px !important; line-height: 1.5 !important; }
+      .qa-subhead { font-size: 17px !important; margin-top: 26px !important; }
+      .qa-subhead::before { width: 24px !important; }
+
+      .qa-tier {
+        grid-template-columns: 16px 1fr auto !important;
+        gap: 10px !important; padding: 11px 12px !important;
+        font-size: 12px !important; letter-spacing: 0.02em !important;
       }
-      #qa .qa-item span[style*="width: 60px"] {
-        width: auto !important; min-width: 18px !important;
-        font-size: 20px !important; line-height: 0.96 !important;
-        color: #141414 !important;
+      .qa-tier-name .qa-tier-price { display: block; margin-left: 0 !important; margin-top: 3px; font-size: 11px; }
+      .qa-tier-status { font-size: 10px !important; padding: 4px 8px !important; }
+
+      .qa-agebox-row {
+        grid-template-columns: 1fr !important; gap: 4px !important;
+        padding: 12px 14px !important; font-size: 15px !important;
       }
-      #qa .qa-item p[style*="font-size: 40px"] {
-        font-size: 20px !important; line-height: 0.96 !important;
-        color: #141414 !important;
-      }
-      #qa .qa-item .qa-toggle {
-        width: 46px !important; height: 46px !important;
-        min-width: 46px !important; font-size: 36px !important;
-        border: none !important; background: transparent !important;
-        color: #141414 !important;
-      }
-      /* Hide internal sep-line since border-bottom handles it */
-      #qa .qa-item .sep-line { display: none !important; }
-      #qa .qa-answer > div {
-        display: block !important;
-        padding: 0 0 20px 30px !important;
-      }
-      #qa .qa-answer > div > div[style*="width: 592px"][style*="shrink: 0"] {
-        display: none !important;
-      }
-      #qa .qa-answer p,
-      #qa .qa-answer > div > div {
-        width: 100% !important;
-        font-size: 16px !important; line-height: 1.2 !important;
-        color: #141414 !important;
-      }
-      #qa .qa-answer ul li { font-size: 14px !important; color: #141414 !important; }
+      .qa-agebox-row strong { font-size: 14px !important; }
+
+      .qa-note { padding: 14px 16px !important; font-size: 13px !important; gap: 10px !important; flex-direction: column; align-items: flex-start; }
+      .qa-note-label { font-size: 11px !important; }
 
       /* =========================================================
          PARTNERS — w=358 left-aligned, label 20px, line, logos row
@@ -795,185 +939,222 @@
       </section>
 
       <!-- ===== FAQ ===== -->
-      <section style="padding: 0 0 160px; color: #141414; isolation: isolate;" id="qa">
-        <div style="max-width: 1516px; margin: 0 auto; padding: 0 48px;">
-          <!-- Header -->
-          <div style="margin-bottom: 48px;">
-            <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">FAQ</p>
-            <div class="sep-line" style="margin-top: 16px;"></div>
+      <section id="qa">
+        <div class="qa-container">
+          <div class="qa-header">
+            <p class="qa-kicker">Najczęściej zadawane pytania</p>
+            <h2 class="qa-title">FAQ</h2>
+            <div class="qa-header-rule"></div>
           </div>
 
-          <!-- Q1 -->
-          <div class="qa-item" onclick="toggleQA(this)">
-            <div style="display: flex; gap: 24px; padding: 32px 0; align-items: center;">
-              <div style="display: flex; gap: 24px; align-items: center; flex: 1;">
-                <span style="width: 60px; font-size: 40px; line-height: 0.96; flex-shrink: 0;">1.</span>
-                <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Kiedy i&nbsp;gdzie odbywa się festiwal?</p>
+          <div class="qa-list">
+
+            <!-- 01 -->
+            <div class="qa-item" onclick="toggleQA(this)">
+              <div class="qa-row">
+                <span class="qa-num" aria-hidden="true">01</span>
+                <p class="qa-question">Kiedy i&nbsp;gdzie odbywa się festiwal?</p>
+                <button class="qa-toggle" aria-label="Rozwiń">
+                  <span class="qa-toggle-bar qa-toggle-bar-h"></span>
+                  <span class="qa-toggle-bar qa-toggle-bar-v"></span>
+                </button>
               </div>
-              <button class="qa-toggle" style="width: 60px; height: 60px; font-size: 56px; border: none; background: transparent; color: #141414; cursor: pointer; line-height: 0.6; flex-shrink: 0; font-family: 'KTFRublena', sans-serif;" aria-label="Rozwiń">+</button>
-            </div>
-            <div class="sep-line"></div>
-            <div class="qa-answer">
-              <div style="display: flex; gap: 24px; padding: 24px 0 32px;">
-                <div style="width: 592px; flex-shrink: 0;"></div>
-                <div style="flex: 1;">
-                  <p class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414;">
-                    Festiwal odbędzie się w&nbsp;dniach 27-28.06.2026 na&nbsp;Stadionie Legii Warszawa (ul.&nbsp;Łazienkowska&nbsp;3).<br><br>
-                    Scena zostanie umiejscowiona na&nbsp;głównej płycie boiska, a&nbsp;miasteczko festiwalowe z&nbsp;licznymi atrakcjami dla uczestników powstanie na&nbsp;terenach przyległych do&nbsp;stadionu — tzw.&nbsp;Legia Park.<br><br>
+              <div class="qa-answer">
+                <div class="qa-answer-inner">
+                  <p class="qa-body">
+                    Festiwal odbędzie się w&nbsp;dniach <span class="qa-strong">27—28.06.2026</span> na&nbsp;Stadionie Legii Warszawa <span style="opacity:0.7">(ul. Łazienkowska&nbsp;3)</span>.
+                  </p>
+                  <p class="qa-body">
+                    Scena zostanie umiejscowiona na&nbsp;głównej płycie boiska, a&nbsp;miasteczko festiwalowe z&nbsp;licznymi atrakcjami dla uczestników powstanie na&nbsp;terenach przyległych do&nbsp;stadionu — tzw.&nbsp;<span class="qa-strong">Legia Park</span>.
+                  </p>
+                  <p class="qa-body" style="opacity:0.72">
                     Dokładną mapę terenu imprezy opublikujemy przed festiwalem.
                   </p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Q2 -->
-          <div class="qa-item" onclick="toggleQA(this)">
-            <div style="display: flex; gap: 24px; padding: 32px 0; align-items: center;">
-              <div style="display: flex; gap: 24px; align-items: center; flex: 1;">
-                <span style="width: 60px; font-size: 40px; line-height: 0.96; flex-shrink: 0;">2.</span>
-                <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Czy istnieją ograniczenia wiekowe?</p>
+            <!-- 02 -->
+            <div class="qa-item" onclick="toggleQA(this)">
+              <div class="qa-row">
+                <span class="qa-num" aria-hidden="true">02</span>
+                <p class="qa-question">Czy istnieją ograniczenia wiekowe?</p>
+                <button class="qa-toggle" aria-label="Rozwiń">
+                  <span class="qa-toggle-bar qa-toggle-bar-h"></span>
+                  <span class="qa-toggle-bar qa-toggle-bar-v"></span>
+                </button>
               </div>
-              <button class="qa-toggle" style="width: 60px; height: 60px; font-size: 56px; border: none; background: transparent; color: #141414; cursor: pointer; line-height: 0.6; flex-shrink: 0; font-family: 'KTFRublena', sans-serif;" aria-label="Rozwiń">+</button>
-            </div>
-            <div class="sep-line"></div>
-            <div class="qa-answer">
-              <div style="display: flex; gap: 24px; padding: 24px 0 32px;">
-                <div style="width: 592px; flex-shrink: 0;"></div>
-                <div style="flex: 1;">
-                  <p class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414;">
-                    Wstęp na&nbsp;festiwal nie&nbsp;ma ograniczeń wiekowych. W&nbsp;festiwalu mogą uczestniczyć także osoby niepełnoletnie, z&nbsp;zachowaniem zasad:
+              <div class="qa-answer">
+                <div class="qa-answer-inner">
+                  <p class="qa-body">
+                    Wstęp na&nbsp;festiwal <span class="qa-strong">nie&nbsp;ma ograniczeń wiekowych</span>. W&nbsp;festiwalu mogą uczestniczyć także osoby niepełnoletnie, z&nbsp;zachowaniem zasad:
                   </p>
-                  <ul class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414; margin-top: 16px; padding-left: 24px; list-style: disc;">
-                    <li style="margin-bottom: 8px;"><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">16-18&nbsp;lat:</span> udział za&nbsp;pisemną zgodą rodzica/opiekuna prawnego.</li>
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">Poniżej 16&nbsp;lat:</span> wejście wyłącznie z&nbsp;dorosłym opiekunem, który również musi posiadać bilet.</li>
-                  </ul>
+                  <div class="qa-agebox">
+                    <div class="qa-agebox-row">
+                      <strong>16-18 lat</strong>
+                      <span>udział za&nbsp;pisemną zgodą rodzica lub&nbsp;opiekuna prawnego.</span>
+                    </div>
+                    <div class="qa-agebox-row">
+                      <strong>Poniżej 16 lat</strong>
+                      <span>wejście wyłącznie z&nbsp;dorosłym opiekunem, który również musi posiadać bilet.</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Q3 -->
-          <div class="qa-item" onclick="toggleQA(this)">
-            <div style="display: flex; gap: 24px; padding: 32px 0; align-items: center;">
-              <div style="display: flex; gap: 24px; align-items: center; flex: 1;">
-                <span style="width: 60px; font-size: 40px; line-height: 0.96; flex-shrink: 0;">3.</span>
-                <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Jakie są dostępne rodzaje biletów?</p>
+            <!-- 03 -->
+            <div class="qa-item" onclick="toggleQA(this)">
+              <div class="qa-row">
+                <span class="qa-num" aria-hidden="true">03</span>
+                <p class="qa-question">Jakie są dostępne rodzaje biletów?</p>
+                <button class="qa-toggle" aria-label="Rozwiń">
+                  <span class="qa-toggle-bar qa-toggle-bar-h"></span>
+                  <span class="qa-toggle-bar qa-toggle-bar-v"></span>
+                </button>
               </div>
-              <button class="qa-toggle" style="width: 60px; height: 60px; font-size: 56px; border: none; background: transparent; color: #141414; cursor: pointer; line-height: 0.6; flex-shrink: 0; font-family: 'KTFRublena', sans-serif;" aria-label="Rozwiń">+</button>
-            </div>
-            <div class="sep-line"></div>
-            <div class="qa-answer">
-              <div style="display: flex; gap: 24px; padding: 24px 0 32px;">
-                <div style="width: 592px; flex-shrink: 0;"></div>
-                <div style="flex: 1;">
-                  <p class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414;">
-                    Dostępne są karnety dwudniowe z&nbsp;puli <span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">Standard</span> oraz <span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">VIP</span>. Ceny karnetów rosną wraz z&nbsp;wyprzedaniem się kolejnych pul.<br><br>
-                    Szczegółowa rozpiska pul dostępna jest <a href="bilety.html" style="color: #141414; text-decoration: underline; text-underline-offset: 3px;">TUTAJ</a>.
+              <div class="qa-answer">
+                <div class="qa-answer-inner">
+                  <p class="qa-body">
+                    Dostępne są karnety dwudniowe z&nbsp;puli <span class="qa-strong">Standard</span> oraz <span class="qa-strong">VIP</span>. Ceny karnetów rosną wraz z&nbsp;wyprzedaniem się kolejnych pul. Szczegółowa rozpiska dostępna jest <a href="bilety.html" class="qa-link">tutaj</a>.
                   </p>
 
-                  <p style="font-family: 'KTFRublena', sans-serif; font-size: 24px; text-transform: uppercase; line-height: 0.96; margin-top: 32px; color: #141414;">Pule Standard</p>
-                  <div class="sep-line" style="margin-top: 12px; margin-bottom: 16px; width: 100%; max-width: 780px;"></div>
-                  <p class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414;">
+                  <div class="qa-subhead">Pule Standard</div>
+                  <p class="qa-body">
                     Bilet upoważnia do&nbsp;przebywania na&nbsp;płycie głównej oraz dolnych partiach trybun i&nbsp;w&nbsp;specjalnie wyznaczonych strefach.
                   </p>
-                  <ul class="font-serif" style="font-size: 20px; line-height: 1.5; max-width: 780px; color: #141414; margin-top: 16px; padding-left: 24px; list-style: disc;">
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">Pre-Sale Starter Pass 199&nbsp;PLN</span> — <span style="opacity: 0.55;">SOLD OUT</span></li>
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">Member Pass 249&nbsp;PLN</span> — <span style="opacity: 0.55;">SOLD OUT</span></li>
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">Fan Pass 349&nbsp;PLN</span> — <span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">dostępne</span></li>
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">All Star Pass 399&nbsp;PLN</span> — dostępne po&nbsp;wyprzedaniu poprzedniej puli</li>
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">Buzzer Pass — Final Call 449&nbsp;PLN</span> — dostępne po&nbsp;wyprzedaniu poprzedniej puli</li>
-                  </ul>
+                  <div class="qa-tier-list">
+                    <div class="qa-tier qa-tier--soldout">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">Pre-Sale Starter Pass<span class="qa-tier-price">199&nbsp;PLN</span></span>
+                      <span class="qa-tier-status">Sold out</span>
+                    </div>
+                    <div class="qa-tier qa-tier--soldout">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">Member Pass<span class="qa-tier-price">249&nbsp;PLN</span></span>
+                      <span class="qa-tier-status">Sold out</span>
+                    </div>
+                    <div class="qa-tier qa-tier--available">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">Fan Pass<span class="qa-tier-price">349&nbsp;PLN</span></span>
+                      <span class="qa-tier-status">Dostępne</span>
+                    </div>
+                    <div class="qa-tier qa-tier--upcoming">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">All Star Pass<span class="qa-tier-price">399&nbsp;PLN</span></span>
+                      <span class="qa-tier-status">po wyprzedaniu poprzedniej puli</span>
+                    </div>
+                    <div class="qa-tier qa-tier--upcoming">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">Buzzer Pass — Final Call<span class="qa-tier-price">449&nbsp;PLN</span></span>
+                      <span class="qa-tier-status">po wyprzedaniu poprzedniej puli</span>
+                    </div>
+                  </div>
 
-                  <p style="font-family: 'KTFRublena', sans-serif; font-size: 24px; text-transform: uppercase; line-height: 0.96; margin-top: 32px; color: #141414;">Pule VIP</p>
-                  <div class="sep-line" style="margin-top: 12px; margin-bottom: 16px; width: 100%; max-width: 780px;"></div>
-                  <p class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414;">
+                  <div class="qa-subhead">Pule VIP</div>
+                  <p class="qa-body">
                     Dostęp do&nbsp;strefy VIP z&nbsp;dobrym widokiem na&nbsp;scenę, dedykowana trybuna VIP, możliwość zejścia na&nbsp;płytę główną. Oddzielne wejście bez kolejki, dedykowana strefa barowa, osobne toalety premium.
                   </p>
-                  <ul class="font-serif" style="font-size: 20px; line-height: 1.5; max-width: 780px; color: #141414; margin-top: 16px; padding-left: 24px; list-style: disc;">
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">VIP Access (Drop 1) 799&nbsp;PLN</span></li>
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">VIP Access (Drop 2) 999&nbsp;PLN</span></li>
-                    <li><span style="font-family: 'KTFRublena', sans-serif; text-transform: uppercase;">VIP Access — Final Call 1299&nbsp;PLN</span></li>
-                  </ul>
+                  <div class="qa-tier-list">
+                    <div class="qa-tier qa-tier--available">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">VIP Access (Drop 1)<span class="qa-tier-price">799&nbsp;PLN</span></span>
+                      <span class="qa-tier-status">Dostępne</span>
+                    </div>
+                    <div class="qa-tier qa-tier--upcoming">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">VIP Access (Drop 2)<span class="qa-tier-price">999&nbsp;PLN</span></span>
+                      <span class="qa-tier-status">po wyprzedaniu poprzedniej puli</span>
+                    </div>
+                    <div class="qa-tier qa-tier--upcoming">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">VIP Access — Final Call<span class="qa-tier-price">1299&nbsp;PLN</span></span>
+                      <span class="qa-tier-status">po wyprzedaniu poprzedniej puli</span>
+                    </div>
+                  </div>
 
-                  <p class="font-serif" style="font-size: 18px; line-height: 1.45; max-width: 780px; color: #141414; margin-top: 24px; font-style: italic; opacity: 0.85;">
-                    Uwaga: w&nbsp;przypadku przepełnienia płyty głównej organizator zastrzega sobie prawo tymczasowego zamknięcia wejścia na&nbsp;płytę główną do&nbsp;odwołania.
-                  </p>
+                  <div class="qa-note">
+                    <span class="qa-note-label">Uwaga</span>
+                    <span>W&nbsp;przypadku przepełnienia płyty głównej organizator zastrzega sobie prawo tymczasowego zamknięcia wejścia na&nbsp;płytę główną do&nbsp;odwołania.</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Q4 -->
-          <div class="qa-item" onclick="toggleQA(this)">
-            <div style="display: flex; gap: 24px; padding: 32px 0; align-items: center;">
-              <div style="display: flex; gap: 24px; align-items: center; flex: 1;">
-                <span style="width: 60px; font-size: 40px; line-height: 0.96; flex-shrink: 0;">4.</span>
-                <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Czy będą dostępne bilety jednodniowe?</p>
+            <!-- 04 -->
+            <div class="qa-item" onclick="toggleQA(this)">
+              <div class="qa-row">
+                <span class="qa-num" aria-hidden="true">04</span>
+                <p class="qa-question">Czy będą dostępne bilety jednodniowe?</p>
+                <button class="qa-toggle" aria-label="Rozwiń">
+                  <span class="qa-toggle-bar qa-toggle-bar-h"></span>
+                  <span class="qa-toggle-bar qa-toggle-bar-v"></span>
+                </button>
               </div>
-              <button class="qa-toggle" style="width: 60px; height: 60px; font-size: 56px; border: none; background: transparent; color: #141414; cursor: pointer; line-height: 0.6; flex-shrink: 0; font-family: 'KTFRublena', sans-serif;" aria-label="Rozwiń">+</button>
-            </div>
-            <div class="sep-line"></div>
-            <div class="qa-answer">
-              <div style="display: flex; gap: 24px; padding: 24px 0 32px;">
-                <div style="width: 592px; flex-shrink: 0;"></div>
-                <div style="flex: 1;">
-                  <p class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414;">
-                    W&nbsp;sprzedaży dostępne są karnety upoważniające do&nbsp;udziału w&nbsp;obu dniach festiwalu.<br><br>
-                    Nie&nbsp;przewidujemy sprzedaży biletów jednodniowych.<br><br>
+              <div class="qa-answer">
+                <div class="qa-answer-inner">
+                  <p class="qa-body">
+                    W&nbsp;sprzedaży dostępne są wyłącznie karnety upoważniające do&nbsp;udziału w&nbsp;<span class="qa-strong">obu dniach</span> festiwalu. Nie&nbsp;przewidujemy sprzedaży biletów jednodniowych.
+                  </p>
+                  <p class="qa-body" style="opacity:0.72">
                     Konkretne dni i&nbsp;godziny występów poszczególnych artystów ogłosimy po&nbsp;prezentacji całego lineup&rsquo;u.
                   </p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Q5 -->
-          <div class="qa-item" onclick="toggleQA(this)">
-            <div style="display: flex; gap: 24px; padding: 32px 0; align-items: center;">
-              <div style="display: flex; gap: 24px; align-items: center; flex: 1;">
-                <span style="width: 60px; font-size: 40px; line-height: 0.96; flex-shrink: 0;">5.</span>
-                <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Zakupiony bilet nie&nbsp;doszedł na&nbsp;maila — co&nbsp;mogę zrobić?</p>
+            <!-- 05 -->
+            <div class="qa-item" onclick="toggleQA(this)">
+              <div class="qa-row">
+                <span class="qa-num" aria-hidden="true">05</span>
+                <p class="qa-question">Zakupiony bilet nie&nbsp;doszedł na&nbsp;maila — co&nbsp;mogę zrobić?</p>
+                <button class="qa-toggle" aria-label="Rozwiń">
+                  <span class="qa-toggle-bar qa-toggle-bar-h"></span>
+                  <span class="qa-toggle-bar qa-toggle-bar-v"></span>
+                </button>
               </div>
-              <button class="qa-toggle" style="width: 60px; height: 60px; font-size: 56px; border: none; background: transparent; color: #141414; cursor: pointer; line-height: 0.6; flex-shrink: 0; font-family: 'KTFRublena', sans-serif;" aria-label="Rozwiń">+</button>
-            </div>
-            <div class="sep-line"></div>
-            <div class="qa-answer">
-              <div style="display: flex; gap: 24px; padding: 24px 0 32px;">
-                <div style="width: 592px; flex-shrink: 0;"></div>
-                <div style="flex: 1;">
-                  <p class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414;">
-                    Wszystkie pytania dot.&nbsp;biletów oraz związanych z&nbsp;nimi spraw technicznych prosimy kierować do&nbsp;pośrednika sprzedaży Biletomat.pl na&nbsp;adres e-mail: <a href="mailto:info@biletomat.pl" style="color: #141414; text-decoration: underline; text-underline-offset: 3px;">info@biletomat.pl</a> lub na&nbsp;infolinię pod nr&nbsp;tel.: <a href="tel:+48226999940" style="color: #141414; text-decoration: underline; text-underline-offset: 3px;">22&nbsp;69&nbsp;99&nbsp;940</a>.
+              <div class="qa-answer">
+                <div class="qa-answer-inner">
+                  <p class="qa-body">
+                    Wszystkie pytania dot.&nbsp;biletów oraz związanych z&nbsp;nimi spraw technicznych prosimy kierować do&nbsp;pośrednika sprzedaży <span class="qa-strong">Biletomat.pl</span>:
                   </p>
+                  <div class="qa-agebox" style="margin-top: 14px;">
+                    <div class="qa-agebox-row">
+                      <strong>E-mail</strong>
+                      <span><a href="mailto:info@biletomat.pl" class="qa-link">info@biletomat.pl</a></span>
+                    </div>
+                    <div class="qa-agebox-row">
+                      <strong>Infolinia</strong>
+                      <span><a href="tel:+48226999940" class="qa-link">22&nbsp;69&nbsp;99&nbsp;940</a></span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Q6 -->
-          <div class="qa-item" onclick="toggleQA(this)">
-            <div style="display: flex; gap: 24px; padding: 32px 0; align-items: center;">
-              <div style="display: flex; gap: 24px; align-items: center; flex: 1;">
-                <span style="width: 60px; font-size: 40px; line-height: 0.96; flex-shrink: 0;">6.</span>
-                <p style="font-size: 40px; text-transform: uppercase; line-height: 0.96;">Którego dnia wystąpi konkretny artysta?</p>
+            <!-- 06 -->
+            <div class="qa-item" onclick="toggleQA(this)">
+              <div class="qa-row">
+                <span class="qa-num" aria-hidden="true">06</span>
+                <p class="qa-question">Którego dnia wystąpi konkretny artysta?</p>
+                <button class="qa-toggle" aria-label="Rozwiń">
+                  <span class="qa-toggle-bar qa-toggle-bar-h"></span>
+                  <span class="qa-toggle-bar qa-toggle-bar-v"></span>
+                </button>
               </div>
-              <button class="qa-toggle" style="width: 60px; height: 60px; font-size: 56px; border: none; background: transparent; color: #141414; cursor: pointer; line-height: 0.6; flex-shrink: 0; font-family: 'KTFRublena', sans-serif;" aria-label="Rozwiń">+</button>
-            </div>
-            <div class="sep-line"></div>
-            <div class="qa-answer">
-              <div style="display: flex; gap: 24px; padding: 24px 0 32px;">
-                <div style="width: 592px; flex-shrink: 0;"></div>
-                <div style="flex: 1;">
-                  <p class="font-serif" style="font-size: 20px; line-height: 1.45; max-width: 780px; color: #141414;">
-                    Konkretne dni i&nbsp;godziny występów poszczególnych artystów ogłosimy po&nbsp;prezentacji całego lineup&rsquo;u.<br><br>
+              <div class="qa-answer">
+                <div class="qa-answer-inner">
+                  <p class="qa-body">
+                    Konkretne dni i&nbsp;godziny występów poszczególnych artystów ogłosimy po&nbsp;prezentacji całego lineup&rsquo;u.
+                  </p>
+                  <p class="qa-body" style="opacity:0.72">
                     W&nbsp;sprzedaży dostępne są wyłącznie karnety dwudniowe, więc nie&nbsp;musisz obawiać się, że przegapisz koncert ulubionego artysty.
                   </p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="sep-line"></div>
+          </div>
         </div>
       </section>
 
