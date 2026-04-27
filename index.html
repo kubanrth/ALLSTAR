@@ -568,7 +568,7 @@
       /* =========================================================
          DRAFT mobile — LINEUP header in flow above sticky, sticky centers photo
          ========================================================= */
-      .draft-section { height: 300vh !important; padding: 60px 0 0 !important; margin-top: 0 !important; }
+      .draft-section { height: 360vh !important; padding: 60px 0 0 !important; margin-top: 0 !important; }
       /* LINEUP header — INSIDE sticky, pinned above photo */
       .draft-sticky > .draft-header {
         position: absolute !important; top: 40px !important; left: 50% !important;
@@ -894,8 +894,8 @@
         </div>
       </section>
 
-      <!-- ===== DRAFT GALLERY (sticky, smooth scroll mapping, 9 artists) ===== -->
-      <section class="draft-section" id="draft" style="height: 320vh;">
+      <!-- ===== DRAFT GALLERY (sticky, smooth scroll mapping, 12 slides) ===== -->
+      <section class="draft-section" id="draft" style="height: 380vh;">
         <div class="draft-sticky">
           <!-- LINEUP header INSIDE sticky — pinned above photo, scrolls with section -->
           <div class="draft-header" style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); z-index: 30; display: flex; flex-direction: column; align-items: center; gap: 12px;">
@@ -909,7 +909,7 @@
           <!-- Star arcs background — smaller per request -->
           <img src="brand_assets/draft-arcs-bg.svg" alt="" style="position: absolute; top: 140px; left: 50%; transform: translateX(-50%); width: 980px; height: 600px; pointer-events: none; z-index: 1;" />
 
-          <!-- Photo crossfade — order: SOBEL, BEDOES, WHITE, BAMBI, MALIK, KUQE, YOUNG IGI, VKIE, TBA×2 -->
+          <!-- Photo crossfade — order: SOBEL, BEDOES, WHITE, BAMBI, MALIK, KUQE, YOUNG IGI, VKIE, TBA×4 -->
           <div class="draft-photos" id="draftPhotos">
             <img src="brand_assets/artist-sobel.png" alt="Sobel" class="active" />
             <img src="brand_assets/artist-bedoes.png" alt="Bedoes 2115" />
@@ -921,13 +921,15 @@
             <img src="brand_assets/artist-vkie.png" alt="Vkie" />
             <img src="brand_assets/artist-tba.png" alt="TBA" />
             <img src="brand_assets/artist-tba.png" alt="TBA" />
+            <img src="brand_assets/artist-tba.png" alt="TBA" />
+            <img src="brand_assets/artist-tba.png" alt="TBA" />
           </div>
 
           <!-- Mobile-only: star arcs overlaid on draft photo (Figma node 45:801) -->
           <img class="draft-photo-arc-left" src="brand_assets/draft-arc-left-mobile.svg" alt="" />
           <img class="draft-photo-arc-right" src="brand_assets/draft-arc-left-mobile.svg" alt="" />
 
-          <!-- Vertical names list — order: SOBEL, BEDOES, WHITE, BAMBI, MALIK, KUQE, YOUNG IGI, VKIE, TBA×2 -->
+          <!-- Vertical names list — 8 named + 4 TBA. TBA bar widths derived from poster proportions: 171/145/78/129 (poster px) → 290/245/130/220 (site px) -->
           <div class="draft-list-wrapper">
             <div class="draft-list" id="draftList">
               <div class="draft-name active" data-index="0">SOBEL</div>
@@ -938,8 +940,10 @@
               <div class="draft-name" data-index="5">KUQE 2115</div>
               <div class="draft-name" data-index="6">YOUNG IGI</div>
               <div class="draft-name" data-index="7">VKIE</div>
-              <div class="draft-name draft-name-tba" data-index="8"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 130px;"></span></div>
-              <div class="draft-name draft-name-tba" data-index="9"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 280px;"></span></div>
+              <div class="draft-name draft-name-tba" data-index="8"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 290px;"></span></div>
+              <div class="draft-name draft-name-tba" data-index="9"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 245px;"></span></div>
+              <div class="draft-name draft-name-tba" data-index="10"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 130px;"></span></div>
+              <div class="draft-name draft-name-tba" data-index="11"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 220px;"></span></div>
             </div>
           </div>
         </div>
