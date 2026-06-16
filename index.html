@@ -122,9 +122,9 @@
       font-family: 'KTFRublena', sans-serif; font-size: 56px; line-height: 0.9;
       text-transform: uppercase; letter-spacing: 0.01em;
     }
-    .day-date { font-family: 'Forum', serif; font-size: 24px; opacity: 0.78; }
+    .day-date { font-family: 'KTFRublena', sans-serif; font-size: 44px; line-height: 0.9; text-transform: uppercase; letter-spacing: 0.01em; opacity: 0.9; }
 
-    .lineup-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px 24px; }
+    .lineup-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 32px; }
     .artist-card { margin: 0; }
     .artist-photo {
       position: relative; aspect-ratio: 2 / 3; overflow: hidden;
@@ -143,14 +143,14 @@
     }
 
     /* ===== TIMETABLE ===== */
-    .tt-section { position: relative; padding: 30px 0 130px; isolation: isolate; }
+    .tt-section { position: relative; padding: 88px 0 104px; background: #000; isolation: isolate; }
     .tt-inner { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
-    .tt-section .lineup-header { margin-bottom: 60px; }
+    .tt-section .lineup-header { margin-bottom: 56px; }
+    .tt-section .lineup-title { color: #eed410; }
+    .tt-section .lineup-star { filter: none; }
+    .tt-section .sep-line { background: #eed410; }
     .tt-graphic { display: flex; justify-content: center; }
-    .tt-graphic img {
-      display: block; width: 100%; max-width: 620px; height: auto;
-      box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6);
-    }
+    .tt-graphic img { display: block; width: 100%; max-width: 640px; height: auto; }
 
     /* ===== FAQ (redesigned) ===== */
     #qa { padding: 40px 0 160px; color: #141414; isolation: isolate; position: relative; }
@@ -538,11 +538,11 @@
       .day-block + .day-block { margin-top: 52px !important; }
       .day-head { gap: 14px !important; margin-bottom: 24px !important; padding-bottom: 12px !important; }
       .day-name { font-size: 38px !important; }
-      .day-date { font-size: 18px !important; }
+      .day-date { font-size: 30px !important; }
       .lineup-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 22px 16px !important; }
       .artist-name { font-size: 16px !important; margin-top: 11px !important; }
 
-      .tt-section { padding: 12px 0 72px !important; }
+      .tt-section { padding: 52px 0 64px !important; }
       .tt-inner { padding: 0 20px !important; }
       .tt-section .lineup-header { margin-bottom: 40px !important; }
       .tt-graphic img { max-width: 440px !important; }
