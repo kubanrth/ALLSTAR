@@ -12,6 +12,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://biletomat.pl/embeddables/embedded-manager.js"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18138631501"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18138631501');
+</script>
   <style>
     @font-face {
       font-family: 'KTFRublena';
@@ -98,6 +107,21 @@
     .hamburger.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
     .sep-line-gold { width: 100%; max-width: 720px; height: 2px; background: #eed410; }
+    .bilety-day-section {
+      display: flex; flex-direction: column; gap: 40px; align-items: center;
+      width: 100%; max-width: 720px;
+    }
+    .bilety-day-title {
+      font-size: 44px; line-height: 0.96; text-transform: uppercase; color: #eed410;
+    }
+    .bilety-day-block {
+      display: flex; flex-direction: column; gap: 16px; align-items: center;
+      width: 100%;
+    }
+    .bilety-day-options {
+      display: flex; flex-direction: column; gap: 40px; align-items: center;
+      width: 100%;
+    }
 
     /* MOBILE */
     @media (max-width: 768px) {
@@ -128,8 +152,12 @@
       .bilety-group-title { font-size: 32px !important; }
       .bilety-tier-name { font-size: 28px !important; }
       .bilety-tier-desc { font-size: 14px !important; }
+      .bilety-day-title { font-size: 32px !important; }
+      .bilety-day-block { gap: 14px !important; }
+      .bilety-day-options { gap: 40px !important; }
     }
   </style>
+
 </head>
 <body>
 
@@ -185,7 +213,13 @@
           <!-- FAN PASS -->
           <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
             <div class="bilety-tier-name" style="font-size: 36px; line-height: 0.96; text-transform: uppercase; color: #eed410;">
-              Fan Pass — 349 PLN
+              Fan Pass — SOLD OUT
+            </div>
+          </div>
+
+           <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+            <div class="bilety-tier-name" style="font-size: 36px; line-height: 0.96; text-transform: uppercase; color: #eed410;">
+              All Star Pass — 399 PLN
             </div>
             <p class="bilety-tier-desc font-serif" style="font-size: 18px; line-height: 1.4; color: #eed410; max-width: 560px;">
               Bilet upoważnia do&nbsp;przebywania na&nbsp;płycie głównej oraz dolnych partiach trybun i&nbsp;w&nbsp;specjalnie wyznaczonych strefach.
@@ -200,14 +234,61 @@
           <!-- VIP ACCESS -->
           <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
             <div class="bilety-tier-name" style="font-size: 36px; line-height: 0.96; text-transform: uppercase; color: #eed410;">
-              VIP Access (Drop 1) —<br class="hidden max-[768px]:inline"> 699 PLN
+              VIP Access (Drop 1) —<br class="hidden max-[768px]:inline"> SOLD OUT
+            </div>
+<!--            <p class="bilety-tier-desc font-serif" style="font-size: 18px; line-height: 1.4; color: #eed410; max-width: 560px;">-->
+<!--              Dostęp do&nbsp;strefy VIP z&nbsp;dobrym widokiem na&nbsp;scenę, dedykowana trybuna VIP, możliwość zejścia na&nbsp;płytę główną. Oddzielne wejście bez kolejki, dedykowana strefa barowa, osobne toalety premium.-->
+<!--            </p>-->
+<!--            <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="btn-outline" style="color: #eed410; border-color: #eed410; margin-top: 16px;">-->
+<!--              <span>Kup bilet</span>-->
+<!--            </a>-->
+          </div>
+
+           <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+            <div class="bilety-tier-name" style="font-size: 36px; line-height: 0.96; text-transform: uppercase; color: #eed410;">
+              VIP Access (Drop 2) —<br class="hidden max-[768px]:inline"> 999 PLN
             </div>
             <p class="bilety-tier-desc font-serif" style="font-size: 18px; line-height: 1.4; color: #eed410; max-width: 560px;">
-              Dostęp do&nbsp;strefy VIP z&nbsp;dobrym widokiem na&nbsp;scenę, dedykowana trybuna VIP, możliwość zejścia na&nbsp;płytę główną. Oddzielne wejście bez kolejki, dedykowana strefa barowa, osobne toalety premium.
+              Dostęp do&nbsp;strefy VIP z&nbsp;dobrym widokiem na&nbsp;scenę, dedykowana trybuna VIP, możliwość zejścia na&nbsp;płytę główną. Oddzielne wejście bez kolejki, dedykowana strefa barowa, osobne toalety premium. Wstęp do&nbsp;strefy Golden Circle pod samą sceną i&nbsp;wstęp na&nbsp;afterparty VIP po&nbsp;pierwszym dniu festiwalu
             </p>
-            <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="btn-outline" style="color: #eed410; border-color: #eed410; margin-top: 16px;">
-              <span>Kup bilet</span>
-            </a>
+                                  <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="btn-outline" style="color: #eed410; border-color: #eed410; margin-top: 16px;">
+                                    <span>Kup bilet</span>
+                                  </a>
+          </div>
+
+          <!-- ONE-DAY TICKETS -->
+          <div class="bilety-day-section">
+            <h2 class="bilety-day-title">Bilety jednodniowe</h2>
+            <div class="sep-line-gold"></div>
+            <div class="bilety-day-block">
+              <div class="bilety-day-options">
+                <div class="bilety-tier-name" style="font-size: 36px; line-height: 0.96; text-transform: uppercase; color: #eed410;">
+                  Single Pass (sobota 27.06) - I pula - 249 PLN
+                </div>
+                <div class="bilety-tier-name" style="font-size: 36px; line-height: 0.96; text-transform: uppercase; color: #eed410;">
+                  Single Pass (niedziela 28.06) - I pula - 249 PLN
+                </div>
+              </div>
+              <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="btn-outline" style="color: #eed410; border-color: #eed410; margin-top: 16px;">
+                <span>Kup bilet</span>
+              </a>
+            </div>
+
+            <div class="sep-line-gold" style="margin-top: 16px;"></div>
+
+            <div class="bilety-day-block">
+              <div class="bilety-day-options">
+                <div class="bilety-tier-name" style="font-size: 36px; line-height: 0.96; text-transform: uppercase; color: #eed410;">
+                  VIP Pass Day1 (sobota 27.06) 499 PLN
+                </div>
+                <div class="bilety-tier-name" style="font-size: 36px; line-height: 0.96; text-transform: uppercase; color: #eed410;">
+                  VIP Pass Day2 (niedziela 28.06) 499 PLN
+                </div>
+              </div>
+              <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="btn-outline" style="color: #eed410; border-color: #eed410; margin-top: 16px;">
+                <span>Kup bilet</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -225,7 +306,7 @@
           <!-- STANDARD GA -->
           <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
             <p class="bilety-group-title" style="font-size: 28px; line-height: 0.96; text-transform: uppercase; color: rgba(238,212,16,0.4);">Standard GA</p>
-            <p class="bilety-tier-name" style="font-size: 24px; line-height: 1.1; text-transform: uppercase; color: rgba(238,212,16,0.4);">All Star Pass — 399 PLN</p>
+<!--            <p class="bilety-tier-name" style="font-size: 24px; line-height: 1.1; text-transform: uppercase; color: rgba(238,212,16,0.4);">All Star Pass — 399 PLN</p>-->
             <p class="bilety-tier-name" style="font-size: 24px; line-height: 1.1; text-transform: uppercase; color: rgba(238,212,16,0.4);">Buzzer Pass – Final Call — 449 PLN</p>
           </div>
 
@@ -234,7 +315,7 @@
           <!-- VIP -->
           <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
             <p class="bilety-group-title" style="font-size: 28px; line-height: 0.96; text-transform: uppercase; color: rgba(238,212,16,0.4);">VIP</p>
-            <p class="bilety-tier-name" style="font-size: 24px; line-height: 1.1; text-transform: uppercase; color: rgba(238,212,16,0.4);">VIP Access (Drop 2) —<br class="hidden max-[768px]:inline"> 999 PLN</p>
+<!--            <p class="bilety-tier-name" style="font-size: 24px; line-height: 1.1; text-transform: uppercase; color: rgba(238,212,16,0.4);">VIP Access (Drop 2) —<br class="hidden max-[768px]:inline"> 999 PLN</p>-->
             <p class="bilety-tier-name" style="font-size: 24px; line-height: 1.1; text-transform: uppercase; color: rgba(238,212,16,0.4);">VIP Access – Final Call — 1299 PLN</p>
           </div>
 
@@ -244,7 +325,7 @@
 
       <!-- RIGHT: image -->
       <div class="bilety-image" style="width: 100%;">
-        <img src="brand_assets/bilety-lineup.png" alt="OSHEE All Star Festival — lineup 27-28.06.2026" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+        <img src="brand_assets/bilety-lineup-20260607-145158.png" alt="OSHEE All Star Festival — lineup 27-28.06.2026" style="width: 100%; height: auto; display: block; object-fit: cover;" />
       </div>
 
     </div>

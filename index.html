@@ -102,111 +102,55 @@
     .menu-overlay.open { opacity: 1; pointer-events: auto; }
 
     /* ===== DRAFT GALLERY (vertical list) ===== */
-    .draft-section { position: relative; padding-bottom: 180px; padding-top: 80px; }
-    .draft-sticky {
-      position: sticky;
-      top: calc((100vh - 800px) / 2);
-      height: 800px;
-      overflow: hidden;
+    /* ===== LINEUP (split by day) ===== */
+    .lineup-section { position: relative; padding: 90px 0 110px; color: #141414; isolation: isolate; }
+    .lineup-inner { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+    .lineup-header { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 72px; }
+    .lineup-header-row { display: flex; align-items: center; gap: 24px; }
+    .lineup-star { width: 32px; height: 40px; filter: brightness(0); }
+    .lineup-title {
+      font-family: 'KTFRublena', sans-serif; color: #141414;
+      font-size: 40px; text-transform: uppercase; line-height: 0.96; letter-spacing: 0.01em;
     }
 
-    /* Photos — desaturated + multiply on yellow bg = duotone yellow effect (jak Figma) */
-    .draft-photos {
-      position: absolute; top: 160px; left: 50%;
-      transform: translateX(-50%);
-      width: 463px; height: 578px;
-      background: #eed410;
-      isolation: isolate;
+    .day-block + .day-block { margin-top: 80px; }
+    .day-head {
+      display: flex; align-items: baseline; gap: 22px;
+      margin-bottom: 36px; padding-bottom: 16px; border-bottom: 2px solid #141414;
     }
-    .draft-photos img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      mix-blend-mode: multiply;
-      filter: saturate(0) brightness(1.1);
+    .day-name {
+      font-family: 'KTFRublena', sans-serif; font-size: 56px; line-height: 0.9;
+      text-transform: uppercase; letter-spacing: 0.01em;
     }
-    .draft-photos img.active { opacity: 1; }
+    .day-date { font-family: 'Forum', serif; font-size: 24px; opacity: 0.78; }
 
-    /* Names list — aligned with photo (top=160, height 578), feathered top/bottom */
-    .draft-list-wrapper {
-      position: absolute;
-      top: 160px; left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 578px;
-      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
-              mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
-      z-index: 10;
-      pointer-events: none;
-      /* Clip top/bottom to photo height, leave horizontal free for active text overflow */
-      clip-path: inset(0 0 0 0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .lineup-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px 24px; }
+    .artist-card { margin: 0; }
+    .artist-photo {
+      position: relative; aspect-ratio: 2 / 3; overflow: hidden;
+      background: #eed410; isolation: isolate;
     }
-    .draft-list {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 6px;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    .artist-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      mix-blend-mode: multiply; filter: saturate(0) brightness(1.05);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
     }
-    .draft-name {
-      font-size: 44px;
-      line-height: 1;
-      text-transform: uppercase;
-      text-align: center;
-      color: transparent;
-      -webkit-text-stroke: 1.5px #eed410;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      opacity: 0.9;
-      mix-blend-mode: normal;
-    }
-    .draft-name.active {
-      color: #fff;
-      -webkit-text-stroke: 0;
-      font-size: 88px;
-      opacity: 1;
-      text-shadow: 0 4px 60px rgba(0,0,0,0.4);
-      mix-blend-mode: normal;
-    }
-    /* TBA — redacted bar style */
-    .draft-name-tba {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      mix-blend-mode: normal;
-    }
-    .draft-name-tba .tba-label {
-      font-size: 32px;
-      color: transparent;
-      -webkit-text-stroke: 1.5px #eed410;
-      letter-spacing: 0.05em;
-    }
-    .draft-name-tba .tba-bar {
-      display: inline-block;
-      height: 38px;
-      border: 1.5px solid #eed410;
-      background: transparent;
-    }
-    .draft-name-tba.active {
-      mix-blend-mode: normal;
-    }
-    .draft-name-tba.active .tba-label {
-      color: #fff;
-      -webkit-text-stroke: 0;
-      font-size: 60px;
-    }
-    .draft-name-tba.active .tba-bar {
-      height: 64px;
-      background: #fff;
-      border: 0;
+    .artist-card:hover .artist-photo img { transform: scale(1.05); filter: saturate(0) brightness(1.15); }
+    .artist-name {
+      margin-top: 14px; font-family: 'KTFRublena', sans-serif;
+      font-size: 20px; line-height: 1; text-transform: uppercase; letter-spacing: 0.02em;
+      text-align: center; color: #141414;
     }
 
-    /* Draft photo arcs (mobile-only) */
-    .draft-photo-arc-left, .draft-photo-arc-right { display: none; }
+    /* ===== TIMETABLE ===== */
+    .tt-section { position: relative; padding: 30px 0 130px; isolation: isolate; }
+    .tt-inner { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+    .tt-section .lineup-header { margin-bottom: 60px; }
+    .tt-graphic { display: flex; justify-content: center; }
+    .tt-graphic img {
+      display: block; width: 100%; max-width: 620px; height: auto;
+      box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6);
+    }
 
     /* ===== FAQ (redesigned) ===== */
     #qa { padding: 40px 0 160px; color: #141414; isolation: isolate; position: relative; }
@@ -305,6 +249,21 @@
       padding: 0 2px; transition: color 0.2s ease, background 0.2s ease;
     }
     .qa-link:hover { background: #141414; color: #eed410; text-decoration: none; }
+
+    /* Consent-form pill link inside age box */
+    .qa-consent-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-left: 12px; padding: 6px 13px;
+      font-family: 'KTFRublena', sans-serif; font-size: 13px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: #141414; border: 1.5px solid #141414; text-decoration: none;
+      white-space: nowrap; vertical-align: middle;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .qa-consent-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .qa-consent-link:hover { background: #141414; color: #eed410; transform: translateY(-1px); }
+    .qa-consent-link:focus-visible { outline: 2px solid #141414; outline-offset: 3px; }
+    .qa-consent-link:active { transform: translateY(0) scale(0.97); }
 
     .qa-subhead {
       font-family: 'KTFRublena', sans-serif;
@@ -566,109 +525,27 @@
       }
 
       /* =========================================================
-         DRAFT mobile — LINEUP header in flow above sticky, sticky centers photo
+         LINEUP + TIMETABLE — mobile
          ========================================================= */
-      .draft-section { height: 360vh !important; padding: 60px 0 0 !important; margin-top: 0 !important; }
-      /* LINEUP header — INSIDE sticky, pinned above photo */
-      .draft-sticky > .draft-header {
-        position: absolute !important; top: 40px !important; left: 50% !important;
-        transform: translateX(-50%) !important; margin: 0 !important;
-        gap: 12px !important;
-      }
-      .draft-sticky > .draft-header > div img { width: 19px !important; height: 24px !important; }
-      .draft-sticky > .draft-header > div { gap: 16px !important; }
-      .draft-sticky > .draft-header p { font-size: 32px !important; }
-      .draft-sticky > .draft-header .sep-line { width: 240px !important; }
-      /* Sticky locks so PHOTO is centered in viewport (header sits above photo, scrolls into top) */
-      .draft-sticky {
-        position: sticky !important;
-        top: calc((100vh - 488px) / 2 - 140px) !important;
-        height: 628px !important;
-        min-height: 0 !important;
-        overflow: hidden !important;
-      }
-      /* Header at top of sticky, photo 140px below */
-      .draft-sticky > .draft-header { top: 20px !important; }
-      /* Decorative background arc: hidden on mobile */
-      .draft-section img[src*="draft-arcs-bg"] { display: none !important; }
-      /* Photo at top: 140 (just below header), arcs centered on photo */
-      .draft-photo-arc-left, .draft-photo-arc-right {
-        display: block !important;
-        position: absolute !important;
-        top: 184px !important; transform: none !important;
-        width: 94px !important; height: 400px !important;
-        pointer-events: none !important;
-        z-index: 15 !important;
-      }
-      .draft-photo-arc-left { left: 16px !important; }
-      .draft-photo-arc-right { right: 16px !important; transform: scaleX(-1) !important; }
-      .draft-photos {
-        position: absolute !important;
-        width: 100vw !important; height: 488px !important;
-        left: 0 !important; right: 0 !important;
-        top: 140px !important; transform: none !important;
-        margin: 0 !important;
-      }
-      .draft-photos img {
-        position: absolute !important; inset: 0 !important;
-        width: 100% !important; height: 100% !important;
-        object-fit: cover !important; opacity: 0 !important;
-        mix-blend-mode: multiply !important;
-        transition: opacity 0.5s ease !important;
-      }
-      .draft-photos img.active { opacity: 1 !important; }
-      /* Name overlay centered on photo (photo top=140) */
-      .draft-list-wrapper {
-        position: absolute !important;
-        left: 0 !important; right: 0 !important;
-        top: 262px !important; bottom: auto !important;
-        transform: none !important;
-        width: 100vw !important; height: 244px !important;
-        display: flex !important; align-items: center !important; justify-content: center !important;
-        pointer-events: none !important;
-        z-index: 25 !important;
-        clip-path: none !important;
-        overflow: hidden !important;
-        -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%) !important;
-                mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%) !important;
-      }
-      /* All names visible on mobile, list shifts via JS so active is centered on photo */
-      .draft-list {
-        display: flex !important; flex-direction: column !important;
-        align-items: center !important; gap: 8px !important;
-      }
-      .draft-name {
-        display: block !important;
-        font-size: 28px !important; line-height: 1 !important;
-        color: transparent !important;
-        -webkit-text-stroke: 1px #eed410 !important;
-        mix-blend-mode: normal !important;
-        white-space: nowrap !important;
-        opacity: 0.9 !important;
-      }
-      .draft-name.active {
-        font-size: 48px !important; line-height: 1.04 !important;
-        color: #fff !important; -webkit-text-stroke: 0 !important;
-        opacity: 1 !important;
-        max-width: 100vw !important;
-        padding: 0 12px !important;
-      }
-      .draft-name-tba { display: flex !important; align-items: center !important; gap: 10px !important; }
-      .draft-name-tba .tba-label {
-        font-size: 22px !important; -webkit-text-stroke: 1px #eed410 !important;
-        color: transparent !important;
-      }
-      .draft-name-tba.active .tba-label {
-        font-size: 48px !important; -webkit-text-stroke: 0 !important; color: #fff !important;
-      }
-      .draft-name-tba .tba-bar {
-        height: 22px !important;
-        border: 1px solid #eed410 !important; background: transparent !important;
-      }
-      .draft-name-tba.active .tba-bar {
-        height: 46px !important;
-        background: #fff !important; border: none !important;
-      }
+      .lineup-section { padding: 56px 0 64px !important; }
+      .lineup-inner { padding: 0 20px !important; }
+      .lineup-header { margin-bottom: 44px !important; }
+      .lineup-header-row { gap: 16px !important; }
+      .lineup-star { width: 22px !important; height: 28px !important; }
+      .lineup-title { font-size: 30px !important; }
+      .lineup-header .sep-line { width: 220px !important; }
+
+      .day-block + .day-block { margin-top: 52px !important; }
+      .day-head { gap: 14px !important; margin-bottom: 24px !important; padding-bottom: 12px !important; }
+      .day-name { font-size: 38px !important; }
+      .day-date { font-size: 18px !important; }
+      .lineup-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 22px 16px !important; }
+      .artist-name { font-size: 16px !important; margin-top: 11px !important; }
+
+      .tt-section { padding: 12px 0 72px !important; }
+      .tt-inner { padding: 0 20px !important; }
+      .tt-section .lineup-header { margin-bottom: 40px !important; }
+      .tt-graphic img { max-width: 440px !important; }
 
       /* ===== FAQ — mobile ===== */
       #qa { padding: 60px 16px 40px !important; }
@@ -894,57 +771,66 @@
         </div>
       </section>
 
-      <!-- ===== DRAFT GALLERY (sticky, smooth scroll mapping, 12 slides) ===== -->
-      <section class="draft-section" id="draft" style="height: 380vh;">
-        <div class="draft-sticky">
-          <!-- LINEUP header INSIDE sticky — pinned above photo, scrolls with section -->
-          <div class="draft-header" style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); z-index: 30; display: flex; flex-direction: column; align-items: center; gap: 12px;">
-            <div style="display: flex; align-items: center; gap: 24px;">
-              <img src="brand_assets/star-small.svg" alt="" style="width: 32px; height: 40px; filter: brightness(0);" />
-              <p style="color: #141414; font-size: 40px; text-transform: uppercase; line-height: 0.96;">Lineup</p>
-              <img src="brand_assets/star-small.svg" alt="" style="width: 32px; height: 40px; filter: brightness(0);" />
+      <!-- ===== LINEUP (split by day) ===== -->
+      <section class="lineup-section" id="draft">
+        <div class="lineup-inner">
+          <div class="lineup-header">
+            <div class="lineup-header-row">
+              <img src="brand_assets/star-small.svg" alt="" class="lineup-star" />
+              <p class="lineup-title">Lineup</p>
+              <img src="brand_assets/star-small.svg" alt="" class="lineup-star" />
             </div>
             <div class="sep-line" style="width: 280px;"></div>
           </div>
-          <!-- Star arcs background — smaller per request -->
-          <img src="brand_assets/draft-arcs-bg.svg" alt="" style="position: absolute; top: 140px; left: 50%; transform: translateX(-50%); width: 980px; height: 600px; pointer-events: none; z-index: 1;" />
 
-          <!-- Photo crossfade — order: SOBEL, BEDOES, WHITE, BAMBI, MALIK, KUQE, YOUNG IGI, VKIE, TBA×4 -->
-          <div class="draft-photos" id="draftPhotos">
-            <img src="brand_assets/artist-sobel.png" alt="Sobel" class="active" />
-            <img src="brand_assets/artist-bedoes.png" alt="Bedoes 2115" />
-            <img src="brand_assets/artist-white2115.png" alt="White 2115" />
-            <img src="brand_assets/artist-bambi.png" alt="Bambi" />
-            <img src="brand_assets/artist-malik.png" alt="Malik Montana" />
-            <img src="brand_assets/artist-kuqe.png" alt="Kuqe 2115" />
-            <img src="brand_assets/artist-young-igi.png" alt="Young Igi" />
-            <img src="brand_assets/artist-vkie.png" alt="Vkie" />
-            <img src="brand_assets/artist-tba.png" alt="TBA" />
-            <img src="brand_assets/artist-tba.png" alt="TBA" />
-            <img src="brand_assets/artist-tba.png" alt="TBA" />
-            <img src="brand_assets/artist-tba.png" alt="TBA" />
+          <!-- SOBOTA 27.06 -->
+          <div class="day-block">
+            <div class="day-head">
+              <span class="day-name">Sobota</span>
+              <span class="day-date">27.06</span>
+            </div>
+            <div class="lineup-grid">
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-bedoes.png" alt="Bedoes 2115" /></div><figcaption class="artist-name">Bedoes 2115</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-white2115.png" alt="White 2115" /></div><figcaption class="artist-name">White 2115</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-zabson.png" alt="Żabson" /></div><figcaption class="artist-name">Żabson</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-jan-rapowanie.png" alt="Jan-Rapowanie" /></div><figcaption class="artist-name">Jan-Rapowanie</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-young-igi.png" alt="Young Igi" /></div><figcaption class="artist-name">Young Igi</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-kuqe.png" alt="Kuqe 2115" /></div><figcaption class="artist-name">Kuqe 2115</figcaption></figure>
+            </div>
           </div>
 
-          <!-- Mobile-only: star arcs overlaid on draft photo (Figma node 45:801) -->
-          <img class="draft-photo-arc-left" src="brand_assets/draft-arc-left-mobile.svg" alt="" />
-          <img class="draft-photo-arc-right" src="brand_assets/draft-arc-left-mobile.svg" alt="" />
-
-          <!-- Vertical names list — 8 named + 4 TBA. TBA bar widths derived from poster proportions: 171/145/78/129 (poster px) → 290/245/130/220 (site px) -->
-          <div class="draft-list-wrapper">
-            <div class="draft-list" id="draftList">
-              <div class="draft-name active" data-index="0">SOBEL</div>
-              <div class="draft-name" data-index="1">BEDOES 2115</div>
-              <div class="draft-name" data-index="2">WHITE 2115</div>
-              <div class="draft-name" data-index="3">BAMBI</div>
-              <div class="draft-name" data-index="4">MALIK MONTANA</div>
-              <div class="draft-name" data-index="5">KUQE 2115</div>
-              <div class="draft-name" data-index="6">YOUNG IGI</div>
-              <div class="draft-name" data-index="7">VKIE</div>
-              <div class="draft-name draft-name-tba" data-index="8"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 290px;"></span></div>
-              <div class="draft-name draft-name-tba" data-index="9"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 245px;"></span></div>
-              <div class="draft-name draft-name-tba" data-index="10"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 130px;"></span></div>
-              <div class="draft-name draft-name-tba" data-index="11"><span class="tba-label">TBA</span><span class="tba-bar" style="width: 220px;"></span></div>
+          <!-- NIEDZIELA 28.06 -->
+          <div class="day-block">
+            <div class="day-head">
+              <span class="day-name">Niedziela</span>
+              <span class="day-date">28.06</span>
             </div>
+            <div class="lineup-grid">
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-sobel.png" alt="Sobel" /></div><figcaption class="artist-name">Sobel</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-bambi.png" alt="Bambi" /></div><figcaption class="artist-name">Bambi</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-malik.png" alt="Malik Montana" /></div><figcaption class="artist-name">Malik Montana</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-vkie.png" alt="Vkie" /></div><figcaption class="artist-name">Vkie</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-wane.png" alt="Wane" /></div><figcaption class="artist-name">Wane</figcaption></figure>
+              <figure class="artist-card"><div class="artist-photo"><img src="brand_assets/artist-mlody-west.png" alt="Młody West" /></div><figcaption class="artist-name">Młody West</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TIMETABLE ===== -->
+      <section class="tt-section" id="timetable">
+        <div class="tt-inner">
+          <div class="lineup-header">
+            <div class="lineup-header-row">
+              <img src="brand_assets/star-small.svg" alt="" class="lineup-star" />
+              <p class="lineup-title">Timetable</p>
+              <img src="brand_assets/star-small.svg" alt="" class="lineup-star" />
+            </div>
+            <div class="sep-line" style="width: 280px;"></div>
+          </div>
+
+          <div class="tt-graphic">
+            <img src="brand_assets/timetable.png" alt="ALL STAR Festival — timetable: Sobota 27.06.2026 i Niedziela 28.06.2026, godziny występów artystów. Stadion Legii Warszawa." />
           </div>
         </div>
       </section>
@@ -1003,7 +889,7 @@
                   <div class="qa-agebox">
                     <div class="qa-agebox-row">
                       <strong>16-18 lat</strong>
-                      <span>udział za&nbsp;pisemną zgodą rodzica lub&nbsp;opiekuna prawnego.</span>
+                      <span>udział za&nbsp;pisemną zgodą rodzica lub&nbsp;opiekuna prawnego.<a href="brand_assets/wzor-zgody.pdf" target="_blank" rel="noopener" class="qa-consent-link" onclick="event.stopPropagation()">Wzór zgody<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></span>
                     </div>
                     <div class="qa-agebox-row">
                       <strong>Poniżej 16 lat</strong>
@@ -1027,7 +913,7 @@
               <div class="qa-answer">
                 <div class="qa-answer-inner">
                   <p class="qa-body">
-                    Dostępne są karnety dwudniowe z&nbsp;puli <span class="qa-strong">Standard</span> oraz <span class="qa-strong">VIP</span>. Ceny karnetów rosną wraz z&nbsp;wyprzedaniem się kolejnych pul. Szczegółowa rozpiska dostępna jest <a href="bilety.html" class="qa-link">tutaj</a>.
+                    Dostępne są karnety dwudniowe oraz bilety jednodniowe z&nbsp;puli <span class="qa-strong">Standard</span> i&nbsp;<span class="qa-strong">VIP</span>. Ceny biletów rosną wraz z&nbsp;wyprzedaniem się kolejnych pul. Szczegółowa rozpiska dostępna jest <a href="bilety.html" class="qa-link">tutaj</a>.
                   </p>
 
                   <div class="qa-subhead">Pule Standard</div>
@@ -1045,16 +931,17 @@
                       <span class="qa-tier-name">Member Pass<span class="qa-tier-price">249&nbsp;PLN</span></span>
                       <span class="qa-tier-status">Sold out</span>
                     </div>
-                    <div class="qa-tier qa-tier--available">
+                    <div class="qa-tier qa-tier--soldout">
                       <span class="qa-tier-star">★</span>
                       <span class="qa-tier-name">Fan Pass<span class="qa-tier-price">349&nbsp;PLN</span></span>
-                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
+                      <span class="qa-tier-status">Sold out</span>
                     </div>
-                    <div class="qa-tier qa-tier--upcoming">
+                    <div class="qa-tier qa-tier--available">
                       <span class="qa-tier-star">★</span>
                       <span class="qa-tier-name">All Star Pass<span class="qa-tier-price">399&nbsp;PLN</span></span>
-                      <span class="qa-tier-status">po wyprzedaniu poprzedniej puli</span>
+                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
                     </div>
+
                     <div class="qa-tier qa-tier--upcoming">
                       <span class="qa-tier-star">★</span>
                       <span class="qa-tier-name">Buzzer Pass — Final Call<span class="qa-tier-price">449&nbsp;PLN</span></span>
@@ -1067,20 +954,49 @@
                     Dostęp do&nbsp;strefy VIP z&nbsp;dobrym widokiem na&nbsp;scenę, dedykowana trybuna VIP, możliwość zejścia na&nbsp;płytę główną. Oddzielne wejście bez kolejki, dedykowana strefa barowa, osobne toalety premium.
                   </p>
                   <div class="qa-tier-list">
-                    <div class="qa-tier qa-tier--available">
+                    <div class="qa-tier qa-tier--soldout">
                       <span class="qa-tier-star">★</span>
                       <span class="qa-tier-name">VIP Access (Drop 1)<span class="qa-tier-price">799&nbsp;PLN</span></span>
-                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
+                      <span class="qa-tier-status">Sold out</span>
+
+<!--                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>-->
                     </div>
-                    <div class="qa-tier qa-tier--upcoming">
+                    <div class="qa-tier qa-tier--available">
                       <span class="qa-tier-star">★</span>
                       <span class="qa-tier-name">VIP Access (Drop 2)<span class="qa-tier-price">999&nbsp;PLN</span></span>
-                      <span class="qa-tier-status">po wyprzedaniu poprzedniej puli</span>
+                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
                     </div>
                     <div class="qa-tier qa-tier--upcoming">
                       <span class="qa-tier-star">★</span>
                       <span class="qa-tier-name">VIP Access — Final Call<span class="qa-tier-price">1299&nbsp;PLN</span></span>
                       <span class="qa-tier-status">po wyprzedaniu poprzedniej puli</span>
+                    </div>
+                  </div>
+
+                  <div class="qa-subhead">Bilety jednodniowe</div>
+                  <p class="qa-body">
+                    Bilety jednodniowe są dostępne dla soboty <span class="qa-strong">27.06</span> oraz niedzieli <span class="qa-strong">28.06</span> w&nbsp;puli Standard i&nbsp;VIP.
+                  </p>
+                  <div class="qa-tier-list">
+                    <div class="qa-tier qa-tier--available">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">Single Pass (sobota 27.06) - I pula<span class="qa-tier-price">249&nbsp;PLN</span></span>
+                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
+                    </div>
+                    <div class="qa-tier qa-tier--available">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">Single Pass (niedziela 28.06) - I pula<span class="qa-tier-price">249&nbsp;PLN</span></span>
+                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
+                    </div>
+                    <div class="qa-tier qa-tier--available">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">VIP Pass Day1 (sobota 27.06)<span class="qa-tier-price">499&nbsp;PLN</span></span>
+                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
+                    </div>
+                    <div class="qa-tier qa-tier--available">
+                      <span class="qa-tier-star">★</span>
+                      <span class="qa-tier-name">VIP Pass Day2 (niedziela 28.06)<span class="qa-tier-price">499&nbsp;PLN</span></span>
+                      <a href="https://biletomat.pl/embedded/rezerwacja/339619?salesChannelId=019ce65b-a44b-7645-8bf1-01087830eabd" class="qa-tier-status" onclick="event.stopPropagation()">Dostępne</a>
                     </div>
                   </div>
 
@@ -1105,10 +1021,10 @@
               <div class="qa-answer">
                 <div class="qa-answer-inner">
                   <p class="qa-body">
-                    W&nbsp;sprzedaży dostępne są wyłącznie karnety upoważniające do&nbsp;udziału w&nbsp;<span class="qa-strong">obu dniach</span> festiwalu. Nie&nbsp;przewidujemy sprzedaży biletów jednodniowych.
+                    Z uwagi na Wasze liczne prośby, postanowiliśmy dodać opcję zakupu biletów jednodniowych.
                   </p>
-                  <p class="qa-body" style="opacity:0.72">
-                    Konkretne dni i&nbsp;godziny występów poszczególnych artystów ogłosimy po&nbsp;prezentacji całego lineup&rsquo;u.
+                  <p class="qa-body">
+                    Od teraz możecie dokonać zakupu osobno na pierwszy i drugi dzień festiwalu, zarówno w opcji STANDARD, jak i VIP.
                   </p>
                 </div>
               </div>
@@ -1159,7 +1075,7 @@
                     Konkretne dni i&nbsp;godziny występów poszczególnych artystów ogłosimy po&nbsp;prezentacji całego lineup&rsquo;u.
                   </p>
                   <p class="qa-body" style="opacity:0.72">
-                    W&nbsp;sprzedaży dostępne są wyłącznie karnety dwudniowe, więc nie&nbsp;musisz obawiać się, że przegapisz koncert ulubionego artysty.
+                    Przy wyborze biletu jednodniowego pamiętaj, że szczegółowy podział artystów na&nbsp;dni zostanie ogłoszony później.
                   </p>
                 </div>
               </div>
@@ -1269,62 +1185,6 @@
       el.classList.toggle('open');
     }
 
-    // DRAFT — sticky 400vh, scroll maps to slide index, all names always visible
-    const draftSection = document.getElementById('draft');
-    const draftList = document.getElementById('draftList');
-    const draftNames = document.querySelectorAll('.draft-name');
-    const draftPhotos = document.querySelectorAll('#draftPhotos img');
-    const totalSlides = draftNames.length; // 9
-    let currentDraftIdx = -1;
-    const SHIFT_PER_SLIDE = window.innerWidth <= 768 ? 38 : 50; // mobile has smaller items
-
-    function setDraftSlide(idx) {
-      if (idx === currentDraftIdx) return;
-      currentDraftIdx = Math.max(0, Math.min(totalSlides - 1, idx));
-      // All names visible — toggle active
-      draftNames.forEach((n, i) => n.classList.toggle('active', i === currentDraftIdx));
-      // Photo: only first 2 have photos (BEDOES, MALIK), keep last shown for others
-      draftPhotos.forEach((p, i) => p.classList.toggle('active', i === currentDraftIdx));
-      // Translate list so active item is at vertical center
-      // Slide 0: translate +CENTER_OFFSET (push down so item 0 at center)
-      // Slide totalSlides-1: translate -CENTER_OFFSET (push up so last item at center)
-      const centerSlide = (totalSlides - 1) / 2;
-      const offset = (centerSlide - currentDraftIdx) * SHIFT_PER_SLIDE;
-      draftList.style.transform = `translateY(${offset}px)`;
-    }
-
-    // Cache sticky's natural offsetTop BEFORE scroll can alter it (sticky state changes offsetTop mid-lock)
-    let cachedStickyOffsetTop = null;
-    function getStickyOffsetTop(sticky) {
-      if (cachedStickyOffsetTop === null) {
-        cachedStickyOffsetTop = sticky.offsetTop;
-      }
-      return cachedStickyOffsetTop;
-    }
-    function updateDraft() {
-      const sticky = draftSection.querySelector('.draft-sticky');
-      if (!sticky) return;
-      const viewportH = window.innerHeight;
-      const stickyH = sticky.offsetHeight;
-      const stickyTopOffset = (viewportH - stickyH) / 2;
-      const sectionTop = draftSection.offsetTop;
-      const stickyOffsetInSection = getStickyOffsetTop(sticky);
-      const lockStart = sectionTop + stickyOffsetInSection - stickyTopOffset;
-      const sectionHeight = draftSection.offsetHeight;
-      const lockEnd = sectionTop + sectionHeight - stickyH - stickyTopOffset;
-      const range = lockEnd - lockStart;
-      if (range <= 0) return;
-      const scrollY = window.scrollY;
-      if (scrollY < lockStart) { setDraftSlide(0); return; }
-      if (scrollY > lockEnd) { setDraftSlide(totalSlides - 1); return; }
-      const progress = (scrollY - lockStart) / range;
-      const idx = Math.min(totalSlides - 1, Math.floor(progress * totalSlides));
-      setDraftSlide(idx);
-    }
-    window.addEventListener('scroll', updateDraft, { passive: true });
-    window.addEventListener('resize', () => { cachedStickyOffsetTop = null; updateDraft(); });
-    window.addEventListener('load', () => { cachedStickyOffsetTop = null; updateDraft(); });
-    updateDraft();
   </script>
 </body>
 </html>
