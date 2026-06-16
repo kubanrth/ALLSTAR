@@ -228,6 +228,12 @@
     .qa-toggle-bar-v { width: 2px; height: 18px; }
     .qa-toggle:hover .qa-toggle-bar { background: #eed410; }
     .qa-item.open .qa-toggle-bar-v { transform: rotate(90deg); }
+    /* Q05 navigates to Timetable instead of expanding */
+    .qa-item--link { cursor: pointer; }
+    .qa-toggle--link { color: #141414; }
+    .qa-toggle--link svg { width: 22px; height: 22px; display: block; }
+    .qa-item--link:hover .qa-toggle--link { background: #141414; color: #eed410; }
+    .qa-item--link:focus-visible { outline: 2px solid #141414; outline-offset: 4px; }
 
     .qa-answer {
       max-height: 0; overflow: hidden;
@@ -1013,28 +1019,6 @@
             <div class="qa-item" onclick="toggleQA(this)">
               <div class="qa-row">
                 <span class="qa-num" aria-hidden="true">04</span>
-                <p class="qa-question">Czy będą dostępne bilety jednodniowe?</p>
-                <button class="qa-toggle" aria-label="Rozwiń">
-                  <span class="qa-toggle-bar qa-toggle-bar-h"></span>
-                  <span class="qa-toggle-bar qa-toggle-bar-v"></span>
-                </button>
-              </div>
-              <div class="qa-answer">
-                <div class="qa-answer-inner">
-                  <p class="qa-body">
-                    Z uwagi na Wasze liczne prośby, postanowiliśmy dodać opcję zakupu biletów jednodniowych.
-                  </p>
-                  <p class="qa-body">
-                    Od teraz możecie dokonać zakupu osobno na pierwszy i drugi dzień festiwalu, zarówno w opcji STANDARD, jak i VIP.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- 05 -->
-            <div class="qa-item" onclick="toggleQA(this)">
-              <div class="qa-row">
-                <span class="qa-num" aria-hidden="true">05</span>
                 <p class="qa-question">Zakupiony bilet nie&nbsp;doszedł na&nbsp;maila — co&nbsp;mogę zrobić?</p>
                 <button class="qa-toggle" aria-label="Rozwiń">
                   <span class="qa-toggle-bar qa-toggle-bar-h"></span>
@@ -1060,25 +1044,14 @@
               </div>
             </div>
 
-            <!-- 06 -->
-            <div class="qa-item" onclick="toggleQA(this)">
+            <!-- 05 -->
+            <div class="qa-item qa-item--link" role="link" tabindex="0" aria-label="Którego dnia wystąpi konkretny artysta? Przejdź do sekcji Timetable" onclick="goToTimetable()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToTimetable();}">
               <div class="qa-row">
-                <span class="qa-num" aria-hidden="true">06</span>
+                <span class="qa-num" aria-hidden="true">05</span>
                 <p class="qa-question">Którego dnia wystąpi konkretny artysta?</p>
-                <button class="qa-toggle" aria-label="Rozwiń">
-                  <span class="qa-toggle-bar qa-toggle-bar-h"></span>
-                  <span class="qa-toggle-bar qa-toggle-bar-v"></span>
-                </button>
-              </div>
-              <div class="qa-answer">
-                <div class="qa-answer-inner">
-                  <p class="qa-body">
-                    Konkretne dni i&nbsp;godziny występów poszczególnych artystów ogłosimy po&nbsp;prezentacji całego lineup&rsquo;u.
-                  </p>
-                  <p class="qa-body" style="opacity:0.72">
-                    Przy wyborze biletu jednodniowego pamiętaj, że szczegółowy podział artystów na&nbsp;dni zostanie ogłoszony później.
-                  </p>
-                </div>
+                <span class="qa-toggle qa-toggle--link" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                </span>
               </div>
             </div>
 
@@ -1184,6 +1157,11 @@
     function toggleQA(el) {
       document.querySelectorAll('.qa-item.open').forEach(item => { if (item !== el) item.classList.remove('open'); });
       el.classList.toggle('open');
+    }
+
+    function goToTimetable() {
+      const el = document.getElementById('timetable');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
   </script>
